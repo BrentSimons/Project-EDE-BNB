@@ -1,7 +1,7 @@
 # Enterprise Development Experience Project Readme
 ### BNBs - Bed & Breakfast Management System
 
---
+---
 
 ### Team Members:
 
