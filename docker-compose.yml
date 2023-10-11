@@ -36,7 +36,7 @@ services:
       - mysql-reservation
     #    - product-service
     #    - inventory-service
-    image: siebem03/reservation-service
+    image: brentbrentbrent/reservation-service
     ports:
       - 8090:8090
     #  links:
@@ -53,7 +53,7 @@ services:
   person-service:
     depends_on:
       - mongo-person
-    image: siebem03/person-service
+    image: brentbrentbrent/person-service
     ports:
       - 8095:9085
     environment:
