@@ -21,11 +21,9 @@ public class Reservation {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    
-    @Column(name = "person_id")
+
     private Long personId;
 
-    @Column(name = "room_id")
     private Long roomId;
 
 }

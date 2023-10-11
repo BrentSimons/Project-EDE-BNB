@@ -2,10 +2,8 @@ package fact.it.reservationservice.controller;
 
 import java.util.List;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseStatus;
-import org.springframework.web.bind.annotation.RestController;
+import fact.it.reservationservice.dto.ReservationRequest;
+import org.springframework.web.bind.annotation.*;
 
 import fact.it.reservationservice.dto.ReservationResponse;
 import fact.it.reservationservice.service.ReservationService;
@@ -19,9 +17,15 @@ public class ReservationController {
 
     private final ReservationService reservationService;
 
-    @GetMapping("/test")
+    @GetMapping("/all")
     @ResponseStatus(HttpStatus.OK)
     public List<ReservationResponse> getAllReservations() {
         return reservationService.getAllReservations();
+    }
+
+    @PostMapping("/create")
+    @ResponseStatus(HttpStatus.OK)
+    public void createReservation(@RequestBody ReservationRequest reservationRequest) {
+        reservationService.createReservation(reservationRequest);
     }
 }

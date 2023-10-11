@@ -1,0 +1,31 @@
+name: Build and deliver containers
+
+on: push
+
+jobs:
+  reservationservice:
+    runs-on: ubuntu-latest
+    name: Java 17 build, test, deliver reservation-service container
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v3
+
+      - name: Set up JDK 17
+        uses: actions/setup-java@v3
+        with:
+          java-version: 17
+          cache: maven
+          distribution: adopt
+      
+      - name: Build, test and package project
+        working-directory: ./repository-service
+        run: mvn package -DskipTests
+
+      - name: Docker login
+        run: docker login -u ${{ secrets.DOCKER_USER }} -p ${{ secrets.DOCKER_PASSWORD }}
+
+      - name: Docker Build
+        run: docker build -t ${{ secrets.DOCKER_USER }}/reservation-service:latest ./reservation-service
+
+      - name: Upload container to Docker Hub with Push
+        run: docker push ${{ secrets.DOCKER_USER }}/reservation-service:latest
