@@ -14,9 +14,9 @@ This repository contains our school project for the Enterprise Development Exper
 
 ### Microservices:
 
-Name | Description | Database | API Port
+Name | Description | Database (port) | API Port
 ---|---|---|---
-Bnb | Bed and breakfast companies | MySQL | 8080
-Room | Rooms available in a BnB | MongoDB | 8085
-Reservation | Reservations made under a Bnb | MySQL | 8090
-Person | Owners, customers, staff that are in the system | MongoDB | 8095
+Bnb | Bed and breakfast companies | MySQL (3307) | 8080
+Room | Rooms available in a BnB | MongoDB (27017) | 8085
+Reservation | Reservations made under a Bnb | MySQL (3306) | 8090
+Person | Owners, customers, staff that are in the system | MongoDB (27018) | 8095

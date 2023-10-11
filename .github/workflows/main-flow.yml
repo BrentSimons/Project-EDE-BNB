@@ -3,6 +3,33 @@ name: Build and deliver containers
 on: push
 
 jobs:
+  roomservice:
+    runs-on: ubuntu-latest
+    name: Java 17 build, test, deliver room-service container
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v3
+
+      - name: Set up JDK 17
+        uses: actions/setup-java@v3
+        with:
+          java-version: 17
+          cache: maven
+          distribution: adopt
+      
+      - name: Build, test and package project
+        working-directory: ./room-service
+        run: mvn package -DskipTests
+
+      - name: Docker login
+        run: docker login -u ${{ secrets.DOCKER_USER }} -p ${{ secrets.DOCKER_PASSWORD }}
+
+      - name: Docker Build
+        run: docker build -t ${{ secrets.DOCKER_USER }}/room-service:latest ./room-service
+
+      - name: Upload container to Docker Hub with Push
+        run: docker push ${{ secrets.DOCKER_USER }}/room-service:latest
+
   reservationservice:
     runs-on: ubuntu-latest
     name: Java 17 build, test, deliver reservation-service container
@@ -18,7 +45,7 @@ jobs:
           distribution: adopt
       
       - name: Build, test and package project
-        working-directory: ./repository-service
+        working-directory: ./reservation-service
         run: mvn package -DskipTests
 
       - name: Docker login
@@ -29,3 +56,57 @@ jobs:
 
       - name: Upload container to Docker Hub with Push
         run: docker push ${{ secrets.DOCKER_USER }}/reservation-service:latest
+
+  personservice:
+    runs-on: ubuntu-latest
+    name: Java 17 build, test, deliver person-service container
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v3
+
+      - name: Set up JDK 17
+        uses: actions/setup-java@v3
+        with:
+          java-version: 17
+          cache: maven
+          distribution: adopt
+      
+      - name: Build, test and package project
+        working-directory: ./person-service
+        run: mvn package -DskipTests
+
+      - name: Docker login
+        run: docker login -u ${{ secrets.DOCKER_USER }} -p ${{ secrets.DOCKER_PASSWORD }}
+
+      - name: Docker Build
+        run: docker build -t ${{ secrets.DOCKER_USER }}/person-service:latest ./person-service
+
+      - name: Upload container to Docker Hub with Push
+        run: docker push ${{ secrets.DOCKER_USER }}/person-service:latest
+
+  bnbservice:
+    runs-on: ubuntu-latest
+    name: Java 17 build, test, deliver bnb-service container
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v3
+
+      - name: Set up JDK 17
+        uses: actions/setup-java@v3
+        with:
+          java-version: 17
+          cache: maven
+          distribution: adopt
+      
+      - name: Build, test and package project
+        working-directory: ./bnb-service
+        run: mvn package -DskipTests
+
+      - name: Docker login
+        run: docker login -u ${{ secrets.DOCKER_USER }} -p ${{ secrets.DOCKER_PASSWORD }}
+
+      - name: Docker Build
+        run: docker build -t ${{ secrets.DOCKER_USER }}/bnb-service:latest ./bnb-service
+
+      - name: Upload container to Docker Hub with Push
+        run: docker push ${{ secrets.DOCKER_USER }}/bnb-service:latest
