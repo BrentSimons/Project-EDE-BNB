@@ -64,5 +64,3 @@ volumes:
   mongodb_product_data:
   mysql_inventory_data:
   mysql_order_data:
-
-
