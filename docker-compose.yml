@@ -1,33 +1,67 @@
 services:
- mysql-order:
-  image: mysql:latest
-  ports:
-    - 3306:3306
-  volumes:
-    - mysql_order_data:/var/lib/mysql
-  environment:
-   MYSQL_ROOT_PASSWORD: abc123
-    
- reservation-service:
-  depends_on:
-    - product-service
-    - inventory-service
-  image: siebem03/reservation-service
-  ports:
-    - 8081:8081
-  links:
-    - product-service
-    - inventory-service
-  environment:
-   PRODUCT_SERVICE_BASEURL: product-service:8080
-   INVENTORY_INFO_SERVICE_BASEURL: inventory-service:8082
-   MYSQL_DB_USERNAME: root
-   MYSQL_DB_PASSWORD: abc123
-   MYSQL_DB_HOST: mysql-order
-   MYSQL_DB_PORT: 3306
+  mysql-reservation:
+    image: mysql:latest
+    ports:
+      - 3306:3306
+    volumes:
+      - mysql_reservation_data:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: abc123
+
+  mysql-bnb:
+    image: mysql:latest
+    ports:
+      - 3306:3307
+    volumes:
+      - mysql_bnb_data:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: abc123
+
+  mongo-room:
+    image: mongo:latest
+    ports:
+      - 27017:27017
+    volumes:
+      - mongodb_room_data:/data/db
+
+  mongo-person:
+    image: mongo:latest
+    ports:
+      - 27017:27018
+    volumes:
+      - mongodb_person_data:/data/db
+
+  reservation-service:
+    depends_on:
+      - mysql-reservation
+    #    - product-service
+    #    - inventory-service
+    image: siebem03/reservation-service
+    ports:
+      - 8090:8090
+    #  links:
+    #    - product-service
+    #    - inventory-service
+    environment:
+      #   PRODUCT_SERVICE_BASEURL: product-service:8080
+      #   INVENTORY_INFO_SERVICE_BASEURL: inventory-service:8082
+      MYSQL_DB_USERNAME: root
+      MYSQL_DB_PASSWORD: abc123
+      MYSQL_DB_HOST: mysql-order
+      MYSQL_DB_PORT: 3306
+
+  person-service:
+    depends_on:
+      - mongo-person
+    image: siebem03/person-service
+    ports:
+      - 8095:9085
+    environment:
+      MONGODB_PORT: 27017
+      MONGODB_HOST: mongo-person
 
 volumes:
- mongodb_product_data:
- mysql_inventory_data:
- mysql_order_data:
- 
+  mongodb_person_data:
+  mongodb_room_data:
+  mysql_reservation_data:
+  mysql_bnb_data:
