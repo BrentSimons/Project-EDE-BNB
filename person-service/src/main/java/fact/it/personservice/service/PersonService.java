@@ -1,6 +1,6 @@
 package fact.it.personservice.service;
 
-import fact.it.personservice.Repository.PersonRepository;
+import fact.it.personservice.repository.PersonRepository;
 import fact.it.personservice.dto.PersonRequest;
 import fact.it.personservice.dto.PersonResponse;
 import fact.it.personservice.model.Contact;

@@ -1,4 +1,4 @@
-package fact.it.personservice.Repository;
+package fact.it.personservice.repository;
 
 import fact.it.personservice.model.Person;
 import org.springframework.data.mongodb.repository.MongoRepository;

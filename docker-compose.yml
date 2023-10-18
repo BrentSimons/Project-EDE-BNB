@@ -45,6 +45,7 @@ services:
     environment:
       #   PRODUCT_SERVICE_BASEURL: product-service:8080
       #   INVENTORY_INFO_SERVICE_BASEURL: inventory-service:8082
+      
       MYSQL_DB_USERNAME: root
       MYSQL_DB_PASSWORD: abc123
       MYSQL_DB_HOST: mysql-order
