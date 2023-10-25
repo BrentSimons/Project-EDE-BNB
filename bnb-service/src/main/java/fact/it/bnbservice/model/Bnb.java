@@ -1,2 +1,4 @@
-package fact.it.bnbservice.model;public class bnb {
+package fact.it.bnbservice.model;
+
+public class Bnb {
 }
