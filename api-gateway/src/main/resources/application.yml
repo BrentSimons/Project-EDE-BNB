@@ -5,7 +5,7 @@ logging:
   level:
     root: INFO
     org.springframework.cloud.gateway: TRACE
-    org.springframework.cloud.gateway.route.RouteDefinitionRouteLocator: INFO
+#    org.springframework.cloud.gateway.route.RouteDefinitionRouteLocator: INFO
     reactor.netty: TRACE
 
 spring:
@@ -13,21 +13,21 @@ spring:
     gateway:
       routes:
         - id: person-service-test
-          uri: http://${PERSON_SERVICE_BASEURL}
+          uri: http://${BNB_SERVICE_BASEURL:localhost:8095}
           predicates:
             - Path=/persontest
             - Method=GET
           filters:
             - SetPath=/api/person/test
         - id: bnb-service-test
-          uri: http://${BNB_SERVICE_BASEURL}
+          uri: http://${BNB_SERVICE_BASEURL:localhost:8080}
           predicates:
             - Path=/bnbtest
             - Method=GET
           filters:
             - SetPath=/api/bnb/test
         - id: reservation-service-test
-          uri: http://${RESERVATION_SERVICE_BASEURL}
+          uri: http://${RESERVATION_SERVICE_BASEURL:localhost:8090}
           predicates:
             - Path=/reservationtest
             - Method=GET
