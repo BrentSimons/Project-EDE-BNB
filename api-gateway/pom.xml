@@ -14,7 +14,7 @@
     <name>api-gateway</name>
     <description>api-gateway</description>
     <properties>
-        <java.version>16</java.version>
+        <java.version>17</java.version>
         <spring-cloud.version>2023.0.0</spring-cloud.version>
     </properties>
     <dependencies>
@@ -26,7 +26,6 @@
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-gateway</artifactId>
-            <version>4.0.6</version>
         </dependency>
     </dependencies>
     <dependencyManagement>
