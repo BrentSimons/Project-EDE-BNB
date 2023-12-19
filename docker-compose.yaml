@@ -1,12 +1,12 @@
 version: "3.8"
 
-# For consisten database data
+# For consistent database data
 volumes:
   mysql_bnb_data:
   mysql_reservation_data:
   mongodb_person_data:
 
-# We use a bridge network so that our microservices can communicate with eachother through the service names assigned in this compose file
+# We use a bridge network so that our microservices can communicate with each other through the service names assigned in this compose file
 networks:
   microservices_network:
     driver: bridge
@@ -107,18 +107,18 @@ services:
     networks:
       - microservices_network
 
-  api-gateway:
-    depends_on:
-      - bnb-service
-      - person-service
-      - reservation-service
-    image: brentbrentbrent/api-gateway
-    ports:
-      - 7000:7000
-    restart: on-failure
-    environment:
-      BNB_SERVICE_BASEURL: bnb-service:8080
-      PERSON_SERVICE_BASEURL: person-service:8080
-      RESERVATION_SERVICE_BASEURL: reservation-service:8080
-    networks:
-      - microservices_network
+#  api-gateway:
+#    depends_on:
+#      - bnb-service
+#      - person-service
+#      - reservation-service
+#    image: brentbrentbrent/api-gateway
+#    ports:
+#      - 7000:7000
+#    restart: on-failure
+#    environment:
+#      BNB_SERVICE_BASEURL: bnb-service:8080
+#      PERSON_SERVICE_BASEURL: person-service:8080
+#      RESERVATION_SERVICE_BASEURL: reservation-service:8080
+#    networks:
+#      - microservices_network

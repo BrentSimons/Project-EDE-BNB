@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile default="true" name="Default" enabled="true" />
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="api-gateway" />
+        <module name="bnb-service" />
+        <module name="room-service" />
+        <module name="person-service" />
+        <module name="reservation-service" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="api-gateway" target="17" />
+      <module name="bnb-service" target="17" />
+      <module name="person-service" target="17" />
+      <module name="reservation-service" target="17" />
+      <module name="room-service" target="17" />
+    </bytecodeTargetLevel>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="api-gateway" options="-parameters" />
+      <module name="bnb-service" options="-parameters" />
+      <module name="person-service" options="-parameters" />
+      <module name="reservation-service" options="-parameters" />
+      <module name="room-service" options="-parameters" />
+    </option>
+  </component>
+</project>
