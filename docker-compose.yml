@@ -2,7 +2,7 @@ services:
   mysql-bnb:
     image: mysql:latest
     ports:
-      - 3306:3307
+      - 3307:3306
     volumes:
       - mysql_bnb_data:/var/lib/mysql
     environment:
@@ -11,7 +11,7 @@ services:
   mongo-room:
     image: mongo:latest
     ports:
-      - 27017:27017
+      - 27019:27017
     volumes:
       - mongodb_room_data:/data/db
 
@@ -27,7 +27,7 @@ services:
   mongo-person:
     image: mongo:latest
     ports:
-      - 27017:27018
+      - 27018:27017
     volumes:
       - mongodb_person_data:/data/db
 
@@ -50,7 +50,7 @@ services:
     ports:
       - 8085:8085
     environment:
-      MONGODB_PORT: 27017
+      MONGODB_PORT: 27019
       MONGODB_HOST: mongo-room
 
   reservation-service:
