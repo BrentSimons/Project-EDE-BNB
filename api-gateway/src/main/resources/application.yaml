@@ -20,7 +20,7 @@ spring:
           filters:
             - SetPath=/api/person/test
         - id: bnb-service-test
-          uri: http://${RESERVATION_SERVICE_BASEURL}
+          uri: http://${BNB_SERVICE_BASEURL}
           predicates:
             - Path=/bnbtest
             - Method=GET
