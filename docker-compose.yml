@@ -31,7 +31,7 @@ services:
   bnb-service:
     depends_on:
       - mysql-bnb
-    image: brentbrentbrent/bnb-service
+    image: brentbrentbrent/bnb-service:latest
     ports:
       - 8080:8080
     environment:
@@ -42,18 +42,18 @@ services:
   room-service:
     depends_on:
       - mongo-room
-    image: brentbrentbrent/room-service
+    image: brentbrentbrent/room-service:latest
     ports:
-      - 8085:8085
+      - 8085:8080
     environment:
       MONGODB_PORT: 27019
       MONGODB_HOST: mongo-room
   reservation-service:
     depends_on:
       - mysql-reservation
-    image: brentbrentbrent/reservation-service
+    image: brentbrentbrent/reservation-service:latest
     ports:
-      - 8090:8090
+      - 8090:8080
     environment:
       MYSQL_DB_USERNAME: root
       MYSQL_DB_PASSWORD: abc123
@@ -62,9 +62,9 @@ services:
   person-service:
     depends_on:
       - mongo-person
-    image: brentbrentbrent/person-service
+    image: brentbrentbrent/person-service:latest
     ports:
-      - 8095:8095
+      - 8095:8080
     environment:
       MONGODB_PORT: 27018
       MONGODB_HOST: mongo-person
