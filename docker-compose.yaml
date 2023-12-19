@@ -28,7 +28,7 @@ services:
     ports:
       - 27018:27017
     environment:
-      - MONGO_INITDB_DATABASE=mongo-person
+      MONGO_INITDB_DATABASE: mongo-person
     networks:
       - microservices_network
     # volumes:
@@ -36,18 +36,26 @@ services:
 
   # Rest APIs
 
+  # The comments for the APIs will be on the first 2 API's (Since the later 2 APIs are identical to the first 2.)
+
   # Broken for now
   bnb-service:
+    # Depends on the database
     depends_on:
       - mysql-bnb
     image: brentbrentbrent/bnb-service:latest
     ports:
       - 8080:8080
+    # Restart on failure is necesarry incase the api crashes on start due to the database not being initialized, and ofcourse incase the api crashes
     restart: on-failure
     environment:
+      # host url (since we use a proper docker network this is the database's service name and not localhost.)
+      MYSQL_DB_HOST: mysql-bnb
+      MYSQL_DB_PORT: 33060
+      # Login credentials database
       MYSQL_DB_USERNAME: root
       MYSQL_DB_PASSWORD: abc123
-      MYSQL_DB_PORT: 3306
+      # Name of the database scheme
       MYSQL_DB_NAME: bnbdb
     networks:
       - microservices_network
@@ -60,7 +68,10 @@ services:
       - 8095:8080
     restart: on-failure
     environment:
-      MONGODB_PORT: 27017
+      # Person service uses mongo db, this doesnt require any credentials.
       MONGODB_HOST: mongo-person
+      MONGODB_PORT: 27017
+      # Database name:
+      MONGODB_DB: mongo-person
     networks:
       - microservices_network
