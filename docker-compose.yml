@@ -1,13 +1,4 @@
 services:
-  mysql-reservation:
-    image: mysql:latest
-    ports:
-      - 3306:3306
-    volumes:
-      - mysql_reservation_data:/var/lib/mysql
-    environment:
-      MYSQL_ROOT_PASSWORD: abc123
-
   mysql-bnb:
     image: mysql:latest
     ports:
@@ -24,6 +15,15 @@ services:
     volumes:
       - mongodb_room_data:/data/db
 
+  mysql-reservation:
+    image: mysql:latest
+    ports:
+      - 3306:3306
+    volumes:
+      - mysql_reservation_data:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: abc123
+
   mongo-person:
     image: mongo:latest
     ports:
@@ -31,24 +31,38 @@ services:
     volumes:
       - mongodb_person_data:/data/db
 
+  bnb-service:
+    depends_on:
+      - mysql-bnb
+    image: brentbrentbrent/bnb-service
+    ports:
+      - 8080:8080
+    environment:
+      MYSQL_DB_USERNAME: root
+      MYSQL_DB_PASSWORD: abc123
+      MYSQL_DB_HOST: mysql-bnb
+      MYSQL_DB_PORT: 3307
+
+  room-service:
+    depends_on:
+      - mongo-room
+    image: brentbrentbrent/room-service
+    ports:
+      - 8085:8085
+    environment:
+      MONGODB_PORT: 27017
+      MONGODB_HOST: mongo-room
+
   reservation-service:
     depends_on:
       - mysql-reservation
-    #    - product-service
-    #    - inventory-service
     image: brentbrentbrent/reservation-service
     ports:
       - 8090:8090
-    #  links:
-    #    - product-service
-    #    - inventory-service
     environment:
-      #   PRODUCT_SERVICE_BASEURL: product-service:8080
-      #   INVENTORY_INFO_SERVICE_BASEURL: inventory-service:8082
-      
       MYSQL_DB_USERNAME: root
       MYSQL_DB_PASSWORD: abc123
-      MYSQL_DB_HOST: mysql-order
+      MYSQL_DB_HOST: mysql-reservation
       MYSQL_DB_PORT: 3306
 
   person-service:
@@ -56,12 +70,13 @@ services:
       - mongo-person
     image: brentbrentbrent/person-service
     ports:
-      - 8095:9085
+      - 8095:8095
     environment:
       MONGODB_PORT: 27017
       MONGODB_HOST: mongo-person
 
 volumes:
-  mongodb_product_data:
-  mysql_inventory_data:
-  mysql_order_data:
+  mongodb_person_data:
+  mongodb_room_data:
+  mysql_bnb_data:
+  mysql_reservation_data:
