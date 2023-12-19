@@ -1,0 +1,65 @@
+version: "3.8"
+
+volumes:
+  mysql_bnb_data:
+
+networks:
+  microservices_network:
+    driver: bridge
+
+services:
+  # Databases
+
+  # Broken for now
+  mysql-bnb:
+    image: mysql:latest
+    ports:
+      - 3307:3306
+    environment:
+      MYSQL_ROOT_PASSWORD: abc123
+    networks:
+      - microservices_network
+    # volumes:
+    #   - mysql_bnb_data:/var/lib/mysql
+
+  mongo-person:
+    image: mongo:latest
+    ports:
+      - 27018:27017
+    environment:
+      - MONGO_INITDB_DATABASE=mongo-person
+    networks:
+      - microservices_network
+    # volumes:
+    #   - mongodb_person_data:/data/db
+
+  # Rest APIs
+
+  # Broken for now
+  bnb-service:
+    depends_on:
+      - mysql-bnb
+    image: brentbrentbrent/bnb-service
+    ports:
+      - 8080:8080
+    restart: on-failure
+    environment:
+      MYSQL_DB_USERNAME: root
+      MYSQL_DB_PASSWORD: abc123
+      MYSQL_DB_HOST: mysql-bnb
+      MYSQL_DB_PORT: 3306
+    networks:
+      - microservices_network
+
+  person-service:
+    depends_on:
+      - mongo-person
+    image: brentbrentbrent/person-service
+    ports:
+      - 8095:8080
+    restart: on-failure
+    environment:
+      MONGODB_PORT: 27017
+      MONGODB_HOST: mongo-person
+    networks:
+      - microservices_network
