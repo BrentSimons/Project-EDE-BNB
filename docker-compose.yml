@@ -7,23 +7,20 @@ services:
       - mysql_bnb_data:/var/lib/mysql
     environment:
       MYSQL_ROOT_PASSWORD: abc123
-
   mongo-room:
     image: mongo:latest
     ports:
       - 27019:27017
     volumes:
       - mongodb_room_data:/data/db
-
   mysql-reservation:
     image: mysql:latest
     ports:
-      - 3306:3306
+      - 3308:3306
     volumes:
       - mysql_reservation_data:/var/lib/mysql
     environment:
       MYSQL_ROOT_PASSWORD: abc123
-
   mongo-person:
     image: mongo:latest
     ports:
@@ -42,7 +39,6 @@ services:
       MYSQL_DB_PASSWORD: abc123
       MYSQL_DB_HOST: mysql-bnb
       MYSQL_DB_PORT: 3307
-
   room-service:
     depends_on:
       - mongo-room
@@ -52,7 +48,6 @@ services:
     environment:
       MONGODB_PORT: 27019
       MONGODB_HOST: mongo-room
-
   reservation-service:
     depends_on:
       - mysql-reservation
@@ -63,8 +58,7 @@ services:
       MYSQL_DB_USERNAME: root
       MYSQL_DB_PASSWORD: abc123
       MYSQL_DB_HOST: mysql-reservation
-      MYSQL_DB_PORT: 3306
-
+      MYSQL_DB_PORT: 3308
   person-service:
     depends_on:
       - mongo-person
