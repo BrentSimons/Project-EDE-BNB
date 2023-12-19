@@ -1,0 +1,35 @@
+server:
+  port: 7000
+
+logging:
+  level:
+    root: INFO
+    org.springframework.cloud.gateway: TRACE
+    org.springframework.cloud.gateway.route.RouteDefinitionRouteLocator: INFO
+    reactor.netty: TRACE
+
+spring:
+  cloud:
+    gateway:
+      routes:
+        - id: person-service-test
+          uri: http://${PERSON_SERVICE_BASEURL}
+          predicates:
+            - Path=/persontest
+            - Method=GET
+          filters:
+            - SetPath=/api/person/test
+        - id: bnb-service-test
+          uri: http://${BNB_SERVICE_BASEURL}
+          predicates:
+            - Path=/bnbtest
+            - Method=GET
+          filters:
+            - SetPath=/api/bnb/test
+        - id: reservation-service-test
+          uri: http://${RESERVATION_SERVICE_BASEURL}
+          predicates:
+            - Path=/reservationtest
+            - Method=GET
+          filters:
+            - SetPath=/api/reservation/test

@@ -103,3 +103,19 @@ services:
       MYSQL_DB_NAME: reservationdb
     networks:
       - microservices_network
+
+  api-gateway:
+    depends_on:
+      - bnb-service
+      - person-service
+      - reservation-service
+    image: miverboven/ede-api-gateway
+    ports:
+      - 7000:7000
+    restart: on-failure
+    environment:
+      BNB_SERVICE_BASEURL: bnb-service:8080
+      PERSON_SERVICE_BASEURL: person-service:8080
+      RESERVATION_SERVICE_BASEURL: reservation-service:8080
+    networks:
+      - microservices_network
