@@ -51,7 +51,7 @@ services:
     environment:
       # host url (since we use a proper docker network this is the database's service name and not localhost.)
       MYSQL_DB_HOST: mysql-bnb
-      MYSQL_DB_PORT: 33060
+      MYSQL_DB_PORT: 3306
       # Login credentials database
       MYSQL_DB_USERNAME: root
       MYSQL_DB_PASSWORD: abc123
