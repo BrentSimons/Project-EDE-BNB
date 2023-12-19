@@ -1,6 +1,15 @@
 name: Build and deliver containers
 
-on: push
+# Only when pushing code github actions is activated.
+
+on:
+  push:
+    paths:
+      - "api-gateway/**"
+      - "bnb-service/**"
+      - "person-service/**"
+      - "reservation-service/**"
+      - "room-service/**"
 
 jobs:
   roomservice:
@@ -16,7 +25,7 @@ jobs:
           java-version: 17
           cache: maven
           distribution: adopt
-      
+
       - name: Build, test and package project
         working-directory: ./room-service
         run: mvn package -DskipTests
@@ -43,7 +52,7 @@ jobs:
           java-version: 17
           cache: maven
           distribution: adopt
-      
+
       - name: Build, test and package project
         working-directory: ./reservation-service
         run: mvn package -DskipTests
@@ -70,7 +79,7 @@ jobs:
           java-version: 17
           cache: maven
           distribution: adopt
-      
+
       - name: Build, test and package project
         working-directory: ./person-service
         run: mvn package -DskipTests
@@ -97,7 +106,7 @@ jobs:
           java-version: 17
           cache: maven
           distribution: adopt
-      
+
       - name: Build, test and package project
         working-directory: ./bnb-service
         run: mvn package -DskipTests
