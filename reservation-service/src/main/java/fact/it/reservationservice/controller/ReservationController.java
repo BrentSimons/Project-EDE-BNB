@@ -28,4 +28,10 @@ public class ReservationController {
     public void createReservation(@RequestBody ReservationRequest reservationRequest) {
         reservationService.createReservation(reservationRequest);
     }
+
+    @GetMapping("/test")
+    @ResponseStatus(HttpStatus.OK)
+    public String test() {
+        return "test";
+    }
 }
