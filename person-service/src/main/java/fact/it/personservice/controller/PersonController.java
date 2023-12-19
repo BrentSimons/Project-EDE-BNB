@@ -43,4 +43,10 @@ public class PersonController {
         // return personService
         return personService.getAllPerson();
     }
+
+    @GetMapping("/test")
+    @ResponseStatus(HttpStatus.OK)
+    public String test() {
+        return "test";
+    }
 }
