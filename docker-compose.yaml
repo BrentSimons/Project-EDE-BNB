@@ -1,8 +1,12 @@
 version: "3.8"
 
+# For consisten database data
 volumes:
   mysql_bnb_data:
+  mysql_reservation_data:
+  mongodb_person_data:
 
+# We use a bridge network so that our microservices can communicate with eachother through the service names assigned in this compose file
 networks:
   microservices_network:
     driver: bridge
@@ -19,6 +23,16 @@ services:
       - microservices_network
     # volumes:
     #   - mysql_bnb_data:/var/lib/mysql
+
+  mysql-reservation:
+    image: mysql:latest
+    environment:
+      MYSQL_DATABASE: reservationdb
+      MYSQL_ROOT_PASSWORD: abc123
+    networks:
+      - microservices_network
+    # volumes:
+    #   - mysql_reservation_data:/var/lib/mysql
 
   mongo-person:
     image: mongo:latest
@@ -37,9 +51,8 @@ services:
 
   # The comments for the APIs will be on the first 2 API's (Since the latter 2 APIs are identical to the first 2.)
 
-  # Broken for now
   bnb-service:
-    # Depends on the database
+    # Depends on the database being deployed
     depends_on:
       - mysql-bnb
     image: brentbrentbrent/bnb-service:latest
@@ -72,5 +85,21 @@ services:
       MONGODB_PORT: 27017
       # Database name:
       MONGODB_NAME: mongo-person
+    networks:
+      - microservices_network
+
+  reservation-service:
+    depends_on:
+      - mysql-reservation
+    image: brentbrentbrent/reservation-service:latest
+    ports:
+      - 8090:8080
+    restart: on-failure
+    environment:
+      MYSQL_DB_HOST: mysql-reservation
+      MYSQL_DB_PORT: 3306
+      MYSQL_DB_USERNAME: root
+      MYSQL_DB_PASSWORD: abc123
+      MYSQL_DB_NAME: reservationdb
     networks:
       - microservices_network
