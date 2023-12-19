@@ -39,14 +39,13 @@ services:
   bnb-service:
     depends_on:
       - mysql-bnb
-    image: brentbrentbrent/bnb-service
+    image: brentbrentbrent/bnb-service:latest
     ports:
       - 8080:8080
     restart: on-failure
     environment:
       MYSQL_DB_USERNAME: root
       MYSQL_DB_PASSWORD: abc123
-      MYSQL_DB_HOST: mysql-bnb
       MYSQL_DB_PORT: 3306
     networks:
       - microservices_network
@@ -54,7 +53,7 @@ services:
   person-service:
     depends_on:
       - mongo-person
-    image: brentbrentbrent/person-service
+    image: brentbrentbrent/person-service:latest
     ports:
       - 8095:8080
     restart: on-failure
