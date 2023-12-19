@@ -16,6 +16,7 @@ services:
     ports:
       - 3307:3306
     environment:
+      MYSQL_DATABASE: bnbdb
       MYSQL_ROOT_PASSWORD: abc123
     networks:
       - microservices_network
@@ -47,6 +48,7 @@ services:
       MYSQL_DB_USERNAME: root
       MYSQL_DB_PASSWORD: abc123
       MYSQL_DB_PORT: 3306
+      MYSQL_DB_NAME: bnbdb
     networks:
       - microservices_network
 
