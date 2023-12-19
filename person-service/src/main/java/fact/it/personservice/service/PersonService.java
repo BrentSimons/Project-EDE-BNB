@@ -20,10 +20,10 @@ public class PersonService {
 
     @PostConstruct
     public void loadData() {
-        if(personRepository.count() <= 0){
+        if (personRepository.count() <= 0) {
 
-            Contact adamContact = new Contact("0589 69 14 32", "adamjohns23@heavenmail.com","AngelStreet 26 Godtown");
-            Contact eveContact = new Contact("1458 13 69 17", "evesmiths@heavenmail.com","CloudStreet 1 Heavens-End");
+            Contact adamContact = new Contact("0589 69 14 32", "adamjohns23@heavenmail.com", "AngelStreet 26 Godtown");
+            Contact eveContact = new Contact("1458 13 69 17", "evesmiths@heavenmail.com", "CloudStreet 1 Heavens-End");
 
             Person adam = Person.builder()
                     .firstName("Adam")
