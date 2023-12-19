@@ -72,7 +72,7 @@ services:
     ports:
       - 8095:8095
     environment:
-      MONGODB_PORT: 27017
+      MONGODB_PORT: 27018
       MONGODB_HOST: mongo-person
 
 volumes:
