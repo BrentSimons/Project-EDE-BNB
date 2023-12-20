@@ -114,7 +114,7 @@ services:
       - reservation-service
     image: brentbrentbrent/api-gateway:latest
     ports:
-      - 7005:7000
+      - 7000:7000
     restart: on-failure
     environment:
       BNB_SERVICE_BASEURL: bnb-service:8080
