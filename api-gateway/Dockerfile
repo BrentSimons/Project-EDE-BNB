@@ -1,3 +1,3 @@
-FROM openjdk:13-jdk-alpine
+FROM openjdk:17-jdk-alpine
 ADD target/*.jar app.jar
 ENTRYPOINT ["java","-jar","/app.jar"]
