@@ -10,23 +10,23 @@ spring:
     gateway:
       routes:
         - id: person-service-test
-          uri: http://${BNB_SERVICE_BASEURL:localhost:8095}
+          uri: http://${PERSON_SERVICE_BASEURL:localhost:8095}
           predicates:
-            - Path=/persontest
+            - Path=/person/test
             - Method=GET
           filters:
             - SetPath=/api/person/test
         - id: bnb-service-test
           uri: http://${BNB_SERVICE_BASEURL:localhost:8080}
           predicates:
-            - Path=/bnbtest
+            - Path=/bnb/test
             - Method=GET
           filters:
             - SetPath=/api/bnb/test
         - id: reservation-service-test
           uri: http://${RESERVATION_SERVICE_BASEURL:localhost:8090}
           predicates:
-            - Path=/reservationtest
+            - Path=/reservation/test
             - Method=GET
           filters:
             - SetPath=/api/reservation/test

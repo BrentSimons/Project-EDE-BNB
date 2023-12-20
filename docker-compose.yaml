@@ -25,6 +25,7 @@ services:
     # volumes:
     #   - mysql_bnb_data:/var/lib/mysql
 
+
   mysql-reservation:
     image: mysql:latest
     restart: on-failure
@@ -36,6 +37,7 @@ services:
     # volumes:
     #   - mysql_reservation_data:/var/lib/mysql
 
+
   mongo-person:
     image: mongo:latest
     restart: on-failure
@@ -45,6 +47,7 @@ services:
       - microservices_network
     # volumes:
     #   - mongodb_person_data:/data/db
+
 
   # Database's volumes are in comment until we deploy
   # Database ports are in comment because the services use the internal microservices_network network to connect to eachother
@@ -75,6 +78,7 @@ services:
     networks:
       - microservices_network
 
+
   person-service:
     depends_on:
       - mongo-person
@@ -90,6 +94,7 @@ services:
       MONGODB_NAME: mongo-person
     networks:
       - microservices_network
+
 
   reservation-service:
     depends_on:
@@ -107,6 +112,7 @@ services:
     networks:
       - microservices_network
 
+
   api-gateway:
     depends_on:
       - bnb-service
@@ -116,12 +122,9 @@ services:
     ports:
       - 7000:7000
     restart: on-failure
-    links:
-      - bnb-service
-      - person-service
-      - reservation-service
     environment:
       BNB_SERVICE_BASEURL: bnb-service:8080
       PERSON_SERVICE_BASEURL: person-service:8080
       RESERVATION_SERVICE_BASEURL: reservation-service:8080
-
+    networks:
+      - microservices_network
