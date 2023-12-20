@@ -7,8 +7,8 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="api-gateway" />
         <module name="bnb-service" />
+        <module name="api-gateway" />
         <module name="room-service" />
         <module name="person-service" />
         <module name="reservation-service" />
