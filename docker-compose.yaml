@@ -112,9 +112,9 @@ services:
       - bnb-service
       - person-service
       - reservation-service
-    image: brentbrentbrent/api-gateway
+    image: brentbrentbrent/api-gateway:latest
     ports:
-      - 7000:7000
+      - 7005:7000
     restart: on-failure
     environment:
       BNB_SERVICE_BASEURL: bnb-service:8080
