@@ -76,7 +76,7 @@ services:
         condition: service_healthy
     image: brentbrentbrent/bnb-service:latest
     ports:
-      - 8080:8080
+      - "8080:8080"
     # Restart on failure is necesarry incase the api crashes on start due to the database not being initialized, and ofcourse incase the api crashes
     restart: on-failure
     environment:
@@ -97,7 +97,7 @@ services:
       - mongo-person
     image: brentbrentbrent/person-service:latest
     ports:
-      - 8095:8080
+      - "8095:8080"
     restart: on-failure
     environment:
       # Person service uses mongo db, this doesnt require any credentials.
@@ -115,7 +115,7 @@ services:
         condition: service_healthy
     image: brentbrentbrent/reservation-service:latest
     ports:
-      - 8090:8080
+      - "8090:8080"
     restart: on-failure
     environment:
       MYSQL_DB_HOST: mysql-reservation
@@ -134,7 +134,7 @@ services:
       - reservation-service
     image: brentbrentbrent/api-gateway:latest
     ports:
-      - 7000:7000
+      - "7000:7000"
     restart: on-failure
     environment:
       # Due to the microservices_network the gateway can connect to each api seperately, and since each api is viewed as its own machine we can re-use the default 8080 port
