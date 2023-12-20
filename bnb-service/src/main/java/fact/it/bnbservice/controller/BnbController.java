@@ -16,17 +16,23 @@ public class BnbController {
 
     private final BnbService bnbService;
 
-    @GetMapping("/getBnb")
+    @GetMapping("/get")
     @ResponseStatus(HttpStatus.OK)
     public List<BnbResponse> getBnbByName
             (@RequestParam String str) {
         return bnbService.getBnbsByName(str);
     }
 
-    @GetMapping("/getAllBnb")
+    @GetMapping("/all")
     @ResponseStatus(HttpStatus.OK)
     public List<BnbResponse> getAllBnb(){
         return bnbService.getAllBnbs();
+    }
+
+    @GetMapping("/secureTest")
+    @ResponseStatus(HttpStatus.OK)
+    public String secureTest() {
+        return"Secured test";
     }
 
     @GetMapping("/test")

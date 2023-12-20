@@ -6,27 +6,46 @@ logging:
     root: INFO
 
 spring:
+  security:
+    oauth2:
+      client:
+        registration:
+          google:
+            client-id: 965800561312-hcmgl9csfhsnorgro187pmv6pme2743s.apps.googleusercontent.com
+            client-secret: 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
+            scope: openid,profile,email
+      resourceserver:
+        jwt:
+          issuer-uri: https://accounts.google.com
+          jwk-set-uri: https://www.googleapis.com/oauth2/v3/certs
   cloud:
     gateway:
       routes:
         - id: person-service-test
           uri: http://${PERSON_SERVICE_BASEURL:localhost:8095}
           predicates:
-            - Path=/person/test
+            - Path=/test/person
             - Method=GET
           filters:
             - SetPath=/api/person/test
         - id: bnb-service-test
           uri: http://${BNB_SERVICE_BASEURL:localhost:8080}
           predicates:
-            - Path=/bnb/test
+            - Path=/test/bnb
             - Method=GET
           filters:
             - SetPath=/api/bnb/test
         - id: reservation-service-test
           uri: http://${RESERVATION_SERVICE_BASEURL:localhost:8090}
           predicates:
-            - Path=/reservation/test
+            - Path=/test/reservation
             - Method=GET
           filters:
             - SetPath=/api/reservation/test
+        - id: bnb-service-secure-test
+          uri: http://${BNB_SERVICE_BASEURL:localhost:8080}
+          predicates:
+            - Path=/test
+            - Method=GET
+          filters:
+            - SetPath=/api/bnb/secureTest
