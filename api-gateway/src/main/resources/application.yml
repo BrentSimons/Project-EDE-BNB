@@ -45,7 +45,7 @@ spring:
         - id: bnb-service-secure-test
           uri: http://${BNB_SERVICE_BASEURL:localhost:8080}
           predicates:
-            - Path=/test
+            - Path=/auth/test
             - Method=GET
           filters:
             - SetPath=/api/bnb/secureTest
