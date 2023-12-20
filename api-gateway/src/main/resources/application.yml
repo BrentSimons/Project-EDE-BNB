@@ -13,21 +13,21 @@ spring:
     gateway:
       routes:
         - id: person-service-test
-          uri: http://${BNB_SERVICE_BASEURL:localhost:8095}
+          uri: ${BNB_SERVICE_BASEURL:http://localhost:8095}
           predicates:
             - Path=/persontest
             - Method=GET
           filters:
             - SetPath=/api/person/test
         - id: bnb-service-test
-          uri: http://${BNB_SERVICE_BASEURL:localhost:8080}
+          uri: ${BNB_SERVICE_BASEURL:http://localhost:8080}
           predicates:
             - Path=/bnbtest
             - Method=GET
           filters:
             - SetPath=/api/bnb/test
         - id: reservation-service-test
-          uri: http://${RESERVATION_SERVICE_BASEURL:localhost:8090}
+          uri: ${RESERVATION_SERVICE_BASEURL:http://localhost:8090}
           predicates:
             - Path=/reservationtest
             - Method=GET
