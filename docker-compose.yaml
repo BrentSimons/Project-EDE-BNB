@@ -24,6 +24,11 @@ services:
       - microservices_network
     # volumes:
     #   - mysql_bnb_data:/var/lib/mysql
+    healthcheck:
+      test: [ "CMD", "mysqladmin" ,"ping", "-h", "localhost" ]
+      interval: 10s
+      timeout: 20s
+      retries: 10
 
 
   mysql-reservation:
@@ -36,6 +41,11 @@ services:
       - microservices_network
     # volumes:
     #   - mysql_reservation_data:/var/lib/mysql
+    healthcheck:
+      test: [ "CMD", "mysqladmin" ,"ping", "-h", "localhost" ]
+      interval: 10s
+      timeout: 20s
+      retries: 10
 
 
   mongo-person:
@@ -57,10 +67,13 @@ services:
 
   # The comments for the APIs will be on the first 2 API's (Since the latter 2 APIs are identical to the first 2.)
 
+  # Note for all services: ports are opened in each service but since were using an api gateway these will be removed in the final project
+
   bnb-service:
-    # Depends on the database being deployed
+    # Depends on the database being deployed (and in the mysql database cases also the container being healthy)
     depends_on:
-      - mysql-bnb
+      mysql-bnb:
+        condition: service_healthy
     image: brentbrentbrent/bnb-service:latest
     ports:
       - 8080:8080
@@ -98,7 +111,8 @@ services:
 
   reservation-service:
     depends_on:
-      - mysql-reservation
+      mysql-reservation:
+        condition: service_healthy
     image: brentbrentbrent/reservation-service:latest
     ports:
       - 8090:8080
@@ -123,6 +137,7 @@ services:
       - 7000:7000
     restart: on-failure
     environment:
+      # Due to the microservices_network the gateway can connect to each api seperately, and since each api is viewed as its own machine we can re-use the default 8080 port
       BNB_SERVICE_BASEURL: bnb-service:8080
       PERSON_SERVICE_BASEURL: person-service:8080
       RESERVATION_SERVICE_BASEURL: reservation-service:8080
