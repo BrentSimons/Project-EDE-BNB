@@ -22,11 +22,15 @@ This repository contains our school project for the Enterprise Development Exper
 | Reservation | Reservations made under a room                           | MySQL    |
 | Person      | Owners, customers, staff that are recorded in the system | MongoDB  |
 
+### ERD Model
+
+![Our Entity Relationship Diagram](./erd.png)
+
 ## API Gateway
 
 ### API/Docker compose Diagram
 
-![draw.io diagram of our Microservices Architecture](./erd.png)
+![draw.io diagram of our Microservices Architecture](./APIDiagram.drawio.png)
 
 In this diagram you can see an overview of our microservices architecture
 
