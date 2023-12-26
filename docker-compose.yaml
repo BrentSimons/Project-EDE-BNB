@@ -60,7 +60,7 @@ services:
 
 
   # Database's volumes are in comment until we deploy
-  # Database ports are in comment because the services use the internal microservices_network network to connect to eachother
+  # Database ports are in comment because the services use the internal microservices_network network to connect to each other
 
   # ----------------------------------------------------------------
   # Rest APIs
@@ -77,7 +77,7 @@ services:
     image: brentbrentbrent/bnb-service:latest
     ports:
       - "8080:8080"
-    # Restart on failure is necesarry incase the api crashes on start due to the database not being initialized, and ofcourse incase the api crashes
+    # Restart on failure is necessary in case the api crashes on start due to the database not being initialized, and of course in case the api crashes
     restart: on-failure
     environment:
       # host url (since we use a proper docker network this is the database's service name and not localhost.)
@@ -100,7 +100,7 @@ services:
       - "8095:8080"
     restart: on-failure
     environment:
-      # Person service uses mongo db, this doesnt require any credentials.
+      # Person service uses mongodb, this doesn't require any credentials.
       MONGODB_HOST: mongo-person
       MONGODB_PORT: 27017
       # Database name:
@@ -137,7 +137,7 @@ services:
       - "7000:7000"
     restart: on-failure
     environment:
-      # Due to the microservices_network the gateway can connect to each api seperately, and since each api is viewed as its own machine we can re-use the default 8080 port
+      # Due to the microservices_network the gateway can connect to each api separately, and since each api is viewed as its own machine we can re-use the default 8080 port
       BNB_SERVICE_BASEURL: bnb-service:8080
       PERSON_SERVICE_BASEURL: person-service:8080
       RESERVATION_SERVICE_BASEURL: reservation-service:8080
