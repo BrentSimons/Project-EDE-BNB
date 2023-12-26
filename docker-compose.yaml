@@ -22,6 +22,8 @@ services:
       MYSQL_ROOT_PASSWORD: abc123
     networks:
       - microservices_network
+    ports:
+      - "3306:3306"
     # volumes:
     #   - mysql_bnb_data:/var/lib/mysql
     healthcheck:

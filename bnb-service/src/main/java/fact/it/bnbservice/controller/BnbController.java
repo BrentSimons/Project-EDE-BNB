@@ -19,11 +19,12 @@ public class BnbController {
     @GetMapping("/get")
     @ResponseStatus(HttpStatus.OK)
     public List<BnbResponse> getBnbByName
-            (@RequestParam String str) {
-        return bnbService.getBnbsByName(str);
+            (@RequestParam String name) {
+        // Example: http://localhost:8080/api/bnb/get?name=Hugo
+        return bnbService.getBnbsByName(name);
     }
 
-    @GetMapping("/all")
+    @GetMapping("/get/all")
     @ResponseStatus(HttpStatus.OK)
     public List<BnbResponse> getAllBnb(){
         return bnbService.getAllBnbs();

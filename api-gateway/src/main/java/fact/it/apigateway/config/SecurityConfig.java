@@ -11,14 +11,14 @@ import static org.springframework.security.config.Customizer.withDefaults;
 @Configuration
 @EnableWebFluxSecurity
 public class SecurityConfig {
-//    String[] UnsecuredEndpoints = {
-//            "/test/**"
-//    };
+    String[] PublicEndpoints = {
+            "/public/bnb", "/public/room/available", "/public/room", "/test/**"
+    };
     @Bean
     public SecurityWebFilterChain springSecurityFilterChain(ServerHttpSecurity serverHttpSecurity) {
         serverHttpSecurity
             .authorizeExchange(exchange ->
-                exchange.pathMatchers(HttpMethod.GET,"/test/**")
+                exchange.pathMatchers(HttpMethod.GET, PublicEndpoints)
                     .permitAll()
                     .anyExchange()
                     .authenticated()

@@ -49,3 +49,10 @@ spring:
             - Method=GET
           filters:
             - SetPath=/api/bnb/secureTest
+        - id: bnb-service-bnb-by-name
+          uri: http://${BNB_SERVICE_BASEURL:localhost:8080}
+          predicates:
+            - Path=/get/bnb
+            - Method=GET
+          filters:
+            - SetPath=/api/bnb/
