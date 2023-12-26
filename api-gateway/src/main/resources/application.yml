@@ -42,6 +42,13 @@ spring:
             - Method=GET
           filters:
             - SetPath=/api/reservation/test
+        - id: room-service-test
+          uri: http://${ROOM_SERVICE_BASEURL:localhost:8090}
+          predicates:
+            - Path=/test/room
+            - Method=GET
+          filters:
+            - SetPath=/api/room/test
         - id: bnb-service-secure-test
           uri: http://${BNB_SERVICE_BASEURL:localhost:8080}
           predicates:

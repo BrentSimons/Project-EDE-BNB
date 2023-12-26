@@ -5,6 +5,7 @@ volumes:
   mysql_bnb_data:
   mysql_reservation_data:
   mongodb_person_data:
+  mongodb_room_data:
 
 # We use a bridge network so that our microservices can communicate with each other through the service names assigned in this compose file
 networks:
@@ -128,12 +129,30 @@ services:
     networks:
       - microservices_network
 
+  room-service:
+    depends_on:
+      - mongo-room
+    image: brentbrentbrent/room-service:latest
+    ports:
+      - "8085:8080"
+    restart: on-failure
+    environment:
+      # Person service uses mongodb, this doesn't require any credentials.
+      MONGODB_HOST: mongo-room
+      MONGODB_PORT: 27017
+      # Database name:
+      MONGODB_NAME: mongo-room
+      # Other service URLs
+      RESERVATION_SERVICE_BASEURL: reservation-service:8080
+    networks:
+      - microservices_network
 
   api-gateway:
     depends_on:
       - bnb-service
       - person-service
       - reservation-service
+      - room-service
     image: brentbrentbrent/api-gateway:latest
     ports:
       - "7000:7000"
@@ -143,5 +162,6 @@ services:
       BNB_SERVICE_BASEURL: bnb-service:8080
       PERSON_SERVICE_BASEURL: person-service:8080
       RESERVATION_SERVICE_BASEURL: reservation-service:8080
+      ROOM_SERVICE_BASEURL: room-service:8080
     networks:
       - microservices_network
