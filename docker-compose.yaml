@@ -61,6 +61,16 @@ services:
     # volumes:
     #   - mongodb_person_data:/data/db
 
+  mongo-room:
+    image: mongo:latest
+    restart: on-failure
+    environment:
+      MONGO_INITDB_DATABASE: mongo-room
+    networks:
+      - microservices_network
+    # volumes:
+    #   - mongodb_room_data:/data/db
+
 
   # Database's volumes are in comment until we deploy
   # Database ports are in comment because the services use the internal microservices_network network to connect to each other
