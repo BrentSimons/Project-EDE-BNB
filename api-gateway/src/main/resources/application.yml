@@ -43,7 +43,7 @@ spring:
           filters:
             - SetPath=/api/reservation/test
         - id: room-service-test
-          uri: http://${ROOM_SERVICE_BASEURL:localhost:8090}
+          uri: http://${ROOM_SERVICE_BASEURL:localhost:8085}
           predicates:
             - Path=/test/room
             - Method=GET
