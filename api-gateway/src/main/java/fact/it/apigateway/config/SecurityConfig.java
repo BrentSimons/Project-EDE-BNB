@@ -30,6 +30,3 @@ public class SecurityConfig {
     }
 }
 
-//Vraag:
-//        Iemand anders die het probleem heeft gehad dat wanneer je je niet inlogd op de api je de authorization werkt (alles zonder authorization werkt gwn en 401 endpoints waar het nodig is) maar als je inlogt krijg je 401 op all endpoints?
-
