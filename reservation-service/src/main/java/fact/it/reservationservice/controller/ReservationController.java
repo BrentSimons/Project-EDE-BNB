@@ -2,6 +2,8 @@ package fact.it.reservationservice.controller;
 
 import java.util.List;
 
+import fact.it.reservationservice.dto.AvailableRoomRequest;
+import fact.it.reservationservice.dto.AvailableRoomResponse;
 import fact.it.reservationservice.dto.ReservationRequest;
 import org.springframework.web.bind.annotation.*;
 
@@ -21,6 +23,12 @@ public class ReservationController {
     @ResponseStatus(HttpStatus.OK)
     public List<ReservationResponse> getAllReservations() {
         return reservationService.getAllReservations();
+    }
+
+    @GetMapping("/available")
+    @ResponseStatus(HttpStatus.OK)
+    public List<AvailableRoomResponse> getRoomAvailability(@RequestBody AvailableRoomRequest roomRequest) {
+        return reservationService.checkAvailability(roomRequest);
     }
 
     @PostMapping("/create")
