@@ -1,6 +1,6 @@
 # Enterprise Development Experience Project
 
-### BNBs - Bed & Breakfast Management System
+## BNBs - Bed & Breakfast Management System
 
 ---
 
@@ -11,13 +11,39 @@
 
 ### Description:
 
-This repository contains our school project for the Enterprise Development Experience class. Our project, titled "BNBs - Bed & Breakfast Management System" is designed to demonstrate our understanding of enterprise-level application development using microservices architecture. We have implemented four microservices that collectively form a comprehensive management system for managing multiple Bed & Breakfast establishments.
+This repository contains our school project for the Enterprise Development Experience class. Our project, titled "BNBs - Bed & Breakfast Management System" is designed to demonstrate our understanding of enterprise-level application development using microservices architecture. We have implemented four microservices that collectively form a comprehensive management system for managing multiple Bed & Breakfast establishments. Our inspiration for this project came from the Bed and Breakfast owned by Brent's father.
 
 ### Microservices:
 
-| Name        | Description                                              | Database (port) | API Port |
-| ----------- | -------------------------------------------------------- | --------------- | -------- |
-| Bnb         | Bed and breakfast establishments                         | MySQL (3306)    | 8080     |
-| Room        | Rooms available in a BnB establisment                    | MongoDB (27017) | 8085     |
-| Reservation | Reservations made under a room                           | MySQL (3306)    | 8090     |
-| Person      | Owners, customers, staff that are recorded in the system | MongoDB (27017) | 8095     |
+| API Name    | Description                                              | Database |
+|-------------|----------------------------------------------------------|----------|
+| Bnb         | Bed and breakfast establishments                         | MySQL    |
+| Room        | Rooms available in a BnB establisment                    | MongoDB  |
+| Reservation | Reservations made under a room                           | MySQL    |
+| Person      | Owners, customers, staff that are recorded in the system | MongoDB  |
+
+## API Gateway
+
+### API/Docker compose Diagram
+
+![draw.io diagram of our Microservices Architecture](./erd.png)
+
+In this diagram you can see an overview of our microservices architecture
+
+### Endpoints:
+
+| Endpoint          | API         | Description                | Authorized | Parameters/Body |
+|-------------------|-------------|----------------------------|------------|-----------------|
+| /test/reservation | reservation | Tests the reservation API  | No         | /               |
+| /auth/test        | bnb         | Securely tests the bnb API | Yes        | /               |
+
+## Try out our application:
+
+Hosted API: 
+Hosted Frontend:
+
+### End result screenshots of each endpoint:
+
+(To be added later)
+
+
