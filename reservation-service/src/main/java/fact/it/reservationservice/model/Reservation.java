@@ -10,6 +10,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.Date;
+
 @Entity
 @Table(name = "reservation")
 @Getter
@@ -24,5 +26,8 @@ public class Reservation {
     private Long personId;
 
     private Long roomId;
+
+    private Date startDate;
+    private Date endDate;
 
 }
