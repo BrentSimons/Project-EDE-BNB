@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/bnb/")
+@RequestMapping("/api/bnb")
 @RequiredArgsConstructor
 public class BnbController {
 
@@ -19,16 +19,15 @@ public class BnbController {
     @GetMapping("/get")
     @ResponseStatus(HttpStatus.OK)
     public List<BnbResponse> getBnbByName
-            (@RequestParam String name) {
-        // Example: http://localhost:8080/api/bnb/get?name=Hugo
-        return bnbService.getBnbsByName(name);
+            (@RequestParam(required = false) String name) {
+        if (name != null) {
+            // Example: http://localhost:8080/api/bnb/get?name=Hugo
+            return bnbService.getBnbsByName(name);
+        } else {
+            return bnbService.getAllBnbs();
+        }
     }
 
-    @GetMapping("/get/all")
-    @ResponseStatus(HttpStatus.OK)
-    public List<BnbResponse> getAllBnb(){
-        return bnbService.getAllBnbs();
-    }
 
     @GetMapping("/secureTest")
     @ResponseStatus(HttpStatus.OK)

@@ -16,11 +16,13 @@ public class Bnb {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
     private String name;
-
     @ElementCollection
     private List<Long> roomsIdList;
+
+    private String city;
+    private String postcode;
+    private String address;
 
     // Add a room ID to list
     public void addRoomId(Long roomId) {

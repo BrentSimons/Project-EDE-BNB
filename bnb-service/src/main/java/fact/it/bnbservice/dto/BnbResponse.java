@@ -15,4 +15,10 @@ public class BnbResponse {
         private String name;
 
         private List<Long> RoomsIdList;
+
+        private String city;
+
+        private String postcode;
+
+        private String address;
 }

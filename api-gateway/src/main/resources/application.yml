@@ -21,6 +21,7 @@ spring:
   cloud:
     gateway:
       routes:
+        # Tests / Examples
         - id: person-service-test
           uri: http://${PERSON_SERVICE_BASEURL:localhost:8095}
           predicates:
@@ -49,6 +50,7 @@ spring:
             - Method=GET
           filters:
             - SetPath=/api/room/test
+        # Authentication Test / Examples
         - id: bnb-service-secure-test
           uri: http://${BNB_SERVICE_BASEURL:localhost:8080}
           predicates:
@@ -56,10 +58,13 @@ spring:
             - Method=GET
           filters:
             - SetPath=/api/bnb/secureTest
+        # Public endpoints:
+
+        # Get all bnbs and search for bnb(s)
         - id: bnb-service-bnb-by-name
           uri: http://${BNB_SERVICE_BASEURL:localhost:8080}
           predicates:
-            - Path=/get/bnb
+            - Path=/public/bnb
             - Method=GET
           filters:
-            - SetPath=/api/bnb/
+            - SetPath=/api/bnb/get

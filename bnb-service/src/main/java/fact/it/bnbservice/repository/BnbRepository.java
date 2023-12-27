@@ -11,6 +11,4 @@ import java.util.List;
 @Transactional
 public interface BnbRepository extends JpaRepository<Bnb, Long> {
     List<Bnb> getBnbsByNameContains(String str);
-
-    List<Bnb> getBnbByRoomsIdListIsContaining(Long roomNr);
 }
