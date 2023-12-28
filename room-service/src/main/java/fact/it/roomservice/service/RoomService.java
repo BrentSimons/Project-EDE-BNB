@@ -2,6 +2,7 @@ package fact.it.roomservice.service;
 
 import fact.it.roomservice.dto.AvailableRoomRequest;
 import fact.it.roomservice.dto.AvailableRoomResponse;
+import fact.it.roomservice.dto.RoomResponse;
 import fact.it.roomservice.model.Room;
 import fact.it.roomservice.repository.RoomRepository;
 import jakarta.annotation.PostConstruct;
@@ -50,6 +51,17 @@ public class RoomService {
             roomRepository.save(room4);
             roomRepository.save(room5);
         }
+    }
+
+    public List<RoomResponse> getAllRooms() {
+        List<Room> rooms = roomRepository.findAll();
+
+        return rooms.stream()
+                .map(room -> new RoomResponse(
+                        room.getId(),
+                        room.getName(),
+                        room.getSize()
+                )).toList();
     }
 
     public List<AvailableRoomResponse> checkAvailability(AvailableRoomRequest roomRequest) {

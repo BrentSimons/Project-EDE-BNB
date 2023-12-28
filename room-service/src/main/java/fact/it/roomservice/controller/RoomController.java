@@ -2,6 +2,7 @@ package fact.it.roomservice.controller;
 
 import fact.it.roomservice.dto.AvailableRoomRequest;
 import fact.it.roomservice.dto.AvailableRoomResponse;
+import fact.it.roomservice.dto.RoomResponse;
 import fact.it.roomservice.service.RoomService;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -19,7 +20,13 @@ public class RoomController {
     @GetMapping("/test")
     @ResponseStatus(HttpStatus.OK)
     public String test() {
-        return "test";
+        return "Room test OK";
+    }
+
+    @GetMapping("/all")
+    @ResponseStatus(HttpStatus.OK)
+    public List<RoomResponse> getAllRooms() {
+        return roomService.getAllRooms();
     }
 
     @GetMapping

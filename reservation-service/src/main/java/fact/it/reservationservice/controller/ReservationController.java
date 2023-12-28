@@ -18,6 +18,12 @@ import org.springframework.http.HttpStatus;
 public class ReservationController {
 
     private final ReservationService reservationService;
+    
+    @GetMapping("/test")
+    @ResponseStatus(HttpStatus.OK)
+    public String test() {
+        return "Reservation test OK";
+    }
 
     @GetMapping("/all")
     @ResponseStatus(HttpStatus.OK)
@@ -35,11 +41,5 @@ public class ReservationController {
     @ResponseStatus(HttpStatus.OK)
     public void createReservation(@RequestBody ReservationRequest reservationRequest) {
         reservationService.createReservation(reservationRequest);
-    }
-
-    @GetMapping("/test")
-    @ResponseStatus(HttpStatus.OK)
-    public String test() {
-        return "test";
     }
 }
