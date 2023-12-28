@@ -9,6 +9,7 @@ import jakarta.annotation.PostConstruct;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
+import org.springframework.web.reactive.function.client.WebClient;
 
 import java.util.List;
 
@@ -16,6 +17,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class RoomService {
     private final RoomRepository roomRepository;
+    private final WebClient webClient;
 
     @Value("${reservationservice.baseurl}")
     private String reservationServiceBaseUrl;
@@ -51,6 +53,15 @@ public class RoomService {
             roomRepository.save(room4);
             roomRepository.save(room5);
         }
+    }
+
+    public String test() {
+        String response = webClient.get()
+                .uri("http://" + reservationServiceBaseUrl + "/api/reservation/test")
+                .retrieve()
+                .bodyToMono(String.class)
+                .block();
+        return response;
     }
 
     public List<RoomResponse> getAllRooms() {
