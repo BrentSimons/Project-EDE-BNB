@@ -20,7 +20,7 @@ public class RoomController {
     @GetMapping("/test")
     @ResponseStatus(HttpStatus.OK)
     public String test() {
-        return "Room test OK";
+        return "Room test OK and " + roomService.test();
     }
 
     @GetMapping("/all")
