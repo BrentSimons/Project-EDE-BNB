@@ -1,5 +1,9 @@
 # See http://help.github.com/ignore-files/ for more about ignoring files.
 
+# ignore env as to not push google ids and secrets to github
+.env
+
+
 # Compiled output
 /dist
 /tmp
