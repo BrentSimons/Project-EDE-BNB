@@ -95,7 +95,6 @@ public class ReservationService {
                         reservation.getRoomId(),
                         reservation.getStartDate(),
                         reservation.getEndDate()
-                ))
-                .collect(Collectors.toList());
+                )).toList();
     }
 }

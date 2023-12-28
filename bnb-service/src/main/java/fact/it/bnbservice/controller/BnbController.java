@@ -1,6 +1,5 @@
 package fact.it.bnbservice.controller;
 
-
 import fact.it.bnbservice.dto.BnbResponse;
 import fact.it.bnbservice.service.BnbService;
 import lombok.RequiredArgsConstructor;
@@ -18,8 +17,7 @@ public class BnbController {
 
     @GetMapping("/get")
     @ResponseStatus(HttpStatus.OK)
-    public List<BnbResponse> getBnbByName
-            (@RequestParam(required = false) String name) {
+    public List<BnbResponse> getBnbByName(@RequestParam(required = false) String name) {
         if (name != null) {
             // Example: http://localhost:8080/api/bnb/get?name=Hugo
             return bnbService.getBnbsByName(name);
@@ -28,11 +26,10 @@ public class BnbController {
         }
     }
 
-
     @GetMapping("/secureTest")
     @ResponseStatus(HttpStatus.OK)
     public String secureTest() {
-        return"Secured test";
+        return "Secured test";
     }
 
     @GetMapping("/test")
