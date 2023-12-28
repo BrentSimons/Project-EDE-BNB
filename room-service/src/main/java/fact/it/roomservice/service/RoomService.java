@@ -22,7 +22,33 @@ public class RoomService {
     @PostConstruct
     public void loadData() {
         if (roomRepository.count() <= 0) {
+            // Hugo's Bnb Ter Dolen
+            Room room1 = new Room();
+            room1.setName("Room1_Bnb1");
+            room1.setSize(5);
 
+            Room room2 = new Room();
+            room2.setName("Room2_Bnb1");
+            room2.setSize(3);
+
+            Room room3 = new Room();
+            room3.setName("Room3_Bnb1");
+            room3.setSize(2);
+
+            // Hugo's Bnb Geel
+            Room room4 = new Room();
+            room4.setName("Room1_Bnb2");
+            room4.setSize(4);
+
+            Room room5 = new Room();
+            room5.setName("Room2_Bnb2");
+            room5.setSize(2);
+
+            roomRepository.save(room1);
+            roomRepository.save(room2);
+            roomRepository.save(room3);
+            roomRepository.save(room4);
+            roomRepository.save(room5);
         }
     }
 
