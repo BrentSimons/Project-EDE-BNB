@@ -20,13 +20,14 @@ public class BnbService {
 
     @PostConstruct
     public void loadData() {
-        if(bnbRepository.count() <= 0){
+        if (bnbRepository.count() <= 0) {
             List<Bnb> bnbList = new ArrayList<>();
 
             Bnb bnb1 = new Bnb();
             bnb1.setName("Hugo's Bnb Ter Dolen");
             bnb1.addRoomId(1L);
             bnb1.addRoomId(2L);
+            bnb1.addRoomId(3L);
             bnb1.setCity("Houthalen-Helchteren");
             bnb1.setPostcode("3530");
             bnb1.setAddress("Eikendreef 21");
@@ -34,8 +35,8 @@ public class BnbService {
 
             Bnb bnb2 = new Bnb();
             bnb2.setName("Hugo's Bnb Geel");
-            bnb2.addRoomId(3L);
             bnb2.addRoomId(4L);
+            bnb2.addRoomId(5L);
             bnb2.setCity("Geel");
             bnb2.setPostcode("2440");
             bnb2.setAddress("Drijhoek");
@@ -43,7 +44,6 @@ public class BnbService {
 
             Bnb bnb3 = new Bnb();
             bnb3.setName("The Slumburger ");
-            bnb3.addRoomId(5L);
             bnb3.addRoomId(6L);
             bnb3.setCity("Geel");
             bnb3.setPostcode("2440");
@@ -66,21 +66,19 @@ public class BnbService {
     @Transactional(readOnly = true)
     public List<BnbResponse> getBnbsByName(String str) {
         return bnbRepository.getBnbsByNameContains(str).stream()
-                .map(bnb ->
-                        BnbResponse.builder()
-                                .name(bnb.getName())
-                                .RoomsIdList(bnb.getRoomsIdList())
-                                .build()
-                ).toList();
+                .map(bnb -> BnbResponse.builder()
+                        .name(bnb.getName())
+                        .RoomsIdList(bnb.getRoomsIdList())
+                        .build())
+                .toList();
     }
 
     public List<BnbResponse> getAllBnbs() {
         return bnbRepository.findAll().stream()
-                .map(bnb ->
-                        BnbResponse.builder()
-                                .name(bnb.getName())
-                                .RoomsIdList(bnb.getRoomsIdList())
-                                .build()
-                ).toList();
+                .map(bnb -> BnbResponse.builder()
+                        .name(bnb.getName())
+                        .RoomsIdList(bnb.getRoomsIdList())
+                        .build())
+                .toList();
     }
 }
