@@ -1,9 +1,6 @@
 package fact.it.roomservice.service;
 
-import fact.it.roomservice.dto.AvailableRoomRequest;
-import fact.it.roomservice.dto.AvailableRoomResponse;
-import fact.it.roomservice.dto.ReservationPeriod;
-import fact.it.roomservice.dto.RoomResponse;
+import fact.it.roomservice.dto.*;
 import fact.it.roomservice.model.Room;
 import fact.it.roomservice.repository.RoomRepository;
 import jakarta.annotation.PostConstruct;
@@ -14,6 +11,7 @@ import org.springframework.web.reactive.function.client.WebClient;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -62,18 +60,6 @@ public class RoomService {
         }
     }
 
-    public List<RoomResponse> getAllRooms() {
-        List<Room> rooms = roomRepository.findAll();
-
-        return rooms.stream()
-                .map(room -> new RoomResponse(
-                        room.getId(),
-                        room.getRoomCode(),
-                        room.getName(),
-                        room.getSize()
-                )).toList();
-    }
-
     public List<AvailableRoomResponse> checkRoomsAvailability(AvailableRoomRequest roomRequest) {
         // Update roomRequest so that it only contains rooms that are big enough
         List<String> roomCodes = roomRepository.findByRoomCodeInAndSizeGreaterThan(roomRequest.getRoomCodes(), roomRequest.getSize() - 1)
@@ -103,5 +89,61 @@ public class RoomService {
                 .block();
 
         return Arrays.stream(reservationPeriods != null ? reservationPeriods : new ReservationPeriod[0]).toList();
+    }
+
+    // CRUD
+    public List<RoomResponse> getAllRooms() {
+        List<Room> rooms = roomRepository.findAll();
+
+        return rooms.stream()
+                .map(room -> new RoomResponse(
+                        room.getId(),
+                        room.getRoomCode(),
+                        room.getName(),
+                        room.getSize()
+                )).toList();
+    }
+
+    public RoomResponse getRoom(String id) {
+        Optional<Room> roomOptional = roomRepository.findById(id);
+        if (roomOptional.isPresent()) {
+            Room room = roomOptional.get();
+            return RoomResponse.builder()
+                    .id(room.getId())
+                    .roomCode(room.getRoomCode())
+                    .name(room.getName())
+                    .size(room.getSize())
+                    .build();
+        }
+        return null;
+    }
+
+    public Room createRoom(RoomRequest roomRequest) {
+        Room room = Room.builder()
+                .roomCode(roomRequest.getRoomCode())
+                .name(roomRequest.getName())
+                .size(roomRequest.getSize())
+                .build();
+
+        roomRepository.save(room);
+        return room;
+    }
+
+    public Room updateRoom(String id, RoomRequest updatedRoom) {
+        Optional<Room> roomOptional = roomRepository.findById(id);
+
+        if (roomOptional.isPresent()) {
+            Room room = roomOptional.get();
+
+            room.setRoomCode(updatedRoom.getRoomCode() != null ? updatedRoom.getRoomCode() : room.getRoomCode());
+            room.setName(updatedRoom.getName() != null ? updatedRoom.getName() : room.getName());
+            room.setSize(updatedRoom.getSize() != 0 ? updatedRoom.getSize() : room.getSize());
+            return roomRepository.save(room);
+        }
+        return null; // Handle not found case
+    }
+
+    public void deleteRoom(String id) {
+        roomRepository.deleteById(id);
     }
 }
