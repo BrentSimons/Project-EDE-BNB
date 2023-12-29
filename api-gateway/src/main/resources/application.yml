@@ -59,7 +59,7 @@ spring:
           filters:
             - SetPath=/api/bnb/secureTest
         # Public endpoints:
-
+        #  "", ""
         # Get all bnbs and search for bnb(s)
         - id: bnb-service-bnb-by-name
           uri: http://${BNB_SERVICE_BASEURL:localhost:8080}
@@ -68,3 +68,18 @@ spring:
             - Method=GET
           filters:
             - SetPath=/api/bnb/get
+        # Get available rooms in a bnb
+        - id: bnb-service-rooms-available
+          uri: http://${BNB_SERVICE_BASEURL:localhost:8080}
+          predicates:
+            - Path=/public/rooms/available
+            - Method=GET
+          filters:
+            - SetPath=/api/bnb/available
+        - id: room-service-room-availability
+          uri: http://${ROOM_SERVICE_BASEURL:localhost:8085}
+          predicates:
+            - Path=/public/room/available
+            - Method=GET
+          filters:
+            - SetPath=/api/room/available

@@ -2,7 +2,7 @@ In this file you will be able to see some examples for all our endpoints
 
 ### Public Endpoints
 
-**1. GET /api/bnb/get?name=Hugo**
+**1. GET /public/bnb?name=Hugo**
 
 This is a public endpoint that can be used to get an overview of all our bnbs. 
 
@@ -25,7 +25,7 @@ Example result:
 ]
 ```
 
-**2. GET /api/bnb/available?id=<bnbId>**
+**2. GET /public/rooms/available?id=<bnbId>**
 
 Example body:
 
@@ -65,7 +65,7 @@ Example result:
 ]
 ```
 
-**3. GET /api/room/available?roomCode=<Room2_Bnb1>&months=<3>**
+**3. GET /public/room/available?roomCode=<Room2_Bnb1>&months=<3>**
 
 This is a public endpoint that can be used to check whether a specific room is available within the next month(s).
 

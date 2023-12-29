@@ -12,7 +12,7 @@ import static org.springframework.security.config.Customizer.withDefaults;
 @EnableWebFluxSecurity
 public class SecurityConfig {
     String[] PublicEndpoints = {
-            "/public/bnb", "/public/room/available", "/public/room", "/test/**"
+            "/public/bnb", "/public/rooms/available", "/public/room", "/test/**"
     };
     @Bean
     public SecurityWebFilterChain springSecurityFilterChain(ServerHttpSecurity serverHttpSecurity) {
