@@ -10,6 +10,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class RoomResponse {
+    // TODO remove id line, also update builders in service (getAllRooms() and getRoom() ) to not add id
     private String id;
     private String roomCode;
     private String name;
