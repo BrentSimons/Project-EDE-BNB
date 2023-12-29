@@ -27,14 +27,14 @@ Example result:
 
 **2. GET /public/rooms/available?id=<bnbId>**
 
-Example body:
+Required body:
 
 ```json
 {
-    "roomCodes": [], 
-    "startDate": "2024-05-11T23:00:00.000+00:00",
-    "endDate": "2024-05-11T23:00:00.000+00:00",
-    "size": 0,
+    "roomCodes": [],
+    "startDate": "2022-05-11",
+    "endDate": "2024-05-11",
+    "size": 3
 }
 ```
 
@@ -78,16 +78,16 @@ Example result:
 ```json
 [
     {
-        "startDate": "2023-12-28T23:00:00.000+00:00",
-        "endDate": "2024-03-09T23:00:00.000+00:00"
+        "startDate": "2023-12-28",
+        "endDate": "2024-03-09"
     },
     {
-        "startDate": "2024-03-14T23:00:00.000+00:00",
-        "endDate": "2024-03-18T23:00:00.000+00:00"
+        "startDate": "2024-03-14",
+        "endDate": "2024-03-18"
     },
     {
-        "startDate": "2024-03-20T23:00:00.000+00:00",
-        "endDate": "2024-03-28T23:00:00.000+00:00"
+        "startDate": "2024-03-20",
+        "endDate": "2024-03-28"
     }
 ]
 ```
