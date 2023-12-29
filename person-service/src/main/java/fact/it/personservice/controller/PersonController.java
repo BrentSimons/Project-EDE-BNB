@@ -20,22 +20,6 @@ public class PersonController {
     public void createPerson(@RequestBody PersonRequest personRequest) {
         personService.createPerson(personRequest);
     }
-    // Create Example
-
-    /*
-     * {
-     * "id": "3",
-     * "firstName": "Jesus",
-     * "lastName": "Christ",
-     * "dateOfBirth": "0001-01-01",
-     * "accountNumber": 1003,
-     * "contact": {
-     * "phoneNumber": "911",
-     * "emailAddress": "JesusC@LordlyMail.co.heaven",
-     * "address": "Heavenly Palace of the Lord 2 Apartment 5, Heavens Gate"
-     * }
-     * }
-     */
 
     @GetMapping("/all")
     @ResponseStatus(HttpStatus.OK)

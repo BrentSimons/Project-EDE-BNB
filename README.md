@@ -41,6 +41,8 @@ In this diagram you can see an overview of our microservices architecture
 | /test/reservation | reservation | Tests the reservation API  | No         | /               |
 | /auth/test        | bnb         | Securely tests the bnb API | Yes        | /               |
 
+For more info about our endpoints please view the file [endpoint_examples.md](endpoint_examples.md)
+
 ## Try out our application:
 
 (To be added later)
