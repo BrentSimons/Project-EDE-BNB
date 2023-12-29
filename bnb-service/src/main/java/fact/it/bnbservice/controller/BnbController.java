@@ -2,7 +2,9 @@ package fact.it.bnbservice.controller;
 
 import fact.it.bnbservice.dto.AvailableRoomRequest;
 import fact.it.bnbservice.dto.BnbResponse;
+import fact.it.bnbservice.model.Bnb;
 import fact.it.bnbservice.dto.AvailableRoomResponse;
+import fact.it.bnbservice.dto.BnbRequest;
 import fact.it.bnbservice.service.BnbService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -17,17 +19,7 @@ import java.util.List;
 public class BnbController {
 
     private final BnbService bnbService;
-
-    @GetMapping("/get")
-    @ResponseStatus(HttpStatus.OK)
-    public List<BnbResponse> getBnbByName(@RequestParam(required = false) String name) {
-        if (name != null) {
-            // Example: http://localhost:8080/api/bnb/get?name=Hugo
-            return bnbService.getBnbsByName(name);
-        } else {
-            return bnbService.getAllBnbs();
-        }
-    }
+    
 
     @GetMapping("/available")
     @ResponseStatus(HttpStatus.OK)
@@ -45,5 +37,38 @@ public class BnbController {
     @ResponseStatus(HttpStatus.OK)
     public String test() {
         return "Bnb test OK";
+    }
+
+    // CRUD
+    @GetMapping("/get")
+    @ResponseStatus(HttpStatus.OK)
+    public List<BnbResponse> getBnbByName(@RequestParam(required = false, defaultValue = "") String name) {
+        // Example: http://localhost:8080/api/bnb/get?name=Hugo
+        // If no name given, this method returns all bnbs found
+        return bnbService.getBnbsByName(name);
+    }
+
+    @GetMapping("/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public BnbResponse getBnb(@PathVariable Long id) {
+        return bnbService.getBnb(id);
+    }
+
+    @PostMapping
+    @ResponseStatus(HttpStatus.CREATED)
+    public Bnb createBnb(@RequestBody BnbRequest bnbRequest) {
+        return bnbService.createBnb(bnbRequest);
+    }
+
+    @PutMapping("/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public Bnb updateBnb(@PathVariable Long id, @RequestBody BnbRequest updatedBnb) {
+        return bnbService.updateBnb(id, updatedBnb);
+    }
+
+    @DeleteMapping("/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void deleteBnb(@PathVariable Long id) {
+        bnbService.deleteBnb(id);
     }
 }

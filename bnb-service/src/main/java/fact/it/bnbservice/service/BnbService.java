@@ -3,6 +3,7 @@ package fact.it.bnbservice.service;
 import fact.it.bnbservice.dto.AvailableRoomRequest;
 import fact.it.bnbservice.dto.BnbResponse;
 import fact.it.bnbservice.dto.AvailableRoomResponse;
+import fact.it.bnbservice.dto.BnbRequest;
 import fact.it.bnbservice.model.Bnb;
 import fact.it.bnbservice.repository.BnbRepository;
 
@@ -73,25 +74,6 @@ public class BnbService {
         }
     }
 
-    @Transactional(readOnly = true)
-    public List<BnbResponse> getBnbsByName(String str) {
-        return bnbRepository.getBnbsByNameContains(str).stream()
-                .map(bnb -> BnbResponse.builder()
-                        .name(bnb.getName())
-                        .roomCodes(bnb.getRoomCodes())
-                        .build())
-                .toList();
-    }
-
-    public List<BnbResponse> getAllBnbs() {
-        return bnbRepository.findAll().stream()
-                .map(bnb -> BnbResponse.builder()
-                        .name(bnb.getName())
-                        .roomCodes(bnb.getRoomCodes())
-                        .build())
-                .toList();
-    }
-
     public List<AvailableRoomResponse> getAvailableRooms(AvailableRoomRequest roomRequest, Long bnbId) {
         // Get the bnb object from the given bnbId
         Optional<Bnb> bnbOptional = bnbRepository.findById(bnbId);
@@ -102,16 +84,78 @@ public class BnbService {
             roomRequest.setRoomCodes(bnb.getRoomCodes());
 
             // Call the Room service to check the size of each room
-            // This will in turn call Reservation service to ensure that rooms are available during the given time period
+            // This will in turn call Reservation service to ensure that rooms are available
+            // during the given time period
             AvailableRoomResponse[] availableRoomResponseList = webClient.post()
                     .uri("http://" + roomServiceBaseUrl + "/api/room/availableRooms")
                     .bodyValue(roomRequest)
                     .retrieve()
                     .bodyToMono(AvailableRoomResponse[].class)
                     .block();
-            return Arrays.stream(availableRoomResponseList != null ? availableRoomResponseList : new AvailableRoomResponse[0]).toList();
+            return Arrays.stream(
+                    availableRoomResponseList != null ? availableRoomResponseList : new AvailableRoomResponse[0])
+                    .toList();
         }
 
         return null;
+    }
+
+    // CRUD
+    @Transactional(readOnly = true)
+    public List<BnbResponse> getBnbsByName(String str) {
+        return bnbRepository.getBnbsByNameContains(str).stream()
+                .map(bnb -> BnbResponse.builder()
+                        .name(bnb.getName())
+                        .roomCodes(bnb.getRoomCodes())
+                        .build())
+                .toList();
+    }
+
+    public BnbResponse getBnb(Long id) {
+        Optional<Bnb> bnbOptional = bnbRepository.findById(id);
+        if (bnbOptional.isPresent()) {
+            Bnb bnb = bnbOptional.get();
+            return BnbResponse.builder()
+                    .name(bnb.getName())
+                    .roomCodes(bnb.getRoomCodes())
+                    .city(bnb.getCity())
+                    .postcode(bnb.getPostcode())
+                    .address(bnb.getAddress())
+                    .build();
+        }
+        return null;
+    }
+
+    public Bnb createBnb(BnbRequest bnbRequest) {
+        Bnb bnb = new Bnb();
+        bnb.setName(bnbRequest.getName());
+        bnb.setRoomCodes(bnbRequest.getRoomCodes());
+        bnb.setCity(bnbRequest.getCity());
+        bnb.setPostcode(bnbRequest.getPostcode());
+        bnb.setAddress(bnbRequest.getAddress());
+
+        bnbRepository.save(bnb);
+        return bnb;
+    }
+
+    public Bnb updateBnb(Long id, BnbRequest updatedBnb) {
+        Optional<Bnb> bnbOptional = bnbRepository.findById(id);
+
+        if (bnbOptional.isPresent()) {
+            Bnb bnb = bnbOptional.get();
+
+            bnb.setName(updatedBnb.getName() != null ? updatedBnb.getName() : bnb.getName());
+            bnb.setRoomCodes(updatedBnb.getRoomCodes().size() != 0 ? updatedBnb.getRoomCodes() : bnb.getRoomCodes());
+            bnb.setCity(updatedBnb.getCity() != null ? updatedBnb.getCity() : bnb.getCity());
+            bnb.setPostcode(updatedBnb.getPostcode() != null ? updatedBnb.getPostcode() : bnb.getPostcode());
+            bnb.setAddress(updatedBnb.getAddress() != null ? updatedBnb.getAddress() : bnb.getAddress());
+
+            return bnbRepository.save(bnb);
+        }
+        return null; // Handle not found case
+    }
+
+    public void deleteBnb(Long id) {
+        bnbRepository.deleteById(id);
     }
 }

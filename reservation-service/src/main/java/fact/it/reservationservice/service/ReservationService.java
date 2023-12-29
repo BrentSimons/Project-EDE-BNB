@@ -114,19 +114,6 @@ public class ReservationService {
         return availableRooms;
     }
 
-    public List<ReservationResponse> getAllReservations() {
-        List<Reservation> reservations = reservationRepository.findAll();
-
-        return reservations.stream()
-                .map(reservation -> new ReservationResponse(
-                        reservation.getId(),
-                        reservation.getPersonId(),
-                        reservation.getRoomCode(),
-                        reservation.getStartDate(),
-                        reservation.getEndDate()
-                )).toList();
-    }
-
     public List<ReservationPeriod> getAvailablePeriods(String roomCode, int months) {
         LocalDate localDate = LocalDate.now();
         LocalDate nextMonth = localDate.plusMonths(months);
@@ -160,6 +147,32 @@ public class ReservationService {
         return reservationPeriods;
     }
 
+    // CRUD
+    public List<ReservationResponse> getAllReservations() {
+        List<Reservation> reservations = reservationRepository.findAll();
+
+        return reservations.stream()
+                .map(reservation -> new ReservationResponse(
+                        reservation.getPersonId(),
+                        reservation.getRoomCode(),
+                        reservation.getStartDate(),
+                        reservation.getEndDate()
+                )).toList();
+    }
+
+    public ReservationResponse getReservation(Long id) {
+        Optional<Reservation> reservationOptional = reservationRepository.findById(id);
+        if (reservationOptional.isPresent()) {
+            Reservation reservation = reservationOptional.get();
+            return ReservationResponse.builder()
+                    .personId(reservation.getPersonId())
+                    .roomCode(reservation.getRoomCode())
+                    .startDate(reservation.getStartDate())
+                    .endDate(reservation.getEndDate())
+                    .build();
+        }
+        return null;
+    }
 
     public Reservation createReservation(ReservationRequest reservationRequest) {
         Reservation reservation = new Reservation();
