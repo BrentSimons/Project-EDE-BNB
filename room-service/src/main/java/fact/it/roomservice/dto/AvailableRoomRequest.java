@@ -14,7 +14,7 @@ import java.util.List;
 @Builder
 public class AvailableRoomRequest {
     // TODO roomIds only needed if we want to filter for a certain bnb, otherwise we can filter through all rooms and check availability
-    private List<String> roomIds;
+    private List<String> roomCodes;
     private Date startDate;
     private Date endDate;
     private int size;

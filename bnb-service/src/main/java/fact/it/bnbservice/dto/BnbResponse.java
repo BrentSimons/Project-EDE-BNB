@@ -14,7 +14,7 @@ import java.util.List;
 public class BnbResponse {
         private String name;
 
-        private List<Long> RoomsIdList;
+        private List<String> roomCodes;
 
         private String city;
 

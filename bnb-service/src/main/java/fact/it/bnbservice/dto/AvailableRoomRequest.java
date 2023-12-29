@@ -1,4 +1,4 @@
-package fact.it.reservationservice.dto;
+package fact.it.bnbservice.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -16,4 +16,5 @@ public class AvailableRoomRequest {
     private List<String> roomCodes;
     private Date startDate;
     private Date endDate;
+    private int size;
 }

@@ -1,4 +1,4 @@
-package fact.it.roomservice.config;
+package fact.it.bnbservice.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

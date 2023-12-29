@@ -18,7 +18,7 @@ import org.springframework.http.HttpStatus;
 public class ReservationController {
 
     private final ReservationService reservationService;
-    
+
     @GetMapping("/test")
     @ResponseStatus(HttpStatus.OK)
     public String test() {
@@ -31,7 +31,7 @@ public class ReservationController {
         return reservationService.getAllReservations();
     }
 
-    @GetMapping("/available")
+    @PostMapping("/available")
     @ResponseStatus(HttpStatus.OK)
     public List<AvailableRoomResponse> getRoomAvailability(@RequestBody AvailableRoomRequest roomRequest) {
         return reservationService.checkAvailability(roomRequest);
