@@ -15,12 +15,12 @@ Example result:
 ```json
 [
     {
-    "name": "Hugo's Bnb Ter Dolen",
-    "roomsIdList": [ 1, 2 ]
+        "name": "Hugo's Bnb Ter Dolen",
+        "roomsIdList": [ 1, 2 ]
     },
     {
-    "name": "Hugo's Bnb Geel",
-    "roomsIdList": [ 3, 4 ]
+        "name": "Hugo's Bnb Geel",
+        "roomsIdList": [ 3, 4 ]
     }
 ]
 ```
@@ -51,16 +51,16 @@ Example result:
 ```json
 [
     {
-    "roomCode": "Room1_Bnb1",
-    "available": false
+        "roomCode": "Room1_Bnb1",
+        "available": false
     },
     {
-    "roomCode": "Room2_Bnb1",
-    "available": true
+        "roomCode": "Room2_Bnb1",
+        "available": true
     },
     {
-    "roomCode": "Room3_Bnb1",
-    "available": true
+        "roomCode": "Room3_Bnb1",
+        "available": true
     }
 ]
 ```
