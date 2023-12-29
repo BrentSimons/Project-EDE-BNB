@@ -2,6 +2,7 @@ package fact.it.roomservice.service;
 
 import fact.it.roomservice.dto.AvailableRoomRequest;
 import fact.it.roomservice.dto.AvailableRoomResponse;
+import fact.it.roomservice.dto.ReservationPeriod;
 import fact.it.roomservice.dto.RoomResponse;
 import fact.it.roomservice.model.Room;
 import fact.it.roomservice.repository.RoomRepository;
@@ -73,22 +74,34 @@ public class RoomService {
                 )).toList();
     }
 
-    public List<AvailableRoomResponse> checkAvailability(AvailableRoomRequest roomRequest) {
-
+    public List<AvailableRoomResponse> checkRoomsAvailability(AvailableRoomRequest roomRequest) {
+        // Update roomRequest so that it only contains rooms that are big enough
         List<String> roomCodes = roomRepository.findByRoomCodeInAndSizeGreaterThan(roomRequest.getRoomCodes(), roomRequest.getSize() - 1)
                 .stream()
                 .map(Room::getRoomCode)
                 .toList();
 
         roomRequest.setRoomCodes(roomCodes);
+
+        // Call Reservation service to check for every room if there already are reservations during the time period given in roomRequest
         AvailableRoomResponse[] availableRoomResponseList = webClient.post()
-                .uri("http://" + reservationServiceBaseUrl + "/api/reservation/available")
+                .uri("http://" + reservationServiceBaseUrl + "/api/reservation/availableRooms")
                 .bodyValue(roomRequest)
                 .retrieve()
                 .bodyToMono(AvailableRoomResponse[].class)
                 .block();
 
+        return Arrays.asList(availableRoomResponseList != null ? availableRoomResponseList : new AvailableRoomResponse[0]);
+    }
 
-        return Arrays.asList(availableRoomResponseList);
+    public List<ReservationPeriod> getAvailablePeriods(String roomCode, int months) {
+        ReservationPeriod[] reservationPeriods = webClient.get()
+                .uri("http://" + reservationServiceBaseUrl + "/api/reservation/available",
+                        uriBuilder -> uriBuilder.queryParam("roomCode", roomCode).queryParam("months", months).build())
+                .retrieve()
+                .bodyToMono(ReservationPeriod[].class)
+                .block();
+
+        return Arrays.stream(reservationPeriods != null ? reservationPeriods : new ReservationPeriod[0]).toList();
     }
 }

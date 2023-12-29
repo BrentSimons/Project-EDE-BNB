@@ -31,8 +31,8 @@ public class BnbController {
 
     @GetMapping("/available")
     @ResponseStatus(HttpStatus.OK)
-    public List<AvailableRoomResponse> getAvailableRooms(@RequestBody AvailableRoomRequest roomRequest, @RequestParam Long bnbId) {
-        return bnbService.getAvailableRooms(roomRequest, bnbId);
+    public List<AvailableRoomResponse> getAvailableRooms(@RequestBody AvailableRoomRequest roomRequest, @RequestParam Long id) {
+        return bnbService.getAvailableRooms(roomRequest, id);
     }
 
     @GetMapping("/secureTest")

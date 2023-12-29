@@ -93,14 +93,18 @@ public class BnbService {
     }
 
     public List<AvailableRoomResponse> getAvailableRooms(AvailableRoomRequest roomRequest, Long bnbId) {
+        // Get the bnb object from the given bnbId
         Optional<Bnb> bnbOptional = bnbRepository.findById(bnbId);
 
         if (bnbOptional.isPresent()) {
             Bnb bnb = bnbOptional.get();
+            // Add the roomCodes of the found bnb to the roomRequest
             roomRequest.setRoomCodes(bnb.getRoomCodes());
 
+            // Call the Room service to check the size of each room
+            // This will in turn call Reservation service to ensure that rooms are available during the given time period
             AvailableRoomResponse[] availableRoomResponseList = webClient.post()
-                    .uri("http://" + roomServiceBaseUrl + "/api/room/available")
+                    .uri("http://" + roomServiceBaseUrl + "/api/room/availableRooms")
                     .bodyValue(roomRequest)
                     .retrieve()
                     .bodyToMono(AvailableRoomResponse[].class)

@@ -27,4 +27,14 @@ public interface ReservationRepository extends JpaRepository<Reservation, Long> 
     );*/
 
     List<Reservation> findByRoomCode(String roomCodes);
+
+    @Query("""
+            SELECT r FROM Reservation r
+            WHERE r.roomCode = :roomCode
+            AND r.startDate BETWEEN CURRENT_DATE AND :nextMonthStartDate
+            """)
+    List<Reservation> findByRoomCodeAndStartDateInNextMonthOrderByStartDateAsc(
+            @Param("roomCode") String roomCode,
+            @Param("nextMonthStartDate") Date nextMonthStartDate
+    );
 }

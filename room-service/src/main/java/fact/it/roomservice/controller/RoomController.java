@@ -2,6 +2,7 @@ package fact.it.roomservice.controller;
 
 import fact.it.roomservice.dto.AvailableRoomRequest;
 import fact.it.roomservice.dto.AvailableRoomResponse;
+import fact.it.roomservice.dto.ReservationPeriod;
 import fact.it.roomservice.dto.RoomResponse;
 import fact.it.roomservice.service.RoomService;
 import org.springframework.http.HttpStatus;
@@ -29,9 +30,15 @@ public class RoomController {
         return roomService.getAllRooms();
     }
 
-    @PostMapping("/available")
+    @PostMapping("/availableRooms")
     @ResponseStatus(HttpStatus.OK)
     public List<AvailableRoomResponse> getAvailableRooms(@RequestBody AvailableRoomRequest roomRequest) {
-        return roomService.checkAvailability(roomRequest);
+        return roomService.checkRoomsAvailability(roomRequest);
+    }
+
+    @GetMapping("/available")
+    @ResponseStatus(HttpStatus.OK)
+    public List<ReservationPeriod> getAvailablePeriods(@RequestParam String roomCode, @RequestParam(required = false, defaultValue = "1") int months) {
+        return roomService.getAvailablePeriods(roomCode, months);
     }
 }
