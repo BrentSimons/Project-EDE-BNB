@@ -1,11 +1,14 @@
 package fact.it.bnbservice.controller;
 
+import fact.it.bnbservice.dto.AvailableRoomRequest;
 import fact.it.bnbservice.dto.BnbResponse;
+import fact.it.bnbservice.dto.AvailableRoomResponse;
 import fact.it.bnbservice.service.BnbService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Date;
 import java.util.List;
 
 @RestController
@@ -26,15 +29,21 @@ public class BnbController {
         }
     }
 
+    @GetMapping("/available")
+    @ResponseStatus(HttpStatus.OK)
+    public List<AvailableRoomResponse> getAvailableRooms(@RequestBody AvailableRoomRequest roomRequest, @RequestParam Long bnbId) {
+        return bnbService.getAvailableRooms(roomRequest, bnbId);
+    }
+
     @GetMapping("/secureTest")
     @ResponseStatus(HttpStatus.OK)
     public String secureTest() {
-        return "Secured test";
+        return "Secured Bnb test OK";
     }
 
     @GetMapping("/test")
     @ResponseStatus(HttpStatus.OK)
     public String test() {
-        return "test";
+        return "Bnb test OK";
     }
 }

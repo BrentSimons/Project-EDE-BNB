@@ -12,8 +12,8 @@ import java.util.Date;
 @AllArgsConstructor
 @NoArgsConstructor
 public class ReservationRequest {
-    private Long personId;
-    private Long roomId;
+    private String personId;
+    private String roomCode;
     private Date startDate;
     private Date endDate;
 }

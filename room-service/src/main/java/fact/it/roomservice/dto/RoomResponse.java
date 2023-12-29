@@ -11,6 +11,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class RoomResponse {
     private String id;
+    private String roomCode;
     private String name;
     private int size;
 }

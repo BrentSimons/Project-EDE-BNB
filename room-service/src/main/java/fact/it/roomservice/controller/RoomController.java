@@ -20,7 +20,7 @@ public class RoomController {
     @GetMapping("/test")
     @ResponseStatus(HttpStatus.OK)
     public String test() {
-        return "Room test OK and " + roomService.test();
+        return "Room test OK";
     }
 
     @GetMapping("/all")
@@ -29,7 +29,7 @@ public class RoomController {
         return roomService.getAllRooms();
     }
 
-    @GetMapping
+    @PostMapping("/available")
     @ResponseStatus(HttpStatus.OK)
     public List<AvailableRoomResponse> getAvailableRooms(@RequestBody AvailableRoomRequest roomRequest) {
         return roomService.checkAvailability(roomRequest);

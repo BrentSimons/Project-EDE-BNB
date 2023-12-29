@@ -7,14 +7,13 @@ volumes:
   mongodb_person_data:
   mongodb_room_data:
 
-# We use a bridge network so that our microservices can communicate with each other through the service names assigned in this compose file
+    # We use a bridge network so that our microservices can communicate with each other through the service names assigned in this compose file
 networks:
   microservices_network:
     driver: bridge
 
 services:
   # Databases
-
   mysql-bnb:
     image: mysql:latest
     restart: on-failure
@@ -28,11 +27,10 @@ services:
     # volumes:
     #   - mysql_bnb_data:/var/lib/mysql
     healthcheck:
-      test: [ "CMD", "mysqladmin" ,"ping", "-h", "localhost" ]
+      test: [ "CMD", "mysqladmin", "ping", "-h", "localhost" ]
       interval: 10s
       timeout: 20s
       retries: 10
-
 
   mysql-reservation:
     image: mysql:latest
@@ -45,11 +43,10 @@ services:
     # volumes:
     #   - mysql_reservation_data:/var/lib/mysql
     healthcheck:
-      test: [ "CMD", "mysqladmin" ,"ping", "-h", "localhost" ]
+      test: [ "CMD", "mysqladmin", "ping", "-h", "localhost" ]
       interval: 10s
       timeout: 20s
       retries: 10
-
 
   mongo-person:
     image: mongo:latest
@@ -64,6 +61,8 @@ services:
   mongo-room:
     image: mongo:latest
     restart: on-failure
+    ports:
+      - "27017:27017"
     environment:
       MONGO_INITDB_DATABASE: mongo-room
     networks:
@@ -72,15 +71,15 @@ services:
     #   - mongodb_room_data:/data/db
 
 
-  # Database's volumes are in comment until we deploy
-  # Database ports are in comment because the services use the internal microservices_network network to connect to each other
+    # Database's volumes are in comment until we deploy
+    # Database ports are in comment because the services use the internal microservices_network network to connect to each other
 
-  # ----------------------------------------------------------------
-  # Rest APIs
+    # ----------------------------------------------------------------
+    # Rest APIs
 
-  # The comments for the APIs will be on the first 2 API's (Since the latter 2 APIs are identical to the first 2.)
+    # The comments for the APIs will be on the first 2 API's (Since the latter 2 APIs are identical to the first 2.)
 
-  # Note for all services: ports are opened in each service but since were using an api gateway these will be removed in the final project
+    # Note for all services: ports are opened in each service but since were using an api gateway these will be removed in the final project
 
   bnb-service:
     # Depends on the database being deployed (and in the mysql database cases also the container being healthy)
@@ -101,9 +100,9 @@ services:
       MYSQL_DB_PASSWORD: abc123
       # Name of the database scheme
       MYSQL_DB_NAME: bnbdb
+      ROOM_SERVICE_BASEURL: room-service:8080
     networks:
       - microservices_network
-
 
   person-service:
     depends_on:
@@ -120,7 +119,6 @@ services:
       MONGODB_NAME: mongo-person
     networks:
       - microservices_network
-
 
   reservation-service:
     depends_on:
