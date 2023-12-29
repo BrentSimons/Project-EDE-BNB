@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Optional;
 import java.util.concurrent.ThreadLocalRandom;
 
 @Service
@@ -29,7 +30,7 @@ public class PersonService {
                     .firstName("Adam")
                     .lastName("Johns")
                     .id("1")
-                    .accountNumber(1000)
+                    .accountNumber("1000")
                     .contact(adamContact)
                     .dateOfBirth(LocalDate.now().minusYears(20).plusDays(ThreadLocalRandom.current().nextInt(0, 20 * 365))).build();
 
@@ -38,7 +39,7 @@ public class PersonService {
                     .firstName("Eve")
                     .lastName("Smith")
                     .id("2")
-                    .accountNumber(1001)
+                    .accountNumber("1001")
                     .contact(eveContact)
                     .dateOfBirth(LocalDate.now().minusYears(20).plusDays(ThreadLocalRandom.current().nextInt(0, 20 * 365))).build();
 
@@ -73,5 +74,42 @@ public class PersonService {
                 .dateOfBirth(person.getDateOfBirth())
                 .accountNumber(person.getAccountNumber())
                 .contact(person.getContact()).build();
+    }
+
+    private PersonRequest mapToPersonRequest(Person person) {
+        return PersonRequest.builder()
+                .id(person.getId())
+                .firstName(person.getFirstName())
+                .lastName(person.getLastName())
+                .dateOfBirth(person.getDateOfBirth())
+                .accountNumber(person.getAccountNumber())
+                .contact(person.getContact()).build();
+    }
+
+    public Person updatePerson(String id, PersonRequest updatedPerson) {
+        Optional<Person> personOptional = personRepository.findById(id);
+        if (personOptional.isPresent()) {
+            Person person = personOptional.get();
+            person.setFirstName(updatedPerson.getFirstName() != null ? updatedPerson.getFirstName() : person.getFirstName());
+            person.setLastName(updatedPerson.getLastName() != null ? updatedPerson.getLastName() : person.getLastName());
+            person.setDateOfBirth(updatedPerson.getDateOfBirth() != null ? updatedPerson.getDateOfBirth() : person.getDateOfBirth());
+            person.setAccountNumber(updatedPerson.getAccountNumber() != null ? updatedPerson.getAccountNumber() : person.getAccountNumber());
+            person.setContact(updatedPerson.getContact() != null ? updatedPerson.getContact() : person.getContact());
+            personRepository.save(person);
+        }
+        return null; // Handle not found case
+    }
+
+    public void deletePerson(String id) {
+        personRepository.deleteById(id);
+    }
+
+    public PersonRequest getPerson(String id) {
+        Optional<Person> personOptional = personRepository.findById(id);
+        if (personOptional.isPresent()) {
+            Person person = personOptional.get();
+            return mapToPersonRequest(person);
+        }
+        return null;
     }
 }
