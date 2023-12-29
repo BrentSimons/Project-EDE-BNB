@@ -81,95 +81,95 @@ services:
 
     # Note for all services: ports are opened in each service but since were using an api gateway these will be removed in the final project
 
-  # bnb-service:
-  #   # Depends on the database being deployed (and in the mysql database cases also the container being healthy)
-  #   depends_on:
-  #     mysql-bnb:
-  #       condition: service_healthy
-  #   image: brentbrentbrent/bnb-service:latest
-  #   ports:
-  #     - "8080:8080"
-  #   # Restart on failure is necessary in case the api crashes on start due to the database not being initialized, and of course in case the api crashes
-  #   restart: on-failure
-  #   environment:
-  #     # host url (since we use a proper docker network this is the database's service name and not localhost.)
-  #     MYSQL_DB_HOST: mysql-bnb
-  #     MYSQL_DB_PORT: 3306
-  #     # Login credentials database
-  #     MYSQL_DB_USERNAME: root
-  #     MYSQL_DB_PASSWORD: abc123
-  #     # Name of the database scheme
-  #     MYSQL_DB_NAME: bnbdb
-  #     ROOM_SERVICE_BASEURL: room-service:8080
-  #   networks:
-  #     - microservices_network
+  bnb-service:
+    # Depends on the database being deployed (and in the mysql database cases also the container being healthy)
+    depends_on:
+      mysql-bnb:
+        condition: service_healthy
+    image: brentbrentbrent/bnb-service:latest
+    ports:
+      - "8080:8080"
+    # Restart on failure is necessary in case the api crashes on start due to the database not being initialized, and of course in case the api crashes
+    restart: on-failure
+    environment:
+      # host url (since we use a proper docker network this is the database's service name and not localhost.)
+      MYSQL_DB_HOST: mysql-bnb
+      MYSQL_DB_PORT: 3306
+      # Login credentials database
+      MYSQL_DB_USERNAME: root
+      MYSQL_DB_PASSWORD: abc123
+      # Name of the database scheme
+      MYSQL_DB_NAME: bnbdb
+      ROOM_SERVICE_BASEURL: room-service:8080
+    networks:
+      - microservices_network
 
-  # person-service:
-  #   depends_on:
-  #     - mongo-person
-  #   image: brentbrentbrent/person-service:latest
-  #   ports:
-  #     - "8095:8080"
-  #   restart: on-failure
-  #   environment:
-  #     # Person service uses mongodb, this doesn't require any credentials.
-  #     MONGODB_HOST: mongo-person
-  #     MONGODB_PORT: 27017
-  #     # Database name:
-  #     MONGODB_NAME: mongo-person
-  #   networks:
-  #     - microservices_network
+  person-service:
+    depends_on:
+      - mongo-person
+    image: brentbrentbrent/person-service:latest
+    ports:
+      - "8095:8080"
+    restart: on-failure
+    environment:
+      # Person service uses mongodb, this doesn't require any credentials.
+      MONGODB_HOST: mongo-person
+      MONGODB_PORT: 27017
+      # Database name:
+      MONGODB_NAME: mongo-person
+    networks:
+      - microservices_network
 
-  # reservation-service:
-  #   depends_on:
-  #     mysql-reservation:
-  #       condition: service_healthy
-  #   image: brentbrentbrent/reservation-service:latest
-  #   ports:
-  #     - "8090:8080"
-  #   restart: on-failure
-  #   environment:
-  #     MYSQL_DB_HOST: mysql-reservation
-  #     MYSQL_DB_PORT: 3306
-  #     MYSQL_DB_USERNAME: root
-  #     MYSQL_DB_PASSWORD: abc123
-  #     MYSQL_DB_NAME: reservationdb
-  #   networks:
-  #     - microservices_network
+  reservation-service:
+    depends_on:
+      mysql-reservation:
+        condition: service_healthy
+    image: brentbrentbrent/reservation-service:latest
+    ports:
+      - "8090:8080"
+    restart: on-failure
+    environment:
+      MYSQL_DB_HOST: mysql-reservation
+      MYSQL_DB_PORT: 3306
+      MYSQL_DB_USERNAME: root
+      MYSQL_DB_PASSWORD: abc123
+      MYSQL_DB_NAME: reservationdb
+    networks:
+      - microservices_network
 
-  # room-service:
-  #   depends_on:
-  #     - mongo-room
-  #   image: brentbrentbrent/room-service:latest
-  #   ports:
-  #     - "8085:8080"
-  #   restart: on-failure
-  #   environment:
-  #     # Person service uses mongodb, this doesn't require any credentials.
-  #     MONGODB_HOST: mongo-room
-  #     MONGODB_PORT: 27017
-  #     # Database name:
-  #     MONGODB_NAME: mongo-room
-  #     # Other service URLs
-  #     RESERVATION_SERVICE_BASEURL: reservation-service:8080
-  #   networks:
-  #     - microservices_network
+  room-service:
+    depends_on:
+      - mongo-room
+    image: brentbrentbrent/room-service:latest
+    ports:
+      - "8085:8080"
+    restart: on-failure
+    environment:
+      # Person service uses mongodb, this doesn't require any credentials.
+      MONGODB_HOST: mongo-room
+      MONGODB_PORT: 27017
+      # Database name:
+      MONGODB_NAME: mongo-room
+      # Other service URLs
+      RESERVATION_SERVICE_BASEURL: reservation-service:8080
+    networks:
+      - microservices_network
 
-  # api-gateway:
-  #   depends_on:
-  #     - bnb-service
-  #     - person-service
-  #     - reservation-service
-  #     - room-service
-  #   image: brentbrentbrent/api-gateway:latest
-  #   ports:
-  #     - "7000:7000"
-  #   restart: on-failure
-  #   environment:
-  #     # Due to the microservices_network the gateway can connect to each api separately, and since each api is viewed as its own machine we can re-use the default 8080 port
-  #     BNB_SERVICE_BASEURL: bnb-service:8080
-  #     PERSON_SERVICE_BASEURL: person-service:8080
-  #     RESERVATION_SERVICE_BASEURL: reservation-service:8080
-  #     ROOM_SERVICE_BASEURL: room-service:8080
-  #   networks:
-  #     - microservices_network
+  api-gateway:
+    depends_on:
+      - bnb-service
+      - person-service
+      - reservation-service
+      - room-service
+    image: brentbrentbrent/api-gateway:latest
+    ports:
+      - "7000:7000"
+    restart: on-failure
+    environment:
+      # Due to the microservices_network the gateway can connect to each api separately, and since each api is viewed as its own machine we can re-use the default 8080 port
+      BNB_SERVICE_BASEURL: bnb-service:8080
+      PERSON_SERVICE_BASEURL: person-service:8080
+      RESERVATION_SERVICE_BASEURL: reservation-service:8080
+      ROOM_SERVICE_BASEURL: room-service:8080
+    networks:
+      - microservices_network
