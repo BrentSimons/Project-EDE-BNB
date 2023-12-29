@@ -36,38 +36,38 @@ public class ReservationService {
             Reservation reservation1 = new Reservation();
             reservation1.setPersonId("1");
             reservation1.setRoomCode("Room1_Bnb1");
-            reservation1.setStartDate(Date.from(LocalDate.parse("2024-05-12", formatter).atStartOfDay(ZoneId.systemDefault()).toInstant()));
-            reservation1.setEndDate(Date.from(LocalDate.parse("2024-05-13", formatter).atStartOfDay(ZoneId.systemDefault()).toInstant()));
+            reservation1.setStartDate(LocalDate.parse("2024-05-12", formatter));
+            reservation1.setEndDate(LocalDate.parse("2024-05-13", formatter));
 
             Reservation reservation2 = new Reservation();
             reservation2.setPersonId("2");
             reservation2.setRoomCode("Room1_Bnb1");
-            reservation2.setStartDate(Date.from(LocalDate.parse("2024-03-10", formatter).atStartOfDay(ZoneId.systemDefault()).toInstant()));
-            reservation2.setEndDate(Date.from(LocalDate.parse("2024-03-15", formatter).atStartOfDay(ZoneId.systemDefault()).toInstant()));
+            reservation2.setStartDate(LocalDate.parse("2024-03-10", formatter));
+            reservation2.setEndDate(LocalDate.parse("2024-03-15", formatter));
 
             Reservation reservation3 = new Reservation();
             reservation3.setPersonId("1");
             reservation3.setRoomCode("Room2_Bnb1");
-            reservation3.setStartDate(Date.from(LocalDate.parse("2024-03-13", formatter).atStartOfDay(ZoneId.systemDefault()).toInstant()));
-            reservation3.setEndDate(Date.from(LocalDate.parse("2024-03-17", formatter).atStartOfDay(ZoneId.systemDefault()).toInstant()));
+            reservation3.setStartDate(LocalDate.parse("2024-03-13", formatter));
+            reservation3.setEndDate(LocalDate.parse("2024-03-17", formatter));
 
             Reservation reservation4 = new Reservation();
             reservation4.setPersonId("1");
             reservation4.setRoomCode("Room1_Bnb1");
-            reservation4.setStartDate(Date.from(LocalDate.parse("2024-03-19", formatter).atStartOfDay(ZoneId.systemDefault()).toInstant()));
-            reservation4.setEndDate(Date.from(LocalDate.parse("2024-03-21", formatter).atStartOfDay(ZoneId.systemDefault()).toInstant()));
+            reservation4.setStartDate(LocalDate.parse("2024-03-19", formatter));
+            reservation4.setEndDate(LocalDate.parse("2024-03-21", formatter));
 
             Reservation reservation5 = new Reservation();
             reservation5.setPersonId("1");
             reservation5.setRoomCode("Room2_Bnb1");
-            reservation5.setStartDate(Date.from(LocalDate.parse("2024-03-20", formatter).atStartOfDay(ZoneId.systemDefault()).toInstant()));
-            reservation5.setEndDate(Date.from(LocalDate.parse("2024-03-22", formatter).atStartOfDay(ZoneId.systemDefault()).toInstant()));
+            reservation5.setStartDate(LocalDate.parse("2024-03-20", formatter));
+            reservation5.setEndDate(LocalDate.parse("2024-03-22", formatter));
 
             Reservation reservation6 = new Reservation();
             reservation6.setPersonId("1");
             reservation6.setRoomCode("Room2_Bnb1");
-            reservation6.setStartDate(Date.from(LocalDate.parse("2024-01-20", formatter).atStartOfDay(ZoneId.systemDefault()).toInstant()));
-            reservation6.setEndDate(Date.from(LocalDate.parse("2024-01-22", formatter).atStartOfDay(ZoneId.systemDefault()).toInstant()));
+            reservation6.setStartDate(LocalDate.parse("2024-01-20", formatter));
+            reservation6.setEndDate(LocalDate.parse("2024-01-22", formatter));
 
             reservationRepository.save(reservation1);
             reservationRepository.save(reservation2);
@@ -91,9 +91,9 @@ public class ReservationService {
             for (Reservation reservation : reservations) {
                 // System.out.println("Checking reservation for " + reservation.getStartDate() + " and " + reservation.getEndDate());
 
-                if (roomRequest.getStartDate().before(roomRequest.getEndDate())) {
+                if (roomRequest.getStartDate().isBefore(roomRequest.getEndDate())) {
                     // request startDate before request endDate
-                    if (roomRequest.getEndDate().before(reservation.getStartDate()) || roomRequest.getStartDate().after(reservation.getEndDate())) {
+                    if (roomRequest.getEndDate().isBefore(reservation.getStartDate()) || roomRequest.getStartDate().isAfter(reservation.getEndDate())) {
                         // request endDate before reservation startDate OR request startDate after reservation endDate
                         // System.out.println("Room has valid dates");
                         continue;
@@ -115,10 +115,8 @@ public class ReservationService {
     }
 
     public List<ReservationPeriod> getAvailablePeriods(String roomCode, int months) {
-        LocalDate localDate = LocalDate.now();
-        LocalDate nextMonth = localDate.plusMonths(months);
-        Date currentDate = Date.from(LocalDate.now().atStartOfDay(ZoneId.systemDefault()).toInstant());
-        Date nextMonthDate = Date.from(nextMonth.atStartOfDay(ZoneId.systemDefault()).toInstant());
+        LocalDate currentDate = LocalDate.now();
+        LocalDate nextMonthDate = currentDate.plusMonths(months);
 
         List<Reservation> reservations = reservationRepository.findByRoomCodeAndStartDateInNextMonthOrderByStartDateAsc(roomCode, nextMonthDate);
         List<ReservationPeriod> reservationPeriods = new ArrayList<>();
