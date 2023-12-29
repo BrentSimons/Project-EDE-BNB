@@ -1,4 +1,4 @@
-In this file you will be able to see some example bodies for all endpoints
+In this file you will be able to see some examples for all our endpoints
 
 ### Public Endpoints
 
@@ -12,7 +12,8 @@ If multiple bnbs contain the text of the parameter within their name multiple wi
 
 Example result:
 
-`[
+```
+[
     {
     "name": "Hugo's Bnb Ter Dolen",
     "roomsIdList": [ 1, 2 ]
@@ -21,18 +22,21 @@ Example result:
     "name": "Hugo's Bnb Geel",
     "roomsIdList": [ 3, 4 ]
     }
-]`
+]
+```
 
 2. GET /api/bnb/available?id=<bnbId>
 
 Example body:
 
-`{
+```
+{
     "roomCodes": [], 
     "startDate": "2024-05-11T23:00:00.000+00:00",
     "endDate": "2024-05-11T23:00:00.000+00:00",
     "size": 0,
-}`
+}
+```
 
 This is a public endpoint that can be used to check whether rooms are available
 
@@ -44,7 +48,8 @@ And the size parameter can be used to filter rooms which are too small for your 
 
 Example result:
 
-`[
+```
+[
     {
     "roomCode": "Room1_Bnb1",
     "available": false
@@ -57,7 +62,8 @@ Example result:
     "roomCode": "Room3_Bnb1",
     "available": true
     }
-]`
+]
+```
 
 3. GET /api/room/available?roomCode=<Room2_Bnb1>&months=<3>
 
@@ -69,7 +75,8 @@ The "months" parameter is optional, it has default value of 1 but can be changed
 
 Example result:
 
-`[
+```
+[
     {
         "startDate": "2023-12-28T23:00:00.000+00:00",
         "endDate": "2024-03-09T23:00:00.000+00:00"
@@ -82,7 +89,8 @@ Example result:
         "startDate": "2024-03-20T23:00:00.000+00:00",
         "endDate": "2024-03-28T23:00:00.000+00:00"
     }
-]`
+]
+```
 
 As you can see in this result the room is available for 3 periods 
 
@@ -92,7 +100,8 @@ As you can see in this result the room is available for 3 periods
 
 The person service has 5
 
-`{
+```
+{
     "id": "3",
     "firstName": "Jesus",
     "lastName": "Christ",
@@ -103,4 +112,5 @@ The person service has 5
         "emailAddress": "JesusC@LordlyMail.co.heaven",
         "address": "Heavenly Palace of the Lord 2 Apartment 5, Heavens Gate"
     }
-}`
+}
+```
