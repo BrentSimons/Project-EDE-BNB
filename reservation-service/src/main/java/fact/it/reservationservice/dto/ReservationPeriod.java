@@ -5,11 +5,13 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.Date;
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class AvailableRoomResponse {
-    private String roomCode;
-    private boolean isAvailable;
+public class ReservationPeriod {
+    private Date startDate;
+    private Date endDate;
 }

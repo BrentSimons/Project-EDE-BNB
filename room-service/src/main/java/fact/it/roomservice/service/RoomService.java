@@ -2,19 +2,24 @@ package fact.it.roomservice.service;
 
 import fact.it.roomservice.dto.AvailableRoomRequest;
 import fact.it.roomservice.dto.AvailableRoomResponse;
+import fact.it.roomservice.dto.ReservationPeriod;
+import fact.it.roomservice.dto.RoomResponse;
 import fact.it.roomservice.model.Room;
 import fact.it.roomservice.repository.RoomRepository;
 import jakarta.annotation.PostConstruct;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
+import org.springframework.web.reactive.function.client.WebClient;
 
+import java.util.Arrays;
 import java.util.List;
 
 @Service
 @RequiredArgsConstructor
 public class RoomService {
     private final RoomRepository roomRepository;
+    private final WebClient webClient;
 
     @Value("${reservationservice.baseurl}")
     private String reservationServiceBaseUrl;
@@ -22,19 +27,81 @@ public class RoomService {
     @PostConstruct
     public void loadData() {
         if (roomRepository.count() <= 0) {
+            // Hugo's Bnb Ter Dolen
+            Room room1 = new Room();
+            room1.setName("Room1");
+            room1.setRoomCode("Room1_Bnb1");
+            room1.setSize(5);
 
+            Room room2 = new Room();
+            room2.setName("Room2");
+            room2.setRoomCode("Room2_Bnb1");
+            room2.setSize(3);
+
+            Room room3 = new Room();
+            room3.setName("Room3");
+            room3.setRoomCode("Room3_Bnb1");
+            room3.setSize(2);
+
+            // Hugo's Bnb Geel
+            Room room4 = new Room();
+            room4.setName("Room4");
+            room4.setRoomCode("Room1_Bnb2");
+            room4.setSize(4);
+
+            Room room5 = new Room();
+            room5.setName("Room5");
+            room5.setRoomCode("Room2_Bnb2");
+            room5.setSize(2);
+
+            roomRepository.save(room1);
+            roomRepository.save(room2);
+            roomRepository.save(room3);
+            roomRepository.save(room4);
+            roomRepository.save(room5);
         }
     }
 
-    public List<AvailableRoomResponse> checkAvailability(AvailableRoomRequest roomRequest) {
+    public List<RoomResponse> getAllRooms() {
+        List<Room> rooms = roomRepository.findAll();
 
-        List<String> roomIds = roomRepository.findByIdInAndSizeGreaterThan(roomRequest.getRoomIds(), roomRequest.getSize())
+        return rooms.stream()
+                .map(room -> new RoomResponse(
+                        room.getId(),
+                        room.getRoomCode(),
+                        room.getName(),
+                        room.getSize()
+                )).toList();
+    }
+
+    public List<AvailableRoomResponse> checkRoomsAvailability(AvailableRoomRequest roomRequest) {
+        // Update roomRequest so that it only contains rooms that are big enough
+        List<String> roomCodes = roomRepository.findByRoomCodeInAndSizeGreaterThan(roomRequest.getRoomCodes(), roomRequest.getSize() - 1)
                 .stream()
-                .map(Room::getId)
+                .map(Room::getRoomCode)
                 .toList();
 
-        roomRequest.setRoomIds(roomIds);
-        // TODO call /api/reservation/available with the updated roomRequest
-        return null;
+        roomRequest.setRoomCodes(roomCodes);
+
+        // Call Reservation service to check for every room if there already are reservations during the time period given in roomRequest
+        AvailableRoomResponse[] availableRoomResponseList = webClient.post()
+                .uri("http://" + reservationServiceBaseUrl + "/api/reservation/availableRooms")
+                .bodyValue(roomRequest)
+                .retrieve()
+                .bodyToMono(AvailableRoomResponse[].class)
+                .block();
+
+        return Arrays.asList(availableRoomResponseList != null ? availableRoomResponseList : new AvailableRoomResponse[0]);
+    }
+
+    public List<ReservationPeriod> getAvailablePeriods(String roomCode, int months) {
+        ReservationPeriod[] reservationPeriods = webClient.get()
+                .uri("http://" + reservationServiceBaseUrl + "/api/reservation/available",
+                        uriBuilder -> uriBuilder.queryParam("roomCode", roomCode).queryParam("months", months).build())
+                .retrieve()
+                .bodyToMono(ReservationPeriod[].class)
+                .block();
+
+        return Arrays.stream(reservationPeriods != null ? reservationPeriods : new ReservationPeriod[0]).toList();
     }
 }

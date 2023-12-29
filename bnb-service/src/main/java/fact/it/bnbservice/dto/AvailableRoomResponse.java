@@ -1,4 +1,4 @@
-package fact.it.reservationservice.dto;
+package fact.it.bnbservice.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

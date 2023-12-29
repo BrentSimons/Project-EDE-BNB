@@ -43,8 +43,7 @@ In this diagram you can see an overview of our microservices architecture
 
 ## Try out our application:
 
-Hosted API: 
-Hosted Frontend:
+(To be added later)
 
 ### End result screenshots of each endpoint:
 

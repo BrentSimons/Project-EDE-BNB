@@ -18,15 +18,15 @@ public class Bnb {
     private Long id;
     private String name;
     @ElementCollection
-    private List<Long> roomsIdList;
+    private List<String> roomCodes;
 
     private String city;
     private String postcode;
     private String address;
 
-    // Add a room ID to list
-    public void addRoomId(Long roomId) {
-        if (roomsIdList == null) { roomsIdList = new ArrayList<>(); }
-        roomsIdList.add(roomId);
+    // Add a room code to list
+    public void addRoomCode(String roomCode) {
+        if (roomCodes == null) { roomCodes = new ArrayList<>(); }
+        roomCodes.add(roomCode);
     }
 }

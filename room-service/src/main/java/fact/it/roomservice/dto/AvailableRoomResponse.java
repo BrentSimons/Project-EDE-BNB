@@ -10,6 +10,6 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Builder
 public class AvailableRoomResponse {
-    private String id;
+    private String roomCode;
     private boolean isAvailable;
 }

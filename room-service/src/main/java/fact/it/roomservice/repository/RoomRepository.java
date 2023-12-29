@@ -8,7 +8,5 @@ import java.util.List;
 
 @Repository
 public interface RoomRepository extends MongoRepository<Room, String> {
-    List<Room> findByIdInAndSizeGreaterThan(List<String> roomIds, int size);
-
-
+    List<Room> findByRoomCodeInAndSizeGreaterThan(List<String> roomCodes, int size);
 }
