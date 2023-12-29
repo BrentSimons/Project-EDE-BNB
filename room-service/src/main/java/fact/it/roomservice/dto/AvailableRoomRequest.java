@@ -5,7 +5,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.List;
 
 @Data
@@ -15,7 +15,7 @@ import java.util.List;
 public class AvailableRoomRequest {
     // TODO roomIds only needed if we want to filter for a certain bnb, otherwise we can filter through all rooms and check availability
     private List<String> roomCodes;
-    private Date startDate;
-    private Date endDate;
+    private LocalDate startDate;
+    private LocalDate endDate;
     private int size;
 }

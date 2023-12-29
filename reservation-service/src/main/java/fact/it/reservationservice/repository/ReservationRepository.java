@@ -7,7 +7,7 @@ import org.springframework.stereotype.Repository;
 
 import fact.it.reservationservice.model.Reservation;
 
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.List;
 
 @Repository
@@ -35,6 +35,6 @@ public interface ReservationRepository extends JpaRepository<Reservation, Long> 
             """)
     List<Reservation> findByRoomCodeAndStartDateInNextMonthOrderByStartDateAsc(
             @Param("roomCode") String roomCode,
-            @Param("nextMonthStartDate") Date nextMonthStartDate
+            @Param("nextMonthStartDate") LocalDate nextMonthStartDate
     );
 }

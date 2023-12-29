@@ -21,6 +21,7 @@ public class Person {
     private String firstName;
     private String lastName;
     private LocalDate dateOfBirth;
+    // TODO accountnumber should be String i think?
     private int accountNumber;
     // A Contact object as a composition
     private Contact contact;
