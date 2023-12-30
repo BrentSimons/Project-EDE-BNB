@@ -111,7 +111,7 @@ spring:
         - id: bnb-service-crud-id
           uri: http://${{BNB_SERVICE_BASEURL:localhost:8080}}
           predicates:
-            - Path=/bnb
+            - Path=/bnb/{id}
             - QueryParam=id
           filters:
             - SetPath=/api/bnb/{id}
@@ -131,7 +131,7 @@ spring:
         - id: room-service-crud-id
           uri: http://${{ROOM_SERVICE_BASEURL:localhost:8085}}
           predicates:
-            - Path=/room
+            - Path=/room/{id}
             - QueryParam=id
           filters:
             - SetPath=/api/room/{id}
@@ -151,7 +151,7 @@ spring:
         - id: person-service-crud-id
           uri: http://${{PERSON_SERVICE_BASEURL:localhost:8095}}
           predicates:
-            - Path=/person
+            - Path=/person/{id}
             - QueryParam=id
           filters:
             - SetPath=/api/person/{id}
