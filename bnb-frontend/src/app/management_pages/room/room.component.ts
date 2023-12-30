@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Room} from "../../models/room.model";
 import {RoomService} from "../../api_services/room.service";
 import {Observable} from "rxjs";
@@ -8,16 +8,99 @@ import {Observable} from "rxjs";
   templateUrl: './room.component.html',
   styleUrls: ['./room.component.css']
 })
-export class RoomComponent {
-  public rooms$: Observable<Room[]> | undefined;
+export class RoomComponent implements OnInit {
+  rooms: any[] = [];
+  newRoom: any = { roomCode: '', name: '', size: 0 };
+  isUpdating: boolean = false;
 
   constructor(private roomService: RoomService) { }
 
   ngOnInit(): void {
-    this.rooms$ = this.roomService.getRooms();
+    this.loadRooms();
   }
 
-  trackRoomById(room: any): string {
-    return room.id; // Replace 'id' with the actual property representing the unique identifier of a room
+  loadRooms(): void {
+    this.roomService.getAllRooms().subscribe(
+      (data) => {
+        this.rooms = data;
+      },
+      (error) => {
+        console.error('Error fetching rooms: ', error);
+      }
+    );
+  }
+
+  openCreateDialog(): void {
+    const dialog = document.getElementById('createRoomDialog') as HTMLDialogElement;
+    dialog.showModal();
+  }
+
+  closeCreateDialog(): void {
+    const dialog = document.getElementById('createRoomDialog') as HTMLDialogElement;
+    dialog.close();
+  }
+  updateOrCreateRoom(): void {
+    if (this.isUpdating) {
+      // Logic for updating room
+      this.roomService.updateRoom(this.newRoom.id, this.newRoom).subscribe(
+        (data) => {
+          console.log('Room updated successfully: ', data);
+          this.loadRooms();
+        },
+        (error) => {
+          console.error('Error updating room: ', error);
+        }
+      );
+    } else {
+      // Logic for creating room
+      this.roomService.createRoom(this.newRoom).subscribe(
+        (data) => {
+          console.log('Room created successfully: ', data);
+          this.loadRooms();
+        },
+        (error) => {
+          console.error('Error creating room: ', error);
+        }
+      );
+    }
+
+    // Reset newRoom and isUpdating
+    this.newRoom = { roomCode: '', name: '', size: 0 };
+    this.isUpdating = false;
+  }
+
+  updateRoom(id: number): void {
+    this.isUpdating = true;
+    this.newRoom = { ...this.rooms.find(room => room.id === id) };
+    this.openCreateDialog(); // Open the dialog for updating
+  }
+
+  deleteRoom(id: number): void {
+    this.roomService.deleteRoom(id).subscribe(
+      () => {
+        console.log('Room deleted successfully');
+        this.loadRooms();
+      },
+      (error) => {
+        console.error('Error deleting room: ', error);
+      }
+    );
   }
 }
+
+
+
+
+// {
+//   public rooms$: Observable<Room[]> | undefined;
+//
+//   constructor(private roomService: RoomService) { }
+//
+//   ngOnInit(): void {
+//     this.rooms$ = this.roomService.getAllRooms();
+//   }
+//
+//   trackRoomById(room: any): string {
+//     return room.id; // Replace 'id' with the actual property representing the unique identifier of a room
+//   }
+// }

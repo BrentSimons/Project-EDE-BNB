@@ -8,27 +8,32 @@ import {AuthService} from "../auth.service";
   providedIn: 'root'
 })
 export class RoomService {
-  private apiUrl = 'http://localhost:7000/room/all';
+  private apiUrl = 'http://localhost:7000/room/';
   auth = inject(AuthService);
+  private headers = new HttpHeaders({
+    'Authorization': `Bearer ${this.auth.getJwtToken()}`,
+  });
 
   constructor(private http: HttpClient) {
   }
 
-  getRooms(): Observable<any> {
-    const token = this.auth.getJwtToken();
-    // Make sure there's a token before making the request
-    if (token) {
-      // Set the Authorization header
-      const headers = new HttpHeaders({
-        'Authorization': `Bearer ${token}`,
-      });
-      // Make the GET request
-      return this.http.get<Room[]>(this.apiUrl, {headers: headers});
-    } else {
-      // Handle the case where no token is found
-      console.error('No token found');
-      // @ts-ignore
-      return null; // Or return an Observable with an appropriate error state
-    }
+  getAllRooms(): Observable<any> {
+    return this.http.get(this.apiUrl + 'all', { headers: this.headers });
+  }
+
+  getRoomById(id: number): Observable<any> {
+    return this.http.get(this.apiUrl + id, { headers: this.headers });
+  }
+
+  createRoom(room: any): Observable<any> {
+    return this.http.post(this.apiUrl, room, { headers: this.headers });
+  }
+
+  updateRoom(id: number, room: any): Observable<any> {
+    return this.http.put(this.apiUrl + id, room, { headers: this.headers });
+  }
+
+  deleteRoom(id: number): Observable<any> {
+    return this.http.delete(this.apiUrl + id, { headers: this.headers });
   }
 }

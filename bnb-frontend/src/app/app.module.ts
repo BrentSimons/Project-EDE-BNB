@@ -11,6 +11,7 @@ import {ReservationPlannerComponent} from './management_pages/reservation-planne
 import {AppHttpModule} from './app-http.module';
 import {HttpClientModule} from "@angular/common/http";
 import { RoomComponent } from './management_pages/room/room.component';
+import {FormsModule} from "@angular/forms";
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { RoomComponent } from './management_pages/room/room.component';
     BrowserModule,
     HttpClientModule,
     AppRoutingModule,
-    AppHttpModule
+    AppHttpModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
