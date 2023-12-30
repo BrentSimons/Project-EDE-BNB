@@ -38,6 +38,7 @@ public class BnbService {
             List<Bnb> bnbList = new ArrayList<>();
 
             Bnb bnb1 = new Bnb();
+            bnb1.setId(1L);
             bnb1.setName("Hugo's Bnb Ter Dolen");
             bnb1.addRoomCode("Room1_Bnb1");
             bnb1.addRoomCode("Room2_Bnb1");
@@ -48,6 +49,7 @@ public class BnbService {
             bnbList.add(bnb1);
 
             Bnb bnb2 = new Bnb();
+            bnb2.setId(2L);
             bnb2.setName("Hugo's Bnb Geel");
             bnb2.addRoomCode("Room1_Bnb2");
             bnb2.addRoomCode("Room2_Bnb2");
@@ -57,6 +59,7 @@ public class BnbService {
             bnbList.add(bnb2);
 
             Bnb bnb3 = new Bnb();
+            bnb3.setId(3L);
             bnb3.setName("The Slumburger ");
             bnb3.setCity("Geel");
             bnb3.setPostcode("2440");
@@ -64,6 +67,7 @@ public class BnbService {
             bnbList.add(bnb3);
 
             Bnb bnb4 = new Bnb();
+            bnb4.setId(4L);
             bnb4.setName("SnoozeSnacks");
             bnb4.setCity("Hasselt");
             bnb4.setPostcode("3500");
