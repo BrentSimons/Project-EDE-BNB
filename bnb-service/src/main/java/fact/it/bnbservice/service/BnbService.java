@@ -116,6 +116,7 @@ public class BnbService {
         if (bnbOptional.isPresent()) {
             Bnb bnb = bnbOptional.get();
             return BnbResponse.builder()
+                    .id(bnb.getId())
                     .name(bnb.getName())
                     .roomCodes(bnb.getRoomCodes())
                     .city(bnb.getCity())
@@ -128,6 +129,7 @@ public class BnbService {
 
     public Bnb createBnb(BnbRequest bnbRequest) {
         Bnb bnb = new Bnb();
+        bnb.setId(bnbRequest.getId());
         bnb.setName(bnbRequest.getName());
         bnb.setRoomCodes(bnbRequest.getRoomCodes());
         bnb.setCity(bnbRequest.getCity());
@@ -144,6 +146,7 @@ public class BnbService {
         if (bnbOptional.isPresent()) {
             Bnb bnb = bnbOptional.get();
 
+            bnb.setId(updatedBnb.getId());
             bnb.setName(updatedBnb.getName() != null ? updatedBnb.getName() : bnb.getName());
             bnb.setRoomCodes(updatedBnb.getRoomCodes().size() != 0 ? updatedBnb.getRoomCodes() : bnb.getRoomCodes());
             bnb.setCity(updatedBnb.getCity() != null ? updatedBnb.getCity() : bnb.getCity());
