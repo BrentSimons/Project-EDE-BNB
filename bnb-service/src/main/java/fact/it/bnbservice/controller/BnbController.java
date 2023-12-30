@@ -40,7 +40,7 @@ public class BnbController {
     }
 
     // CRUD
-    @GetMapping("/get")
+    @GetMapping("/all")
     @ResponseStatus(HttpStatus.OK)
     public List<BnbResponse> getBnbByName(@RequestParam(required = false, defaultValue = "") String name) {
         // Example: http://localhost:8080/api/bnb/get?name=Hugo
