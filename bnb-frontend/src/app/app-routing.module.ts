@@ -7,6 +7,8 @@ import {HomeComponent} from "./home/home.component";
 import {ReservationPlannerComponent} from "./management_pages/reservation-planner/reservation-planner.component";
 import {AuthGuard} from './auth.guard';
 import {RoomComponent} from "./management_pages/room/room.component";
+import {PersonComponent} from "./management_pages/person/person.component";
+import {BnbComponent} from "./management_pages/bnb/bnb.component";
 
 const routes: Routes = [
   {path: 'login', component: LoginComponent},
@@ -14,7 +16,9 @@ const routes: Routes = [
   {path: 'error', component: ErrorComponent},
   {path: '', component: HomeComponent},
   {path: 'reservation_planner', component: ReservationPlannerComponent, canActivate: [AuthGuard]},
-  {path: 'rooms', component: RoomComponent, canActivate: [AuthGuard]}
+  {path: 'rooms', component: RoomComponent, canActivate: [AuthGuard]},
+  {path: 'persons', component: PersonComponent, canActivate: [AuthGuard]},
+  {path: 'bnbs', component: BnbComponent, canActivate: [AuthGuard]},
 ];
 
 @NgModule({

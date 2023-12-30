@@ -12,6 +12,8 @@ import {AppHttpModule} from './app-http.module';
 import {HttpClientModule} from "@angular/common/http";
 import { RoomComponent } from './management_pages/room/room.component';
 import {FormsModule} from "@angular/forms";
+import { PersonComponent } from './management_pages/person/person.component';
+import { BnbComponent } from './management_pages/bnb/bnb.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +24,9 @@ import {FormsModule} from "@angular/forms";
     NavbarComponent,
     HomeComponent,
     ReservationPlannerComponent,
-    RoomComponent
+    RoomComponent,
+    PersonComponent,
+    BnbComponent
   ],
   imports: [
     BrowserModule,

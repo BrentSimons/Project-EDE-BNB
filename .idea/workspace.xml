@@ -5,17 +5,38 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d98aef2e-74d9-4d62-97e6-10fe2535eb59" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/bnb-frontend/src/app/api_services/bnb.service.spec.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bnb-frontend/src/app/api_services/bnb.service.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bnb-frontend/src/app/api_services/person.service.spec.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bnb-frontend/src/app/api_services/person.service.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bnb-frontend/src/app/management_pages/bnb/bnb.component.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bnb-frontend/src/app/management_pages/bnb/bnb.component.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bnb-frontend/src/app/management_pages/bnb/bnb.component.spec.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bnb-frontend/src/app/management_pages/bnb/bnb.component.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bnb-frontend/src/app/management_pages/person/person.component.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bnb-frontend/src/app/management_pages/person/person.component.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bnb-frontend/src/app/management_pages/person/person.component.spec.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bnb-frontend/src/app/management_pages/person/person.component.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bnb-frontend/src/app/models/bnb.model.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bnb-frontend/src/app/models/person.model.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bnb-frontend/src/app/api_services/room.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/bnb-frontend/src/app/api_services/room.service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bnb-frontend/src/app/app-routing.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/bnb-frontend/src/app/app-routing.module.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/bnb-frontend/src/app/app.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/bnb-frontend/src/app/app.module.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bnb-frontend/src/app/management_pages/room/room.component.css" beforeDir="false" afterPath="$PROJECT_DIR$/bnb-frontend/src/app/management_pages/room/room.component.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/bnb-frontend/src/app/management_pages/room/room.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/bnb-frontend/src/app/management_pages/room/room.component.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/bnb-frontend/src/app/management_pages/room/room.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/bnb-frontend/src/app/management_pages/room/room.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bnb-frontend/src/app/navbar/navbar.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/bnb-frontend/src/app/navbar/navbar.component.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="TypeScript File" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -137,7 +158,7 @@
       <workItem from="1703858550724" duration="3886000" />
       <workItem from="1703931124781" duration="20000" />
       <workItem from="1703931479284" duration="3136000" />
-      <workItem from="1703957939487" duration="5731000" />
+      <workItem from="1703957939487" duration="10184000" />
     </task>
     <servers />
   </component>

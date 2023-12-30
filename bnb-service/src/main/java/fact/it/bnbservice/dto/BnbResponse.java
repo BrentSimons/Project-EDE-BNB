@@ -12,13 +12,13 @@ import java.util.List;
 @NoArgsConstructor
 @Builder
 public class BnbResponse {
-        private String name;
+    private String name;
 
-        private List<String> roomCodes;
+    private List<String> roomCodes;
 
-        private String city;
+    private String city;
 
-        private String postcode;
+    private String postcode;
 
-        private String address;
+    private String address;
 }

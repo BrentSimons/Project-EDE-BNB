@@ -5,10 +5,10 @@
 <table class="min-w-full border border-gray-300 text-center">
   <thead>
   <tr class="bg-gray-100">
-    <th class="py-2 px-4 border-b">ID</th>
+    <th class="py-2 px-4 border-b">Internal ID</th>
     <th class="py-2 px-4 border-b">Room Code</th>
-    <th class="py-2 px-4 border-b">Name</th>
-    <th class="py-2 px-4 border-b">Size</th>
+    <th class="py-2 px-4 border-b">Room name</th>
+    <th class="py-2 px-4 border-b">Room Size</th>
     <th class="py-2 px-4 border-b">Actions</th>
   </tr>
   </thead>
@@ -53,17 +53,3 @@
     </div>
   </div>
 </dialog>
-
-
-<!--<div *ngIf="rooms$">-->
-<!--  <h2>Room List</h2>-->
-<!--  <ul>-->
-<!--    <li *ngFor="let room of rooms$ | async; trackBy: trackRoomById">-->
-<!--      <strong>{{ room.name }} - Room Code: {{ room.roomCode }}</strong>-->
-<!--    </li>-->
-<!--  </ul>-->
-<!--</div>-->
-
-<!--<div *ngIf="!rooms$">-->
-<!--  <p>No rooms available.</p>-->
-<!--</div>-->
