@@ -1,0 +1,12 @@
+<div *ngIf="rooms$">
+  <h2>Room List</h2>
+  <ul>
+    <li *ngFor="let room of rooms$ | async; trackBy: trackRoomById">
+      <strong>{{ room.name }} - Room Code: {{ room.roomCode }}</strong>
+    </li>
+  </ul>
+</div>
+
+<div *ngIf="!rooms$">
+  <p>No rooms available.</p>
+</div>
