@@ -3,6 +3,7 @@ import {Router} from "@angular/router";
 declare var google: any;
 import {Component, inject, OnInit} from '@angular/core';
 import { CommonModule } from "@angular/common";
+import {AuthService} from "../auth.service";
 
 @Component({
   selector: 'app-login',
@@ -12,7 +13,7 @@ import { CommonModule } from "@angular/common";
 export class LoginComponent implements OnInit{
 
   private router = inject(Router);
-
+  auth = inject(AuthService);
   ngOnInit(): void {
     google.accounts.id.initialize({
       client_id: '965800561312-90pljktekk5ftj97q1snv1j749avv1ri.apps.googleusercontent.com',
@@ -32,14 +33,17 @@ export class LoginComponent implements OnInit{
 
   handleLogin(response: any) {
     if (response) {
-      //console.log(response)
       // decode the token
       const payLoad = this.decodeToken(response.credential);
+
       // store in session
-      // console.log(payLoad)
       sessionStorage.setItem("loggedInUser", JSON.stringify(payLoad));
+
       // navigate to other page
       this.router.navigate(['dashboard'])
+
+      this.auth.signIn()
+
     }
   }
 }
