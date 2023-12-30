@@ -50,6 +50,7 @@ spring:
             - Method=GET
           filters:
             - SetPath=/api/room/test
+
         # Authentication Test / Examples
         - id: bnb-service-secure-test
           uri: http://${BNB_SERVICE_BASEURL:localhost:8080}
@@ -58,8 +59,9 @@ spring:
             - Method=GET
           filters:
             - SetPath=/api/bnb/secureTest
+
         # Public endpoints:
-        #  "", ""
+
         # Get all bnbs and search for bnb(s)
         - id: bnb-service-bnb-by-name
           uri: http://${BNB_SERVICE_BASEURL:localhost:8080}
@@ -76,6 +78,7 @@ spring:
             - Method=GET
           filters:
             - SetPath=/api/bnb/available
+        # Get room availability for following months
         - id: room-service-room-availability
           uri: http://${ROOM_SERVICE_BASEURL:localhost:8085}
           predicates:
@@ -83,3 +86,81 @@ spring:
             - Method=GET
           filters:
             - SetPath=/api/room/available
+
+        # Private endpoints
+
+        - id: reservation-service-crud-id
+          uri: http://${RESERVATION_SERVICE_BASEURL:localhost:8090}
+          predicates:
+            - Path=/reservation/{id}
+          filters:
+            - SetPath=/api/reservation/{id}
+        - id: reservation-service-crud
+          uri: http://${RESERVATION_SERVICE_BASEURL:localhost:8090}
+          predicates:
+            - Path=/reservation
+          filters:
+            - SetPath=/api/reservation
+        - id: reservation-service-crud-all
+          uri: http://${RESERVATION_SERVICE_BASEURL:localhost:8090}
+          predicates:
+            - Path=/reservation
+          filters:
+            - SetPath=/api/reservation/all
+
+        - id: bnb-service-crud-id
+          uri: http://${BNB_SERVICE_BASEURL:localhost:8080}
+          predicates:
+            - Path=/bnb/{id}
+          filters:
+            - SetPath=/api/bnb/{id}
+        - id: bnb-service-crud
+          uri: http://${BNB_SERVICE_BASEURL:localhost:8080}
+          predicates:
+            - Path=/bnb
+          filters:
+            - SetPath=/api/bnb
+        - id: bnb-service-crud-all
+          uri: http://${BNB_SERVICE_BASEURL:localhost:8080}
+          predicates:
+            - Path=/bnb
+          filters:
+            - SetPath=/api/bnb/all
+
+        - id: room-service-crud-id
+          uri: http://${ROOM_SERVICE_BASEURL:localhost:8085}
+          predicates:
+            - Path=/room/{id}
+          filters:
+            - SetPath=/api/room/{id}
+        - id: room-service-crud
+          uri: http://${ROOM_SERVICE_BASEURL:localhost:8085}
+          predicates:
+            - Path=/room
+          filters:
+            - SetPath=/api/room
+        - id: room-service-crud-all
+          uri: http://${ROOM_SERVICE_BASEURL:localhost:8085}
+          predicates:
+            - Path=/room
+          filters:
+            - SetPath=/api/room/all
+
+        - id: person-service-crud-id
+          uri: http://${PERSON_SERVICE_BASEURL:localhost:8095}
+          predicates:
+            - Path=/person/{id}
+          filters:
+            - SetPath=/api/person/{id}
+        - id: person-service-crud
+          uri: http://${PERSON_SERVICE_BASEURL:localhost:8095}
+          predicates:
+            - Path=/person
+          filters:
+            - SetPath=/api/person
+        - id: person-service-crud-all
+          uri: http://${PERSON_SERVICE_BASEURL:localhost:8095}
+          predicates:
+            - Path=/person
+          filters:
+            - SetPath=/api/person/all
