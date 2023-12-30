@@ -1,0 +1,9 @@
+<h2>User logged in succesfully!</h2>
+
+<div class="card">
+  <img [src]="userProfileImg" alt="Profile Picture" class="profile-pic">
+  <h1 class="name">{{name}}</h1>
+  <p class="email">{{email}}</p>
+</div>
+
+<a (click)="signOut()">SignOut</a>
