@@ -6,5 +6,9 @@ import { Component } from '@angular/core';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent {
+  activeTab: string = 'endpoint-1';  // Set the default active tab
 
+  setActiveTab(tabId: string): void {
+    this.activeTab = tabId;
+  }
 }

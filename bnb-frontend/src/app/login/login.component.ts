@@ -11,20 +11,21 @@ import {AuthService} from "../auth.service";
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit{
-
   private router = inject(Router);
   auth = inject(AuthService);
+
   ngOnInit(): void {
     google.accounts.id.initialize({
-      client_id: '965800561312-90pljktekk5ftj97q1snv1j749avv1ri.apps.googleusercontent.com',
+      client_id: '965800561312-m5djum8ge6aoikufvubrbvq6t5ja7uut.apps.googleusercontent.com',
       callback: (resp: any)=>{ this.handleLogin(resp) }
     });
+
   google.accounts.id.renderButton(document.getElementById("google-btn"), {
     theme: 'filled_blue',
     size: 'large',
     shape: 'rectangle',
     width: '350'
-  })
+    });
   }
 
   private decodeToken(token: string) {
@@ -40,10 +41,10 @@ export class LoginComponent implements OnInit{
       sessionStorage.setItem("loggedInUser", JSON.stringify(payLoad));
 
       // navigate to other page
-      this.router.navigate(['dashboard'])
+      this.router.navigate(['dashboard']);
 
-      this.auth.signIn()
-
+      //
+      this.auth.signIn(response.credential);
     }
   }
 }
