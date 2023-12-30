@@ -13,18 +13,14 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Bnb {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-
+    private String id;
     private String name;
-
-    @ElementCollection
-    private List<String> roomCodes = new ArrayList<>();
-
     private String city;
     private String postcode;
     private String address;
+
+    @ElementCollection
+    private List<String> roomCodes = new ArrayList<>();
 
     // Add a room code to the list
     public void addRoomCode(String roomCode) {
