@@ -18,7 +18,7 @@ public class PersonResponse {
     private String firstName;
     private String lastName;
     private LocalDate dateOfBirth;
-    private int accountNumber;
+    private String accountNumber;
     // A Contact object as a composition
     private Contact contact;
 }
