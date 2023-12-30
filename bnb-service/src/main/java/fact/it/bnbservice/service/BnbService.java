@@ -104,13 +104,30 @@ public class BnbService {
         return null;
     }
 
+    public boolean addRoom(Long bnbId, String roomCode) {
+        Optional<Bnb> bnbOptional = bnbRepository.findById(bnbId);
+
+        if (bnbOptional.isPresent()) {
+            Bnb bnb = bnbOptional.get();
+            bnb.addRoomCode(roomCode);
+
+            bnbRepository.save(bnb);
+            return true;
+        }
+        return false;
+    }
+
     // CRUD
     @Transactional(readOnly = true)
-    public List<BnbResponse> getBnbsByName(String str) {
-        return bnbRepository.getBnbsByNameContains(str).stream()
+    public List<BnbResponse> getBnbsByName(String name) {
+        return bnbRepository.getBnbsByNameContains(name).stream()
                 .map(bnb -> BnbResponse.builder()
+                        .id(bnb.getId())
                         .name(bnb.getName())
                         .roomCodes(bnb.getRoomCodes())
+                        .city(bnb.getCity())
+                        .postcode(bnb.getPostcode())
+                        .address(bnb.getAddress())
                         .build())
                 .toList();
     }
