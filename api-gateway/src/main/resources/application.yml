@@ -4,6 +4,9 @@ server:
 logging:
   level:
     root: INFO
+    org.springframework.cloud.gateway: TRACE
+    org.springframework.cloud.gateway.route.RouteDefinitionRouteLocator: INFO
+    reactor.netty: TRACE
 
 spring:
   security:
@@ -36,6 +39,11 @@ spring:
             - Method=GET
           filters:
             - SetPath=/api/bnb/test
+            - name: RequestRateLimiter
+              args:
+                redis-rate-limiter.replenishRate: 2
+                redis-rate-limiter.burstCapacity: 4
+                redis-rate-limiter.requestedToken: 1
         - id: reservation-service-test
           uri: http://${RESERVATION_SERVICE_BASEURL:localhost:8090}
           predicates:

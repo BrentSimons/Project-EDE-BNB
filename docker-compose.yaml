@@ -13,6 +13,11 @@ networks:
     driver: bridge
 
 services:
+  redis:
+    image: redis:latest
+    ports:
+      - 6379:6379
+
   # Databases
   mysql-bnb:
     image: mysql:latest
@@ -162,6 +167,7 @@ services:
       - person-service
       - reservation-service
       - room-service
+      - redis
     image: brentbrentbrent/api-gateway:latest
     ports:
       - "7000:7000"
