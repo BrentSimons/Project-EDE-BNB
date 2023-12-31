@@ -99,9 +99,15 @@ export class PersonComponent implements OnInit {
   }
 
   generateUniqueId(): string {
-    // Assuming 'persons' is the array of persons in your component
-    const newId = this.persons.length + 1;
-    return `person_${newId}`;;
+    const generateRandomString = (length: number): string =>
+      [...Array(length)].map(() => Math.random().toString(36)[2]).join('');
+
+    const padZero = (num: number): string => (num < 10 ? `0${num}` : `${num}`);
+
+    const currentDate = new Date();
+    const newId: number = this.persons.length + 1;
+    const result: string = `person_${newId}${generateRandomString(3)}${padZero(currentDate.getDate())}${padZero(currentDate.getHours())}`;
+    return result;
   }
 
   private resetModal() {

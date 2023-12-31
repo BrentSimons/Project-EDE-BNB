@@ -12,16 +12,7 @@ import java.util.List;
 @NoArgsConstructor
 @Builder
 public class BnbResponse {
-<<<<<<< HEAD
-    private String name;
 
-    private List<String> roomCodes;
-
-    private String city;
-
-    private String postcode;
-
-=======
     private Long id;
 
     private String name;
@@ -32,6 +23,5 @@ public class BnbResponse {
 
     private String postcode;
 
->>>>>>> 44be761a363109ed6c6477fc87e0b2242688cd25
     private String address;
 }
