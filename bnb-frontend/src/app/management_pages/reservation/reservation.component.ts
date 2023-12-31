@@ -3,6 +3,8 @@ import { Component, OnInit } from '@angular/core';
 import { Reservation, ReservationRequest } from '../../models/reservation.model';
 import { ReservationService } from '../../api_services/reservation.service';
 import { Observable } from 'rxjs';
+import {Person} from "../../models/person.model";
+import {PersonService} from "../../api_services/person.service";
 
 @Component({
   selector: 'app-reservation',
@@ -11,6 +13,7 @@ import { Observable } from 'rxjs';
 })
 export class ReservationComponent implements OnInit {
   reservations: Reservation[] = [];
+  persons: Person[] = [];
   newReservation: ReservationRequest = {
     personId: '',
     roomCode: '',
@@ -19,7 +22,7 @@ export class ReservationComponent implements OnInit {
   };
   isUpdating: boolean = false;
 
-  constructor(private reservationService: ReservationService) {}
+  constructor(private reservationService: ReservationService, private personService: PersonService) {}
 
   ngOnInit(): void {
     this.loadReservations();
@@ -32,6 +35,15 @@ export class ReservationComponent implements OnInit {
       },
       (error) => {
         console.error('Error fetching reservations: ', error);
+      }
+    );
+
+    this.personService.getAllPersons().subscribe(
+      (data) => {
+        this.persons = data;
+      },
+      (error) => {
+        console.error('Error fetching persons', error);
       }
     );
   }
@@ -103,4 +115,10 @@ export class ReservationComponent implements OnInit {
       }
     );
   }
+
+  getPersonName(personId: string): string {
+    const person = this.persons.find(person => person.id === personId);
+    return person ? `${person.firstName} ${person.lastName}` : '';
+  }
+
 }

@@ -1,27 +1,31 @@
 <!-- Create Room Button with Tailwind CSS classes -->
-<button (click)="openCreateDialog()" class="bg-green-500 text-white px-4 py-2 rounded-md mb-4 focus:outline-none hover:bg-green-600">Create Room</button>
+<button (click)="openCreateDialog()"
+        class="bg-green-500 text-white px-4 py-2 rounded-md mb-4 focus:outline-none hover:bg-green-600">Create Room
+</button>
 
 <!-- Room Table -->
 <table class="min-w-full border border-gray-300 text-center">
   <thead>
   <tr class="bg-gray-100">
-    <th class="py-2 px-4 border-b">Internal ID</th>
+    <th class="py-2 px-4 border-b">Room Name</th>
     <th class="py-2 px-4 border-b">Room Code</th>
-    <th class="py-2 px-4 border-b">Room name</th>
-    <th class="py-2 px-4 border-b">Room Size</th>
+    <th class="py-2 px-4 border-b">Size</th>
     <th class="py-2 px-4 border-b">Actions</th>
   </tr>
   </thead>
   <tbody>
   <tr *ngFor="let room of rooms" class="border-t">
-    <td class="py-2 px-4">{{ room.id }}</td>
-    <td class="py-2 px-4">{{ room.roomCode }}</td>
     <td class="py-2 px-4">{{ room.name }}</td>
+    <td class="py-2 px-4">{{ room.roomCode }}</td>
     <td class="py-2 px-4">{{ room.size }}</td>
     <td class="py-2 px-4">
       <!-- Buttons with Tailwind CSS classes -->
-      <button (click)="updateRoom(room.id)" class="bg-blue-500 text-white px-3 py-1 rounded-md focus:outline-none hover:bg-blue-600 mr-2">Update</button>
-      <button (click)="deleteRoom(room.id)" class="bg-red-500 text-white px-3 py-1 rounded-md focus:outline-none hover:bg-red-600">Delete</button>
+      <button (click)="updateRoom(room.id)"
+              class="bg-blue-500 text-white px-3 py-1 rounded-md focus:outline-none hover:bg-blue-600 mr-2">Update
+      </button>
+      <button (click)="deleteRoom(room.id)"
+              class="bg-red-500 text-white px-3 py-1 rounded-md focus:outline-none hover:bg-red-600">Delete
+      </button>
     </td>
   </tr>
   </tbody>
@@ -32,22 +36,26 @@
   <div class="flex items-center w-96 justify-center shadow-md">
     <div class="bg-white p-6 rounded-2xl">
       <form (submit)="updateOrCreateRoom(); closeCreateDialog()">
-        <label for="roomCode" class="block text-sm font-medium text-gray-700 mb-2">Room Code:</label>
-        <input type="text" id="roomCode" name="roomCode" [(ngModel)]="newRoom.roomCode" required
-               class="w-full px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500">
+        <label class="block text-sm font-medium text-gray-700 mb-2" for="roomCode">Room Code:</label>
+        <input [(ngModel)]="newRoom.roomCode" class="w-full px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500" id="roomCode" name="roomCode" required
+               type="text">
 
-        <label for="name" class="block text-sm font-medium text-gray-700 mb-2 mt-4">Name:</label>
-        <input type="text" id="name" name="name" [(ngModel)]="newRoom.name" required
-               class="w-full px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500">
+        <label class="block text-sm font-medium text-gray-700 mb-2 mt-4" for="name">Name:</label>
+        <input [(ngModel)]="newRoom.name" class="w-full px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500" id="name" name="name" required
+               type="text">
 
-        <label for="size" class="block text-sm font-medium text-gray-700 mb-2 mt-4">Size:</label>
-        <input type="number" id="size" name="size" [(ngModel)]="newRoom.size" required
-               class="w-full px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500">
+        <label class="block text-sm font-medium text-gray-700 mb-2 mt-4" for="size">Size:</label>
+        <input [(ngModel)]="newRoom.size" class="w-full px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500" id="size" name="size" required
+               type="number">
 
         <div class="flex justify-end mt-6">
-          <button type="button" (click)="closeCreateDialog()"
-                  class="bg-gray-300 text-gray-700 px-4 py-2 rounded-md focus:outline-none hover:bg-gray-400 mr-2">Cancel</button>
-          <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded-md focus:outline-none hover:bg-blue-600">Submit</button>
+          <button (click)="closeCreateDialog()" class="bg-gray-300 text-gray-700 px-4 py-2 rounded-md focus:outline-none hover:bg-gray-400 mr-2"
+                  type="button">
+            Cancel
+          </button>
+          <button class="bg-blue-500 text-white px-4 py-2 rounded-md focus:outline-none hover:bg-blue-600"
+                  type="submit">Submit
+          </button>
         </div>
       </form>
     </div>

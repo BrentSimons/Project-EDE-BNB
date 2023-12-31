@@ -4,3 +4,8 @@ export interface Room {
   name: string;
   size: number;
 }
+
+export interface RoomCreate {
+  roomRequest: Room;
+  bnbId: number;
+}

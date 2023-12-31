@@ -1,0 +1,9 @@
+tr td:first-child,
+tr th:first-child {
+  text-align: left;
+}
+
+tr td:last-child,
+tr th:last-child {
+  text-align: right;
+}

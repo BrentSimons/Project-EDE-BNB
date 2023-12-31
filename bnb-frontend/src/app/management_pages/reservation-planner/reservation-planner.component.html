@@ -1,41 +1,119 @@
 <div class="mx-auto p-4 max-w-md">
-  <form #reservationForm="ngForm" (ngSubmit)="onSubmit(reservationForm)" class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
-    <div class="mb-4">
-      <label for="personId" class="block text-gray-700 text-sm font-bold mb-2">Person:</label>
-      <select id="personId" name="personId" [(ngModel)]="reservationRequest.personId" required
-              class="w-full border p-2 rounded-md">
-        <option *ngFor="let person of persons" [value]="person.id">{{ person.firstName + ' ' + person.lastName }}</option>
+  <form #reservationForm="ngForm" (ngSubmit)="onSubmit(reservationForm)"
+        class="bg-white shadow-xl rounded px-8 pt-6 pb-8 mb-4">
+    <div class="">
+      <label class="block text-gray-700 text-sm font-bold mb-2" for="personId">Person:</label>
+      <select [(ngModel)]="reservationRequest.personId" class="w-full border p-2 rounded-md" id="personId"
+              name="personId"
+              required>
+        <option *ngFor="let person of persons" [value]="person.id">{{ person.firstName + ' ' + person.lastName }}
+        </option>
       </select>
     </div>
-
-    <div class="mb-4">
-      <label for="roomCode" class="block text-gray-700 text-sm font-bold mb-2">Room:</label>
-      <select id="roomCode" name="roomCode" [(ngModel)]="reservationRequest.roomCode" required
-              class="w-full border p-2 rounded-md">
-        <option *ngFor="let room of rooms" [value]="room.roomCode">{{ room.name }}</option>
-      </select>
+    <div class="flex flex-col">
+      <div class="ml-auto mt-0.5 mb-0">
+        <a
+          (click)="openCreateDialog()"
+          class="cursor-pointer text-xs bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-2 rounded focus:outline-none focus:shadow-outline ">
+          Add client
+        </a>
+      </div>
     </div>
 
-    <div class="mb-4">
-      <label for="startDate" class="block text-gray-700 text-sm font-bold mb-2">Start Date:</label>
-      <input type="date" id="startDate" name="startDate" [(ngModel)]="reservationRequest.startDate" required
-             class="w-full border p-2 rounded-md">
+    <div class="mb-0">
+      <label class="block text-gray-700 text-sm font-bold mb-2" for="roomCode">Room:</label>
+      <select [(ngModel)]="reservationRequest.roomCode" class="w-full border p-2 rounded-md" id="roomCode"
+              name="roomCode"
+              required>
+        <option *ngFor="let room of rooms" [value]="room.roomCode">{{ room.name + ' (' + room.size + ' s.p.)' }}
+        </option>
+      </select>
+      <p class="text-xs text-gray-400 text-right">*s.p. stands for sleeping places</p>
+    </div>
+
+    <div class="mb-5">
+      <label class="block text-gray-700 text-sm font-bold mb-2" for="startDate">Start Date:</label>
+      <input [(ngModel)]="reservationRequest.startDate" class="w-full border p-2 rounded-md" id="startDate"
+             name="startDate" required
+             type="date">
     </div>
 
     <div class="mb-6">
-      <label for="endDate" class="block text-gray-700 text-sm font-bold mb-2">End Date:</label>
-      <input type="date" id="endDate" name="endDate" [(ngModel)]="reservationRequest.endDate" required
-             class="w-full border p-2 rounded-md">
+      <label class="block text-gray-700 text-sm font-bold mb-2" for="endDate">End Date:</label>
+      <input [(ngModel)]="reservationRequest.endDate" class="w-full border p-2 rounded-md" id="endDate" name="endDate"
+             required
+             type="date">
     </div>
 
-    <div class="flex items-center justify-between">
-      <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
+    <div class="flex justify-center">
+      <button
+        class="mx-auto bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+        type="submit">
         Create Reservation
       </button>
     </div>
-
   </form>
+
+
+  <!-- Back to reservations button -->
+  <div class="flex flex-col">
+    <div class="ml-auto mt-0.5 mb-0">
+      <a class="cursor-pointer bg-green-500 text-white px-4 py-2 rounded-md mb-4 focus:outline-none hover:bg-green-600"
+         routerLink="/reservation">View
+        Reservations</a>
+    </div>
+  </div>
+
+  <!--  Keep back button in the form card so ml-auto works-->
 </div>
+
+<!-- Create Person Dialog -->
+<dialog id="createPersonDialog">
+  <div class="flex items-center w-96 justify-center shadow-md">
+    <div class="bg-white p-6 rounded-2xl">
+      <form (submit)="CreatePerson(); closeCreateDialog()">
+        <label class="block text-sm font-medium text-gray-700 mb-2" for="firstName">First Name:</label>
+        <input [(ngModel)]="newPerson.firstName" class="w-full px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500" id="firstName" name="firstName" required
+               type="text">
+
+        <label class="block text-sm font-medium text-gray-700 mb-2 mt-4" for="lastName">Last Name:</label>
+        <input [(ngModel)]="newPerson.lastName" class="w-full px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500" id="lastName" name="lastName" required
+               type="text">
+
+        <label class="block text-sm font-medium text-gray-700 mb-2 mt-4" for="dateOfBirth">Date of Birth:</label>
+        <input [(ngModel)]="newPerson.dateOfBirth" class="w-full px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500" id="dateOfBirth" name="dateOfBirth" required
+               type="date">
+
+        <label class="block text-sm font-medium text-gray-700 mb-2 mt-4" for="accountNumber">Account Number:</label>
+        <input [(ngModel)]="newPerson.accountNumber" class="w-full px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500" id="accountNumber" name="accountNumber" required
+               type="number">
+
+        <label class="block text-sm font-medium text-gray-700 mb-2 mt-4" for="phoneNumber">Phone Number:</label>
+        <input [(ngModel)]="newPerson.contact.phoneNumber" class="w-full px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500" id="phoneNumber" name="phoneNumber" required
+               type="text">
+
+        <label class="block text-sm font-medium text-gray-700 mb-2 mt-4" for="emailAddress">Email Address:</label>
+        <input [(ngModel)]="newPerson.contact.emailAddress" class="w-full px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500" id="emailAddress" name="emailAddress" required
+               type="email">
+
+        <label class="block text-sm font-medium text-gray-700 mb-2 mt-4" for="address">Address:</label>
+        <input [(ngModel)]="newPerson.contact.address" class="w-full px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500" id="address" name="address" required
+               type="text">
+
+        <div class="flex justify-end mt-6">
+          <button (click)="closeCreateDialog()" class="bg-gray-300 text-gray-700 px-4 py-2 rounded-md focus:outline-none hover:bg-gray-400 mr-2"
+                  type="button">
+            Cancel
+          </button>
+          <button class="bg-blue-500 text-white px-4 py-2 rounded-md focus:outline-none hover:bg-blue-600"
+                  type="submit">Submit
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</dialog>
+
 
 <app-toast-succes *ngFor="let toast of toastSuccessService.getToasts()" [message]="toast"></app-toast-succes>
 

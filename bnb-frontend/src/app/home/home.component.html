@@ -2,8 +2,7 @@
   <div class="container mx-auto text-center">
     <h2 class="text-4xl font-bold text-gray-800 mb-6">About the Project</h2>
     <p class="text-lg text-gray-600 leading-relaxed pb-7">
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla ac ante in velit condimentum fermentum.
-      Proin sit amet justo vitae tellus commodo convallis.
+      Welcome to our Enterprise Development Experience project - Bed & Breakfast Management System. Developed by Brent Simons and Siebe Michiels, this project showcases our skills in enterprise-level application development using microservices architecture.
     </p>
 
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -11,8 +10,7 @@
       <div class="bg-white p-6 rounded-lg shadow-md">
         <h3 class="text-xl font-semibold text-gray-800 mb-4">Project Overview</h3>
         <p class="text-gray-600">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla ac ante in velit condimentum fermentum.
-          Proin sit amet justo vitae tellus commodo convallis.
+          Our project, inspired by Brent's father's Bed and Breakfast, consists of four microservices - Bnb, Room, Reservation, and Person - each managing a specific aspect of the B&B operations. The microservices are powered by MySQL and MongoDB databases.
         </p>
       </div>
 
@@ -20,19 +18,19 @@
       <div class="bg-white p-6 rounded-lg shadow-md">
         <h3 class="text-xl font-semibold text-gray-800 mb-4">Purpose and Goals</h3>
         <p class="text-gray-600">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla ac ante in velit condimentum fermentum.
-          Proin sit amet justo vitae tellus commodo convallis.
+          We aim to create a comprehensive management system that enables the effective handling of multiple Bed & Breakfast establishments. Through our microservices architecture, we provide functionalities for managing rooms, reservations, and personnel, contributing to a seamless B&B experience.
         </p>
       </div>
 
-      <!-- Card 3 -->
+      <!-- Updated Card 3 -->
       <div class="bg-white p-6 rounded-lg shadow-md">
         <h3 class="text-xl font-semibold text-gray-800 mb-4">Key Features</h3>
         <p class="text-gray-600">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla ac ante in velit condimentum fermentum.
-          Proin sit amet justo vitae tellus commodo convallis.
+          We've implemented CRUD operations for all microservices and crafted three interesting public endpoints. Ontop of that we made a gateway to unify and simplify interactions across our 4 microservices.
+          Authentication is added using Google GCP authentication, using JWT tokens to safeguard access to the gateway and website.
         </p>
       </div>
+
     </div>
   </div>
 </section>
@@ -44,16 +42,16 @@
     <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
       <!-- Team Member 1 -->
       <div class="bg-gray-800 p-6 rounded-lg shadow-md mb-8 md:mb-0 md:col-start-1 md:col-end-2">
-        <img alt="Team Member 1" class="w-24 h-24 rounded-full mx-auto mb-4" src="path-to-image-1.jpg">
-        <h3 class="text-xl font-semibold mb-2">Your Name</h3>
-        <p class="text-gray-400">Role / Position</p>
+        <img alt="Team Member 1" class="w-36 h-36 rounded-full mx-auto mb-4" src="https://media.licdn.com/dms/image/D4E03AQG6wUXjRehccw/profile-displayphoto-shrink_800_800/0/1681925334774?e=1709769600&v=beta&t=M1tihEYOxrIGInMobTWnbB3p_OEmUliAy04yojCRDqM">
+        <h3 class="text-xl font-semibold mb-2">Brent Simons</h3>
+        <p class="text-gray-400">Student 3APP Thomas More Geel</p>
       </div>
 
       <!-- Team Member 2 -->
       <div class="bg-gray-800 p-6 rounded-lg shadow-md md:col-start-2 md:col-end-3">
-        <img alt="Team Member 2" class="w-24 h-24 rounded-full mx-auto mb-4" src="path-to-image-2.jpg">
-        <h3 class="text-xl font-semibold mb-2">Teammate's Name</h3>
-        <p class="text-gray-400">Role / Position</p>
+        <img alt="Team Member 2" class="w-36 h-36 rounded-full mx-auto mb-4" src="https://media.licdn.com/dms/image/D4E03AQGDC6XmBvG1PA/profile-displayphoto-shrink_800_800/0/1697486480363?e=1709769600&v=beta&t=eNArINEydrCvQ2s4DsR5OK3bQNAA2Z4A9Pn19hxsKCc">
+        <h3 class="text-xl font-semibold mb-2">Siebe Michiels</h3>
+        <p class="text-gray-400">Student 3APP Thomas More Geel</p>
       </div>
     </div>
   </div>
@@ -67,13 +65,13 @@
       <!-- Tabs -->
       <div class="flex border-b-2 border-gray-800">
         <button (click)="setActiveTab('endpoint-1')" [class.bg-gray-900]="activeTab === 'endpoint-1'"
-                class="py-2 px-4 text-sm rounded-t-lg border-black border-1 bg-gray-800">Endpoint 1
+                class="py-2 px-4 text-sm rounded-t-lg border-black border-1 bg-gray-800">/public/bnb
         </button>
         <button (click)="setActiveTab('endpoint-2')" [class.bg-gray-900]="activeTab === 'endpoint-2'"
-                class="py-2 px-4 text-sm rounded-t-lg border-black border-1 bg-gray-800">Endpoint 2
+                class="py-2 px-4 text-sm rounded-t-lg border-black border-1 bg-gray-800">/public/rooms/available
         </button>
         <button (click)="setActiveTab('endpoint-3')" [class.bg-gray-900]="activeTab === 'endpoint-3'"
-                class="py-2 px-4 text-sm rounded-t-lg border-black border-1 bg-gray-800">Endpoint 3
+                class="py-2 px-4 text-sm rounded-t-lg border-black border-1 bg-gray-800">/public/room/available
         </button>
       </div>
 
@@ -81,22 +79,22 @@
       <div class="bg-white p-6 rounded-b-lg shadow-md border-2 border-gray-800 ">
         <!-- Content for Endpoint 1 -->
         <div *ngIf="activeTab === 'endpoint-1'">
-          <p class="text-gray-600">
-            Description and details about Endpoint 1. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+          <p class="text-gray-900">
+            GET /public/bnb?name=x is a public endpoint providing an overview of all our bnbs. Use the optional "name" parameter to filter bnbs by text. Example result includes names and room IDs.
           </p>
         </div>
 
         <!-- Content for Endpoint 2 -->
         <div *ngIf="activeTab === 'endpoint-2'">
-          <p class="text-gray-600">
-            Description and details about Endpoint 2. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+          <p class="text-gray-900">
+            GET /public/rooms/available?id=x is a public endpoint to check room availability. Required body includes roomCodes, startDate, endDate, and size. Example result includes roomCode and availability status.
           </p>
         </div>
 
         <!-- Content for Endpoint 3 -->
         <div *ngIf="activeTab === 'endpoint-3'">
-          <p class="text-gray-600">
-            Description and details about Endpoint 3. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+          <p class="text-gray-900">
+            GET /public/room/available?roomCode=x&months=x is a public endpoint to check a specific room's availability in the next month(s). Use roomCode and optional "months" parameter. Example result includes start and end dates.
           </p>
         </div>
       </div>
@@ -107,14 +105,13 @@
 <section class="py-16">
   <div class="container mx-auto w-2/3 text-center">
     <h2 class="text-4xl font-bold mb-6">Technologies Used</h2>
-
     <div data-accordion="collapse" id="accordion-collapse">
       <h2 id="accordion-collapse-heading-1">
         <button aria-controls="accordion-collapse-body-1"
                 aria-expanded="true"
                 class="flex items-center justify-between w-full p-5 font-medium rtl:text-right text-gray-500 border border-b-0 border-gray-200 rounded-t-xl focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-800 dark:border-gray-700 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 gap-3" data-accordion-target="#accordion-collapse-body-1"
                 type="button">
-          <span>Technology 1</span>
+          <span>Spring Boot</span>
           <svg aria-hidden="true" class="w-3 h-3 rotate-180 shrink-0" data-accordion-icon
                fill="none" viewBox="0 0 10 6" xmlns="http://www.w3.org/2000/svg">
             <path d="M9 5 5 1 1 5" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
@@ -124,8 +121,7 @@
       </h2>
       <div aria-labelledby="accordion-collapse-heading-1" class="hidden" id="accordion-collapse-body-1">
         <div class="p-5 border border-b-0 border-gray-200 dark:border-gray-700 dark:bg-gray-900">
-          <p class="mb-2 text-gray-500 dark:text-gray-400">Flowbite is an open-source library of interactive components
-            built on top of Tailwind CSS including buttons, dropdowns, modals, navbars, and more.</p>
+          <p class="mb-2 text-gray-500 dark:text-gray-400">We utilized the Spring Boot (Framework) to create our microservices. Spring Framework is an open-source framework for building enterprise Java applications.</p>
         </div>
       </div>
       <h2 id="accordion-collapse-heading-2">
@@ -133,7 +129,7 @@
                 aria-expanded="false"
                 class="flex items-center justify-between w-full p-5 font-medium rtl:text-right text-gray-500 border border-b-0 border-gray-200 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-800 dark:border-gray-700 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 gap-3" data-accordion-target="#accordion-collapse-body-2"
                 type="button">
-          <span>Technology 2</span>
+          <span>Angular</span>
           <svg aria-hidden="true" class="w-3 h-3 rotate-180 shrink-0" data-accordion-icon
                fill="none" viewBox="0 0 10 6" xmlns="http://www.w3.org/2000/svg">
             <path d="M9 5 5 1 1 5" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
@@ -143,7 +139,7 @@
       </h2>
       <div aria-labelledby="accordion-collapse-heading-2" class="hidden" id="accordion-collapse-body-2">
         <div class="p-5 border border-b-0 border-gray-200 dark:border-gray-700">
-          <p class="mb-2 text-gray-500 dark:text-gray-400">Technology 2 is pretty cool</p>
+          <p class="mb-2 text-gray-500 dark:text-gray-400">For our front-end we used Angular, a powerful framework for building dynamic web applications.</p>
         </div>
       </div>
       <h2 id="accordion-collapse-heading-3">
@@ -151,7 +147,7 @@
                 aria-expanded="false"
                 class="flex items-center justify-between w-full p-5 font-medium rtl:text-right text-gray-500 border border-gray-200 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-800 dark:border-gray-700 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 gap-3" data-accordion-target="#accordion-collapse-body-3"
                 type="button">
-          <span>Technology 3</span>
+          <span>Docker</span>
           <svg aria-hidden="true" class="w-3 h-3 rotate-180 shrink-0" data-accordion-icon
                fill="none" viewBox="0 0 10 6" xmlns="http://www.w3.org/2000/svg">
             <path d="M9 5 5 1 1 5" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
@@ -161,9 +157,10 @@
       </h2>
       <div aria-labelledby="accordion-collapse-heading-3" class="hidden" id="accordion-collapse-body-3">
         <div class="p-5 border border-t-0 border-gray-200 dark:border-gray-700">
-          <p class="mb-2 text-gray-500 dark:text-gray-400">Technology 3 is really cool</p>
+          <p class="mb-2 text-gray-500 dark:text-gray-400">We employed Docker, a platform for automating the deployment and scaling of applications in containers. We also used github actions to automate the building of images and pushing them to docker Hub.</p>
         </div>
       </div>
     </div>
   </div>
 </section>
+
