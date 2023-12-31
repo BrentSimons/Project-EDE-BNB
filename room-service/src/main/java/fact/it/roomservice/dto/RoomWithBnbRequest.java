@@ -9,9 +9,7 @@ import lombok.NoArgsConstructor;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class RoomResponse {
-    private String id;
-    private String roomCode;
-    private String name;
-    private int size;
+public class RoomWithBnbRequest {
+    private RoomRequest roomRequest;
+    private Long bnbId;
 }

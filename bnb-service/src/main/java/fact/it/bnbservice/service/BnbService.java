@@ -38,6 +38,7 @@ public class BnbService {
             List<Bnb> bnbList = new ArrayList<>();
 
             Bnb bnb1 = new Bnb();
+            bnb1.setId(1L);
             bnb1.setName("Hugo's Bnb Ter Dolen");
             bnb1.addRoomCode("Room1_Bnb1");
             bnb1.addRoomCode("Room2_Bnb1");
@@ -48,6 +49,7 @@ public class BnbService {
             bnbList.add(bnb1);
 
             Bnb bnb2 = new Bnb();
+            bnb2.setId(2L);
             bnb2.setName("Hugo's Bnb Geel");
             bnb2.addRoomCode("Room1_Bnb2");
             bnb2.addRoomCode("Room2_Bnb2");
@@ -57,6 +59,7 @@ public class BnbService {
             bnbList.add(bnb2);
 
             Bnb bnb3 = new Bnb();
+            bnb3.setId(3L);
             bnb3.setName("The Slumburger ");
             bnb3.setCity("Geel");
             bnb3.setPostcode("2440");
@@ -64,6 +67,7 @@ public class BnbService {
             bnbList.add(bnb3);
 
             Bnb bnb4 = new Bnb();
+            bnb4.setId(4L);
             bnb4.setName("SnoozeSnacks");
             bnb4.setCity("Hasselt");
             bnb4.setPostcode("3500");
@@ -100,13 +104,30 @@ public class BnbService {
         return null;
     }
 
+    public boolean addRoom(Long bnbId, String roomCode) {
+        Optional<Bnb> bnbOptional = bnbRepository.findById(bnbId);
+
+        if (bnbOptional.isPresent()) {
+            Bnb bnb = bnbOptional.get();
+            bnb.addRoomCode(roomCode);
+
+            bnbRepository.save(bnb);
+            return true;
+        }
+        return false;
+    }
+
     // CRUD
     @Transactional(readOnly = true)
-    public List<BnbResponse> getBnbsByName(String str) {
-        return bnbRepository.getBnbsByNameContains(str).stream()
+    public List<BnbResponse> getBnbsByName(String name) {
+        return bnbRepository.getBnbsByNameContains(name).stream()
                 .map(bnb -> BnbResponse.builder()
+                        .id(bnb.getId())
                         .name(bnb.getName())
                         .roomCodes(bnb.getRoomCodes())
+                        .city(bnb.getCity())
+                        .postcode(bnb.getPostcode())
+                        .address(bnb.getAddress())
                         .build())
                 .toList();
     }
@@ -116,6 +137,7 @@ public class BnbService {
         if (bnbOptional.isPresent()) {
             Bnb bnb = bnbOptional.get();
             return BnbResponse.builder()
+                    .id(bnb.getId())
                     .name(bnb.getName())
                     .roomCodes(bnb.getRoomCodes())
                     .city(bnb.getCity())
@@ -128,6 +150,7 @@ public class BnbService {
 
     public Bnb createBnb(BnbRequest bnbRequest) {
         Bnb bnb = new Bnb();
+        bnb.setId(bnbRequest.getId());
         bnb.setName(bnbRequest.getName());
         bnb.setRoomCodes(bnbRequest.getRoomCodes());
         bnb.setCity(bnbRequest.getCity());
@@ -144,6 +167,7 @@ public class BnbService {
         if (bnbOptional.isPresent()) {
             Bnb bnb = bnbOptional.get();
 
+            bnb.setId(updatedBnb.getId());
             bnb.setName(updatedBnb.getName() != null ? updatedBnb.getName() : bnb.getName());
             bnb.setRoomCodes(updatedBnb.getRoomCodes().size() != 0 ? updatedBnb.getRoomCodes() : bnb.getRoomCodes());
             bnb.setCity(updatedBnb.getCity() != null ? updatedBnb.getCity() : bnb.getCity());
@@ -157,5 +181,23 @@ public class BnbService {
 
     public void deleteBnb(Long id) {
         bnbRepository.deleteById(id);
+    }
+
+    public boolean removeRoomFromBnb(Long bnbId, String roomCode) {
+        Optional<Bnb> bnbOptional = bnbRepository.findById(bnbId);
+
+        if (bnbOptional.isPresent()) {
+            Bnb bnb = bnbOptional.get();
+
+            // Remove the room code from the roomCodes list
+            bnb.getRoomCodes().remove(roomCode);
+
+            // Save the updated Bnb
+            bnbRepository.save(bnb);
+
+            return true; // Room removed successfully
+        } else {
+            return false; // Bnb not found
+        }
     }
 }

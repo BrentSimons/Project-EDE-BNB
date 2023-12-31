@@ -29,7 +29,7 @@ public class PersonService {
             Person adam = Person.builder()
                     .firstName("Adam")
                     .lastName("Johns")
-                    .id("1")
+                    .id("person_1")
                     .accountNumber("1000")
                     .contact(adamContact)
                     .dateOfBirth(LocalDate.now().minusYears(20).plusDays(ThreadLocalRandom.current().nextInt(0, 20 * 365))).build();
@@ -38,7 +38,7 @@ public class PersonService {
             Person eve = Person.builder()
                     .firstName("Eve")
                     .lastName("Smith")
-                    .id("2")
+                    .id("person_2")
                     .accountNumber("1001")
                     .contact(eveContact)
                     .dateOfBirth(LocalDate.now().minusYears(20).plusDays(ThreadLocalRandom.current().nextInt(0, 20 * 365))).build();

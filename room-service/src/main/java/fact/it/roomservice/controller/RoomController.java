@@ -50,8 +50,8 @@ public class RoomController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public Room createRoom(@RequestBody RoomRequest roomRequest) {
-        return roomService.createRoom(roomRequest);
+    public Room createRoom(@RequestBody RoomWithBnbRequest roomWithBnbRequest) {
+        return roomService.createRoom(roomWithBnbRequest);
     }
 
     @PutMapping("/{id}")
@@ -62,7 +62,7 @@ public class RoomController {
 
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void deleteRoom(@PathVariable String id) {
-        roomService.deleteRoom(id);
+    public void deleteRoom(@PathVariable String id, @RequestParam int bnbId) {
+        roomService.deleteRoom(id, bnbId);
     }
 }

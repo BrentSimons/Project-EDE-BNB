@@ -10,7 +10,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Date;
 import java.util.List;
 
 @RestController
@@ -27,6 +26,12 @@ public class BnbController {
         return bnbService.getAvailableRooms(roomRequest, id);
     }
 
+    @PutMapping("/addRoom")
+    @ResponseStatus(HttpStatus.OK)
+    public boolean addRoom(@RequestParam Long bnbId, @RequestParam String roomCode) {
+        return bnbService.addRoom(bnbId, roomCode);
+    }
+
     @GetMapping("/secureTest")
     @ResponseStatus(HttpStatus.OK)
     public String secureTest() {
@@ -40,7 +45,7 @@ public class BnbController {
     }
 
     // CRUD
-    @GetMapping("/get")
+    @GetMapping("/all")
     @ResponseStatus(HttpStatus.OK)
     public List<BnbResponse> getBnbByName(@RequestParam(required = false, defaultValue = "") String name) {
         // Example: http://localhost:8080/api/bnb/get?name=Hugo
@@ -64,6 +69,13 @@ public class BnbController {
     @ResponseStatus(HttpStatus.OK)
     public Bnb updateBnb(@PathVariable Long id, @RequestBody BnbRequest updatedBnb) {
         return bnbService.updateBnb(id, updatedBnb);
+    }
+
+    @PutMapping("/removeRoom")
+    @ResponseStatus(HttpStatus.OK)
+    public boolean removeRoom(@RequestParam Long bnbId, @RequestParam String roomCode) {
+        boolean removed = bnbService.removeRoomFromBnb(bnbId, roomCode);
+        return removed;
     }
 
     @DeleteMapping("/{id}")

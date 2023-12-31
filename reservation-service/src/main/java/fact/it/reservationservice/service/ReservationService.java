@@ -151,6 +151,7 @@ public class ReservationService {
 
         return reservations.stream()
                 .map(reservation -> new ReservationResponse(
+                        reservation.getId(),
                         reservation.getPersonId(),
                         reservation.getRoomCode(),
                         reservation.getStartDate(),
@@ -163,6 +164,7 @@ public class ReservationService {
         if (reservationOptional.isPresent()) {
             Reservation reservation = reservationOptional.get();
             return ReservationResponse.builder()
+                    .id(reservation.getId())
                     .personId(reservation.getPersonId())
                     .roomCode(reservation.getRoomCode())
                     .startDate(reservation.getStartDate())

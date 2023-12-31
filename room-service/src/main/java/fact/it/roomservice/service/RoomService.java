@@ -22,6 +22,9 @@ public class RoomService {
     @Value("${reservationservice.baseurl}")
     private String reservationServiceBaseUrl;
 
+    @Value("${bnbservice.baseurl}")
+    private String bnbServiceBaseUrl;
+
     @PostConstruct
     public void loadData() {
         if (roomRepository.count() <= 0) {
@@ -118,7 +121,9 @@ public class RoomService {
         return null;
     }
 
-    public Room createRoom(RoomRequest roomRequest) {
+    public Room createRoom(RoomWithBnbRequest roomWithBnbRequest) {
+        RoomRequest roomRequest = roomWithBnbRequest.getRoomRequest();
+
         Room room = Room.builder()
                 .roomCode(roomRequest.getRoomCode())
                 .name(roomRequest.getName())
@@ -126,6 +131,19 @@ public class RoomService {
                 .build();
 
         roomRepository.save(room);
+
+        Long bnbId = roomWithBnbRequest.getBnbId();
+        boolean result = Boolean.TRUE.equals(webClient.put()
+                .uri("http://" + bnbServiceBaseUrl + "/api/bnb/addRoom",
+                        uriBuilder -> uriBuilder.queryParam("bnbId", bnbId).queryParam("roomCode", roomRequest.getRoomCode()).build())
+                .retrieve()
+                .bodyToMono(Boolean.class)
+                .block());
+
+        if (Boolean.FALSE.equals(result)) {
+            return null;
+        }
+
         return room;
     }
 
@@ -143,7 +161,31 @@ public class RoomService {
         return null; // Handle not found case
     }
 
-    public void deleteRoom(String id) {
-        roomRepository.deleteById(id);
+    public void deleteRoom(String id, int bnbId) {
+        Optional<Room> roomOptional = roomRepository.findById(id);
+
+        if (roomOptional.isPresent()) {
+            Room room = roomOptional.get();
+
+            // Delete the room from the Bnb
+            boolean result = Boolean.TRUE.equals(webClient.put()
+                    .uri("http://" + bnbServiceBaseUrl + "/api/bnb/removeRoom",
+                            uriBuilder -> uriBuilder.queryParam("bnbId", bnbId).queryParam("roomCode", room.getRoomCode()).build())
+                    .retrieve()
+                    .bodyToMono(Boolean.class)
+                    .block());
+
+            if (Boolean.FALSE.equals(result)) {
+                // Handle the case where the room deletion from Bnb fails
+                // You might want to log an error or throw an exception
+            }
+
+            // Delete the room from the local database
+            roomRepository.deleteById(id);
+        } else {
+            // Handle the case where the room is not found
+            // You might want to log an error or throw an exception
+        }
     }
 }
+

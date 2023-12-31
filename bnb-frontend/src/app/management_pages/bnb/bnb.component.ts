@@ -85,7 +85,7 @@ export class BnbComponent implements OnInit {
 
   updateBnb(name: string): void {
     this.isUpdating = true;
-    this.newBnb = { ...this.bnbs.find((bnb) => bnb.name === name) };
+    //this.newBnb = { ...this.bnbs.find((bnb) => bnb.name === name) };
     this.openCreateDialog(); // Open the dialog for updating
   }
 
