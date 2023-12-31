@@ -1,0 +1,10 @@
+/* Optional: Add some basic styling for better readability */
+pre {
+  background-color: #f4f4f4;
+  padding: 10px;
+  overflow: auto;
+}
+
+code {
+  font-family: 'Courier New', Courier, monospace;
+}

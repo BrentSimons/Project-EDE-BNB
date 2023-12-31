@@ -16,12 +16,14 @@
   <tbody>
   <tr *ngFor="let bnb of bnbs" class="border-t">
     <td class="py-2 px-4">{{ bnb.name }}</td>
-    <td class="py-2 px-4">{{ bnb.roomCodes.join(', ') }}</td>
+    <td class="py-2 px-4" *ngIf="bnb.roomCodes.length">{{ bnb.roomCodes.join(', ') }}</td>
+    <td class="py-2 px-4" *ngIf="!bnb.roomCodes.length">This location has no asigned rooms</td>
     <td class="py-2 px-4">{{ bnb.city || '-' }}</td>
     <td class="py-2 px-4">{{ bnb.postcode || '-' }}</td>
     <td class="py-2 px-4">{{ bnb.address || '-' }}</td>
     <td class="py-2 px-4">
       <!-- Buttons with Tailwind CSS classes -->
+      <button (click)="openRoomCreateDialog(bnb.id)" class="bg-green-500 text-white px-3 py-1 rounded-md focus:outline-none hover:bg-green-600 mr-2">Add room</button>
       <button (click)="updateBnb(bnb.id)" class="bg-blue-500 text-white px-3 py-1 rounded-md focus:outline-none hover:bg-blue-600 mr-2">Update</button>
       <button (click)="deleteBnb(bnb.id)" class="bg-red-500 text-white px-3 py-1 rounded-md focus:outline-none hover:bg-red-600">Delete</button>
     </td>
@@ -54,6 +56,37 @@
           <button type="button" (click)="closeCreateDialog()"
                   class="bg-gray-300 text-gray-700 px-4 py-2 rounded-md focus:outline-none hover:bg-gray-400 mr-2">Cancel</button>
           <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded-md focus:outline-none hover:bg-blue-600">Submit</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</dialog>
+
+<!-- Create Room Dialog -->
+<dialog id="createRoomDialog">
+  <div class="flex items-center w-96 justify-center shadow-md">
+    <div class="bg-white p-6 rounded-2xl">
+      <form (submit)="CreateRoom(); closeRoomCreateDialog()">
+        <label class="block text-sm font-medium text-gray-700 mb-2" for="roomCode">Room Code:</label>
+        <input [(ngModel)]="newRoom.roomCode" class="w-full px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500" id="roomCode" name="roomCode" required
+               type="text">
+
+        <label class="block text-sm font-medium text-gray-700 mb-2 mt-4" for="name">Name:</label>
+        <input [(ngModel)]="newRoom.name" class="w-full px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500" id="name" name="name" required
+               type="text">
+
+        <label class="block text-sm font-medium text-gray-700 mb-2 mt-4" for="size">Size:</label>
+        <input [(ngModel)]="newRoom.size" class="w-full px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500" id="size" name="size" required
+               type="number">
+
+        <div class="flex justify-end mt-6">
+          <button (click)="closeRoomCreateDialog()" class="bg-gray-300 text-gray-700 px-4 py-2 rounded-md focus:outline-none hover:bg-gray-400 mr-2"
+                  type="button">
+            Cancel
+          </button>
+          <button class="bg-blue-500 text-white px-4 py-2 rounded-md focus:outline-none hover:bg-blue-600"
+                  type="submit">Submit
+          </button>
         </div>
       </form>
     </div>

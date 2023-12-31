@@ -1,13 +1,13 @@
 <!-- Create Reservation Button with Tailwind CSS classes -->
-<button (click)="openCreateDialog()" class="bg-green-500 text-white px-4 py-2 rounded-md mb-4 focus:outline-none hover:bg-green-600">Create Reservation</button>
+<a routerLink="/reservation/planner" class="cursor-pointer bg-green-500 text-white px-4 py-2 rounded-md mb-4 focus:outline-none hover:bg-green-600">Create Reservation</a>
+<br class="mb-4">
 
 <!-- Reservation Table -->
 <table class="min-w-full border border-gray-300 text-center">
   <thead>
   <tr class="bg-gray-100">
-    <th class="py-2 px-4 border-b">ID</th>
-    <th class="py-2 px-4 border-b">Person ID</th>
-    <th class="py-2 px-4 border-b">Room Code</th>
+    <th class="py-2 px-4 border-b">Confirmed guest</th>
+    <th class="py-2 px-4 border-b">Room</th>
     <th class="py-2 px-4 border-b">Start Date</th>
     <th class="py-2 px-4 border-b">End Date</th>
     <th class="py-2 px-4 border-b">Actions</th>
@@ -15,8 +15,7 @@
   </thead>
   <tbody>
   <tr *ngFor="let reservation of reservations" class="border-t">
-    <td class="py-2 px-4">{{ reservation.id }}</td>
-    <td class="py-2 px-4">{{ reservation.personId }}</td>
+    <td class="py-2 px-4">{{ getPersonName(reservation.personId) }}</td>
     <td class="py-2 px-4">{{ reservation.roomCode }}</td>
     <td class="py-2 px-4">{{ reservation.startDate }}</td>
     <td class="py-2 px-4">{{ reservation.endDate }}</td>
