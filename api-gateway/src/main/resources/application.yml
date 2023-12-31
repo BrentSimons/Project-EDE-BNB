@@ -69,7 +69,7 @@ spring:
             - Path=/public/bnb
             - Method=GET
           filters:
-            - SetPath=/api/bnb/get
+            - SetPath=/api/bnb/all
         # Get available rooms in a bnb
         - id: bnb-service-rooms-available
           uri: http://${BNB_SERVICE_BASEURL:localhost:8080}

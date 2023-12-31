@@ -8,10 +8,11 @@ import lombok.NoArgsConstructor;
 import java.time.LocalDate;
 
 @Data
+@Builder
 @AllArgsConstructor
 @NoArgsConstructor
-@Builder
 public class ReservationResponse {
+    private Long id;
     private String personId;
     private String roomCode;
     private LocalDate startDate;

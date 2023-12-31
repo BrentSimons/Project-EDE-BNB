@@ -50,8 +50,8 @@ public class RoomController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public Room createRoom(@RequestBody RoomRequest roomRequest) {
-        return roomService.createRoom(roomRequest);
+    public Room createRoom(@RequestBody RoomWithBnbRequest roomWithBnbRequest) {
+        return roomService.createRoom(roomWithBnbRequest);
     }
 
     @PutMapping("/{id}")

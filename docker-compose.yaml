@@ -151,6 +151,7 @@ services:
       # Database name:
       MONGODB_NAME: mongo-room
       # Other service URLs
+      BNB_SERVICE_BASEURL: bnb-service:8080
       RESERVATION_SERVICE_BASEURL: reservation-service:8080
     networks:
       - microservices_network

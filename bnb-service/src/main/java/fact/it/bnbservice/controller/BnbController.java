@@ -27,6 +27,12 @@ public class BnbController {
         return bnbService.getAvailableRooms(roomRequest, id);
     }
 
+    @PutMapping("/addRoom")
+    @ResponseStatus(HttpStatus.OK)
+    public boolean addRoom(@RequestParam Long bnbId, @RequestParam String roomCode) {
+        return bnbService.addRoom(bnbId, roomCode);
+    }
+
     @GetMapping("/secureTest")
     @ResponseStatus(HttpStatus.OK)
     public String secureTest() {
