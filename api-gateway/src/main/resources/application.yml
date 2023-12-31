@@ -39,6 +39,11 @@ spring:
             - Method=GET
           filters:
             - SetPath=/api/bnb/test
+            - name: RequestRateLimiter
+              args:
+                redis-rate-limiter.replenishRate: 2
+                redis-rate-limiter.burstCapacity: 4
+                redis-rate-limiter.requestedToken: 1
         - id: reservation-service-test
           uri: http://${RESERVATION_SERVICE_BASEURL:localhost:8090}
           predicates:
@@ -117,11 +122,6 @@ spring:
             - Path=/bnb
           filters:
             - SetPath=/api/bnb
-            - name: RequestRateLimiter
-              args:
-                redis-rate-limiter.properties.replenishRate = 2
-                redis-rate-limiter.properties.burstCapacity = 4
-                redis-rate-limiter.properties.requestedToken = 1
 
         - id: room-service-crud-id
           uri: http://${ROOM_SERVICE_BASEURL:localhost:8085}

@@ -2,7 +2,7 @@ import asyncio
 import aiohttp
 
 gateway_url = "http://localhost:7000/test/bnb"
-num_requests = 30
+num_requests = 6
 
 async def send_request(session, url):
  async with session.get(url) as response:

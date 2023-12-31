@@ -12,13 +12,13 @@ import org.springframework.data.redis.repository.configuration.EnableRedisReposi
 public class RedisConfig {
 
     @Bean
-    public RedisStandaloneConfiguration standaloneConfiguration() {
-        return new RedisStandaloneConfiguration("redis", 6379);
+    public LettuceConnectionFactory lettuceConnectionFactory() {
+        return new LettuceConnectionFactory(standaloneConfiguration());
     }
 
     @Bean
-    public LettuceConnectionFactory lettuceConnectionFactory() {
-        return new LettuceConnectionFactory(standaloneConfiguration());
+    public RedisStandaloneConfiguration standaloneConfiguration() {
+        return new RedisStandaloneConfiguration("redis", 6379);
     }
 
     @Bean
