@@ -182,4 +182,22 @@ public class BnbService {
     public void deleteBnb(Long id) {
         bnbRepository.deleteById(id);
     }
+
+    public boolean removeRoomFromBnb(Long bnbId, String roomCode) {
+        Optional<Bnb> bnbOptional = bnbRepository.findById(bnbId);
+
+        if (bnbOptional.isPresent()) {
+            Bnb bnb = bnbOptional.get();
+
+            // Remove the room code from the roomCodes list
+            bnb.getRoomCodes().remove(roomCode);
+
+            // Save the updated Bnb
+            bnbRepository.save(bnb);
+
+            return true; // Room removed successfully
+        } else {
+            return false; // Bnb not found
+        }
+    }
 }
