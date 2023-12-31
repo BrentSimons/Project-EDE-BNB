@@ -5,13 +5,39 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d98aef2e-74d9-4d62-97e6-10fe2535eb59" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/bnb-frontend/src/app/api_services/bnb.service.spec.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bnb-frontend/src/app/api_services/bnb.service.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bnb-frontend/src/app/api_services/person.service.spec.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bnb-frontend/src/app/api_services/person.service.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bnb-frontend/src/app/management_pages/bnb/bnb.component.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bnb-frontend/src/app/management_pages/bnb/bnb.component.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bnb-frontend/src/app/management_pages/bnb/bnb.component.spec.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bnb-frontend/src/app/management_pages/bnb/bnb.component.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bnb-frontend/src/app/management_pages/person/person.component.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bnb-frontend/src/app/management_pages/person/person.component.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bnb-frontend/src/app/management_pages/person/person.component.spec.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bnb-frontend/src/app/management_pages/person/person.component.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bnb-frontend/src/app/models/bnb.model.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bnb-frontend/src/app/models/person.model.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bnb-service/src/main/java/fact/it/bnbservice/model/Bnb.java" beforeDir="false" afterPath="$PROJECT_DIR$/bnb-service/src/main/java/fact/it/bnbservice/model/Bnb.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bnb-service/src/main/java/fact/it/bnbservice/controller/BnbController.java" beforeDir="false" afterPath="$PROJECT_DIR$/bnb-service/src/main/java/fact/it/bnbservice/controller/BnbController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bnb-service/src/main/java/fact/it/bnbservice/service/BnbService.java" beforeDir="false" afterPath="$PROJECT_DIR$/bnb-service/src/main/java/fact/it/bnbservice/service/BnbService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/room-service/src/main/java/fact/it/roomservice/controller/RoomController.java" beforeDir="false" afterPath="$PROJECT_DIR$/room-service/src/main/java/fact/it/roomservice/controller/RoomController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/room-service/src/main/java/fact/it/roomservice/dto/RoomResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/room-service/src/main/java/fact/it/roomservice/dto/RoomResponse.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/room-service/src/main/java/fact/it/roomservice/service/RoomService.java" beforeDir="false" afterPath="$PROJECT_DIR$/room-service/src/main/java/fact/it/roomservice/service/RoomService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/room-service/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/room-service/src/main/resources/application.properties" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="TypeScript File" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -33,6 +59,8 @@
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
     &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
+    &quot;Notification.DisplayName-DoNotAsk-Database detector&quot;: &quot;Database detector&quot;,
+    &quot;Notification.DoNotAsk-Database detector&quot;: &quot;true&quot;,
     &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
     &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
     &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
@@ -40,6 +68,8 @@
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;Spring Boot.ApiGatewayApplication.executor&quot;: &quot;Run&quot;,
+    &quot;Spring Boot.BnbServiceApplication.executor&quot;: &quot;Run&quot;,
+    &quot;Spring Boot.RoomServiceApplication.executor&quot;: &quot;Run&quot;,
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
     &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
     &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
@@ -71,7 +101,7 @@
       </set>
     </option>
   </component>
-  <component name="RunManager" selected="Spring Boot.ApiGatewayApplication">
+  <component name="RunManager" selected="Spring Boot.RoomServiceApplication">
     <configuration name="ApiGatewayApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
       <module name="api-gateway" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="fact.it.apigateway.ApiGatewayApplication" />
@@ -134,6 +164,7 @@
       <workItem from="1703931124781" duration="20000" />
       <workItem from="1703931479284" duration="3136000" />
       <workItem from="1703957939487" duration="5731000" />
+      <workItem from="1704012948738" duration="2395000" />
     </task>
     <servers />
   </component>

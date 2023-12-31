@@ -1,0 +1,5 @@
+To do:
+
+Add filter room per bnb
+
+Implement bnb selector in create and add bnbid as parameter to create in .ts en service

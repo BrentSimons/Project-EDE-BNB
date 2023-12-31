@@ -37,6 +37,7 @@ export class RoomComponent implements OnInit {
 
   closeCreateDialog(): void {
     const dialog = document.getElementById('createRoomDialog') as HTMLDialogElement;
+    this.resetModal()
     dialog.close();
   }
   updateOrCreateRoom(): void {
@@ -63,10 +64,7 @@ export class RoomComponent implements OnInit {
         }
       );
     }
-
-    // Reset newRoom and isUpdating
-    this.newRoom = { roomCode: '', name: '', size: 0 };
-    this.isUpdating = false;
+    this.resetModal();
   }
 
   updateRoom(id: number): void {
@@ -86,21 +84,10 @@ export class RoomComponent implements OnInit {
       }
     );
   }
+
+  resetModal() {
+    // Reset newRoom and isUpdating
+    this.newRoom = { roomCode: '', name: '', size: 0 };
+    this.isUpdating = false;
+  }
 }
-
-
-
-
-// {
-//   public rooms$: Observable<Room[]> | undefined;
-//
-//   constructor(private roomService: RoomService) { }
-//
-//   ngOnInit(): void {
-//     this.rooms$ = this.roomService.getAllRooms();
-//   }
-//
-//   trackRoomById(room: any): string {
-//     return room.id; // Replace 'id' with the actual property representing the unique identifier of a room
-//   }
-// }
