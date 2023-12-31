@@ -1,1 +1,41 @@
-<p>reservation-planner works!</p>
+<div class="mx-auto p-4 max-w-md">
+  <form #reservationForm="ngForm" (ngSubmit)="onSubmit(reservationForm)" class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
+    <div class="mb-4">
+      <label for="personId" class="block text-gray-700 text-sm font-bold mb-2">Person:</label>
+      <select id="personId" name="personId" [(ngModel)]="reservationRequest.personId" required
+              class="w-full border p-2 rounded-md">
+        <option *ngFor="let person of persons" [value]="person.id">{{ person.firstName + ' ' + person.lastName }}</option>
+      </select>
+    </div>
+
+    <div class="mb-4">
+      <label for="roomCode" class="block text-gray-700 text-sm font-bold mb-2">Room:</label>
+      <select id="roomCode" name="roomCode" [(ngModel)]="reservationRequest.roomCode" required
+              class="w-full border p-2 rounded-md">
+        <option *ngFor="let room of rooms" [value]="room.roomCode">{{ room.name }}</option>
+      </select>
+    </div>
+
+    <div class="mb-4">
+      <label for="startDate" class="block text-gray-700 text-sm font-bold mb-2">Start Date:</label>
+      <input type="date" id="startDate" name="startDate" [(ngModel)]="reservationRequest.startDate" required
+             class="w-full border p-2 rounded-md">
+    </div>
+
+    <div class="mb-6">
+      <label for="endDate" class="block text-gray-700 text-sm font-bold mb-2">End Date:</label>
+      <input type="date" id="endDate" name="endDate" [(ngModel)]="reservationRequest.endDate" required
+             class="w-full border p-2 rounded-md">
+    </div>
+
+    <div class="flex items-center justify-between">
+      <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
+        Create Reservation
+      </button>
+    </div>
+
+  </form>
+</div>
+
+<app-toast-succes *ngFor="let toast of toastSuccessService.getToasts()" [message]="toast"></app-toast-succes>
+

@@ -5,12 +5,39 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d98aef2e-74d9-4d62-97e6-10fe2535eb59" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/bnb-frontend/src/app/api_services/bnb.service.spec.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bnb-frontend/src/app/api_services/bnb.service.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bnb-frontend/src/app/api_services/person.service.spec.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bnb-frontend/src/app/api_services/person.service.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bnb-frontend/src/app/management_pages/bnb/bnb.component.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bnb-frontend/src/app/management_pages/bnb/bnb.component.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bnb-frontend/src/app/management_pages/bnb/bnb.component.spec.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bnb-frontend/src/app/management_pages/bnb/bnb.component.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bnb-frontend/src/app/management_pages/person/person.component.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bnb-frontend/src/app/management_pages/person/person.component.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bnb-frontend/src/app/management_pages/person/person.component.spec.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bnb-frontend/src/app/management_pages/person/person.component.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bnb-frontend/src/app/models/bnb.model.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bnb-frontend/src/app/models/person.model.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bnb-service/src/main/java/fact/it/bnbservice/controller/BnbController.java" beforeDir="false" afterPath="$PROJECT_DIR$/bnb-service/src/main/java/fact/it/bnbservice/controller/BnbController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bnb-service/src/main/java/fact/it/bnbservice/service/BnbService.java" beforeDir="false" afterPath="$PROJECT_DIR$/bnb-service/src/main/java/fact/it/bnbservice/service/BnbService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/room-service/src/main/java/fact/it/roomservice/controller/RoomController.java" beforeDir="false" afterPath="$PROJECT_DIR$/room-service/src/main/java/fact/it/roomservice/controller/RoomController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/room-service/src/main/java/fact/it/roomservice/dto/RoomResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/room-service/src/main/java/fact/it/roomservice/dto/RoomResponse.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/room-service/src/main/java/fact/it/roomservice/service/RoomService.java" beforeDir="false" afterPath="$PROJECT_DIR$/room-service/src/main/java/fact/it/roomservice/service/RoomService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/room-service/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/room-service/src/main/resources/application.properties" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="TypeScript File" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />

@@ -12,6 +12,7 @@ import java.util.List;
 @NoArgsConstructor
 @Builder
 public class BnbResponse {
+
     private Long id;
 
     private String name;

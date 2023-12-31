@@ -1,0 +1,79 @@
+<!-- Create Person Button with Tailwind CSS classes -->
+<button (click)="openCreateDialog()" class="bg-green-500 text-white px-4 py-2 rounded-md mb-4 focus:outline-none hover:bg-green-600">Create Person</button>
+
+<!-- Person Table -->
+<table class="min-w-full border border-gray-300 text-center">
+  <thead>
+  <tr class="bg-gray-100">
+    <th class="py-2 px-4 border-b">Internal ID</th>
+    <th class="py-2 px-4 border-b">First Name</th>
+    <th class="py-2 px-4 border-b">Last Name</th>
+    <th class="py-2 px-4 border-b">Date of Birth</th>
+    <th class="py-2 px-4 border-b">Account Number</th>
+    <th class="py-2 px-4 border-b">Phone Number</th>
+    <th class="py-2 px-4 border-b">Email Address</th>
+    <th class="py-2 px-4 border-b">Address</th>
+    <th class="py-2 px-4 border-b">Actions</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let person of persons" class="border-t">
+    <td class="py-2 px-4">{{ person.id }}</td>
+    <td class="py-2 px-4">{{ person.firstName }}</td>
+    <td class="py-2 px-4">{{ person.lastName }}</td>
+    <td class="py-2 px-4">{{ person.dateOfBirth }}</td>
+    <td class="py-2 px-4">{{ person.accountNumber }}</td>
+    <td class="py-2 px-4">{{ person.contact.phoneNumber }}</td>
+    <td class="py-2 px-4">{{ person.contact.emailAddress }}</td>
+    <td class="py-2 px-4">{{ person.contact.address }}</td>
+    <td class="py-2 px-4">
+      <!-- Buttons with Tailwind CSS classes -->
+      <button (click)="updatePerson(person.id)" class="bg-blue-500 text-white px-3 py-1 rounded-md focus:outline-none hover:bg-blue-600 mr-2">Update</button>
+      <button (click)="deletePerson(person.id)" class="bg-red-500 text-white px-3 py-1 rounded-md focus:outline-none hover:bg-red-600">Delete</button>
+    </td>
+  </tr>
+  </tbody>
+</table>
+
+<!-- Create Person Dialog -->
+<dialog id="createPersonDialog">
+  <div class="flex items-center w-96 justify-center shadow-md">
+    <div class="bg-white p-6 rounded-2xl">
+      <form (submit)="updateOrCreatePerson(); closeCreateDialog()">
+        <label for="firstName" class="block text-sm font-medium text-gray-700 mb-2">First Name:</label>
+        <input type="text" id="firstName" name="firstName" [(ngModel)]="newPerson.firstName" required
+               class="w-full px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500">
+
+        <label for="lastName" class="block text-sm font-medium text-gray-700 mb-2 mt-4">Last Name:</label>
+        <input type="text" id="lastName" name="lastName" [(ngModel)]="newPerson.lastName" required
+               class="w-full px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500">
+
+        <label for="dateOfBirth" class="block text-sm font-medium text-gray-700 mb-2 mt-4">Date of Birth:</label>
+        <input type="date" id="dateOfBirth" name="dateOfBirth" [(ngModel)]="newPerson.dateOfBirth" required
+               class="w-full px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500">
+
+        <label for="accountNumber" class="block text-sm font-medium text-gray-700 mb-2 mt-4">Account Number:</label>
+        <input type="number" id="accountNumber" name="accountNumber" [(ngModel)]="newPerson.accountNumber" required
+               class="w-full px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500">
+
+        <label for="phoneNumber" class="block text-sm font-medium text-gray-700 mb-2 mt-4">Phone Number:</label>
+        <input type="text" id="phoneNumber" name="phoneNumber" [(ngModel)]="newPerson.contact.phoneNumber" required
+               class="w-full px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500">
+
+        <label for="emailAddress" class="block text-sm font-medium text-gray-700 mb-2 mt-4">Email Address:</label>
+        <input type="email" id="emailAddress" name="emailAddress" [(ngModel)]="newPerson.contact.emailAddress" required
+               class="w-full px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500">
+
+        <label for="address" class="block text-sm font-medium text-gray-700 mb-2 mt-4">Address:</label>
+        <input type="text" id="address" name="address" [(ngModel)]="newPerson.contact.address" required
+               class="w-full px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500">
+
+        <div class="flex justify-end mt-6">
+          <button type="button" (click)="closeCreateDialog()"
+                  class="bg-gray-300 text-gray-700 px-4 py-2 rounded-md focus:outline-none hover:bg-gray-400 mr-2">Cancel</button>
+          <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded-md focus:outline-none hover:bg-blue-600">Submit</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</dialog>
