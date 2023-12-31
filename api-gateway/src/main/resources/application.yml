@@ -4,6 +4,9 @@ server:
 logging:
   level:
     root: INFO
+    org.springframework.cloud.gateway: TRACE
+    org.springframework.cloud.gateway.route.RouteDefinitionRouteLocator: INFO
+    reactor.netty: TRACE
 
 spring:
   security:
@@ -114,6 +117,11 @@ spring:
             - Path=/bnb
           filters:
             - SetPath=/api/bnb
+            - name: RequestRateLimiter
+              args:
+                redis-rate-limiter.properties.replenishRate = 2
+                redis-rate-limiter.properties.burstCapacity = 4
+                redis-rate-limiter.properties.requestedToken = 1
 
         - id: room-service-crud-id
           uri: http://${ROOM_SERVICE_BASEURL:localhost:8085}
