@@ -14,6 +14,8 @@ import { RoomComponent } from './management_pages/room/room.component';
 import {FormsModule} from "@angular/forms";
 import { PersonComponent } from './management_pages/person/person.component';
 import { BnbComponent } from './management_pages/bnb/bnb.component';
+import { ReservationComponent } from './management_pages/reservation/reservation.component';
+import { ToastSuccessComponent } from './components/toast-success/toast-success.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +28,9 @@ import { BnbComponent } from './management_pages/bnb/bnb.component';
     ReservationPlannerComponent,
     RoomComponent,
     PersonComponent,
-    BnbComponent
+    BnbComponent,
+    ReservationComponent,
+    ToastSuccessComponent
   ],
   imports: [
     BrowserModule,

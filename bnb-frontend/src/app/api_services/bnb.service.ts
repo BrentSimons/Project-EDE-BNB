@@ -29,11 +29,11 @@ export class BnbService {
     return this.http.post(this.apiUrl, bnb, { headers: this.headers });
   }
 
-  updateBnb(name: string, bnb: {}): Observable<any> {
-    return this.http.put(this.apiUrl + name, bnb, { headers: this.headers });
+  updateBnb(id: number, bnb: {}): Observable<any> {
+    return this.http.put(this.apiUrl + id, bnb, { headers: this.headers });
   }
 
-  deleteBnb(name: string): Observable<any> {
-    return this.http.delete(this.apiUrl + name, { headers: this.headers });
+  deleteBnb(id: number): Observable<any> {
+    return this.http.delete(this.apiUrl + id, { headers: this.headers });
   }
 }

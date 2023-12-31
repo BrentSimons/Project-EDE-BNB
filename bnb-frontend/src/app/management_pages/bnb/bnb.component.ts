@@ -12,6 +12,7 @@ import { Observable } from 'rxjs';
 export class BnbComponent implements OnInit {
   bnbs: Bnb[] = [];
   newBnb: Bnb = {
+    id: 0,
     name: '',
     roomCodes: [],
     city: '',
@@ -50,7 +51,7 @@ export class BnbComponent implements OnInit {
   updateOrCreateBnb(): void {
     if (this.isUpdating) {
       // Logic for updating bnb
-      this.bnbService.updateBnb(this.newBnb.name, this.newBnb).subscribe(
+      this.bnbService.updateBnb(this.newBnb.id, this.newBnb).subscribe(
         (data) => {
           console.log('Bnb updated successfully: ', data);
           this.loadBnbs();
@@ -74,6 +75,7 @@ export class BnbComponent implements OnInit {
 
     // Reset newBnb and isUpdating
     this.newBnb = {
+      id: 0,
       name: '',
       roomCodes: [],
       city: '',
@@ -83,14 +85,14 @@ export class BnbComponent implements OnInit {
     this.isUpdating = false;
   }
 
-  updateBnb(name: string): void {
+  updateBnb(id: number): void {
     this.isUpdating = true;
-    //this.newBnb = { ...this.bnbs.find((bnb) => bnb.name === name) };
+    this.newBnb = <Bnb>{...this.bnbs.find((bnb) => bnb.id === id)};
     this.openCreateDialog(); // Open the dialog for updating
   }
 
-  deleteBnb(name: string): void {
-    this.bnbService.deleteBnb(name).subscribe(
+  deleteBnb(id: number): void {
+    this.bnbService.deleteBnb(id).subscribe(
       () => {
         console.log('Bnb deleted successfully');
         this.loadBnbs();
