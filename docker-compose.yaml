@@ -8,9 +8,6 @@ volumes:
   mongodb_room_data:
 
     # We use a bridge network so that our microservices can communicate with each other through the service names assigned in this compose file
-networks:
-  microservices_network:
-    driver: bridge
 
 services:
   redis:
@@ -25,14 +22,13 @@ services:
     environment:
       MYSQL_DATABASE: bnbdb
       MYSQL_ROOT_PASSWORD: abc123
-    networks:
-      - microservices_network
+
     ports:
       - "3306:3306"
     # volumes:
     #   - mysql_bnb_data:/var/lib/mysql
     healthcheck:
-      test: [ "CMD", "mysqladmin", "ping", "-h", "localhost" ]
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
       interval: 10s
       timeout: 20s
       retries: 10
@@ -43,12 +39,11 @@ services:
     environment:
       MYSQL_DATABASE: reservationdb
       MYSQL_ROOT_PASSWORD: abc123
-    networks:
-      - microservices_network
+
     # volumes:
     #   - mysql_reservation_data:/var/lib/mysql
     healthcheck:
-      test: [ "CMD", "mysqladmin", "ping", "-h", "localhost" ]
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
       interval: 10s
       timeout: 20s
       retries: 10
@@ -58,8 +53,7 @@ services:
     restart: on-failure
     environment:
       MONGO_INITDB_DATABASE: mongo-person
-    networks:
-      - microservices_network
+
     # volumes:
     #   - mongodb_person_data:/data/db
 
@@ -70,11 +64,9 @@ services:
       - "27017:27017"
     environment:
       MONGO_INITDB_DATABASE: mongo-room
-    networks:
-      - microservices_network
+
     # volumes:
     #   - mongodb_room_data:/data/db
-
 
     # Database's volumes are in comment until we deploy
     # Database ports are in comment because the services use the internal microservices_network network to connect to each other
@@ -106,8 +98,6 @@ services:
       # Name of the database scheme
       MYSQL_DB_NAME: bnbdb
       ROOM_SERVICE_BASEURL: room-service:8080
-    networks:
-      - microservices_network
 
   person-service:
     depends_on:
@@ -122,8 +112,6 @@ services:
       MONGODB_PORT: 27017
       # Database name:
       MONGODB_NAME: mongo-person
-    networks:
-      - microservices_network
 
   reservation-service:
     depends_on:
@@ -139,8 +127,6 @@ services:
       MYSQL_DB_USERNAME: root
       MYSQL_DB_PASSWORD: abc123
       MYSQL_DB_NAME: reservationdb
-    networks:
-      - microservices_network
 
   room-service:
     depends_on:
@@ -158,8 +144,6 @@ services:
       # Other service URLs
       BNB_SERVICE_BASEURL: bnb-service:8080
       RESERVATION_SERVICE_BASEURL: reservation-service:8080
-    networks:
-      - microservices_network
 
   api-gateway:
     depends_on:
@@ -178,5 +162,3 @@ services:
       PERSON_SERVICE_BASEURL: person-service:8080
       RESERVATION_SERVICE_BASEURL: reservation-service:8080
       ROOM_SERVICE_BASEURL: room-service:8080
-    networks:
-      - microservices_network
