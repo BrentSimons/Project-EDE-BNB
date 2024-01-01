@@ -112,7 +112,7 @@ jobs:
 
       - name: Build, test and package project
         working-directory: ./person-service
-        run: mvn package
+        run: mvn package -B
 
       - name: Docker login
         run: docker login -u ${{ secrets.DOCKER_USER }} -p ${{ secrets.DOCKER_PASSWORD }}
