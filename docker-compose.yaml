@@ -51,6 +51,8 @@ services:
   mongo-person:
     image: mongo:latest
     restart: on-failure
+    ports:
+      - "27018:27017"
     environment:
       MONGO_INITDB_DATABASE: mongo-person
 

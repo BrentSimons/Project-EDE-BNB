@@ -13,7 +13,6 @@ import java.time.LocalDate;
 @AllArgsConstructor
 @NoArgsConstructor
 public class PersonRequest {
-    private String id;
     // Instance variables
     private String firstName;
     private String lastName;

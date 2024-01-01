@@ -1,17 +1,16 @@
-import asyncio
-import aiohttp
+import requests
+import time
 
-gateway_url = "http://localhost:7000/test/bnb"
-num_requests = 6
+# Set the API endpoint
+api_url = "http://localhost:7000/test/bnb"
 
-async def send_request(session, url):
- async with session.get(url) as response:
-     return response.status
+# Set the number of requests and interval
+num_requests = 9  # Adjust based on your rate limit
 
-async def main():
- async with aiohttp.ClientSession() as session:
-     for _ in range(num_requests):
-         status = await send_request(session, gateway_url)
-         print(f"Status: {status}")
-
-asyncio.run(main())
+# Make API calls
+for i in range(num_requests):
+    response = requests.get(api_url)
+    
+    # Display the result
+    print(f"Request {i + 1} - Status Code: {response.status_code} - Text: {response.text}")
+    

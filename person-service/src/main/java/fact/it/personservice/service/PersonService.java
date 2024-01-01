@@ -52,7 +52,6 @@ public class PersonService {
         Person person = Person.builder()
                 .firstName(personRequest.getFirstName())
                 .lastName(personRequest.getLastName())
-                .id(personRequest.getId())
                 .accountNumber(personRequest.getAccountNumber())
                 .contact(personRequest.getContact())
                 .dateOfBirth(personRequest.getDateOfBirth()).build();
@@ -68,16 +67,6 @@ public class PersonService {
 
     private PersonResponse mapToPersonResponse(Person person) {
         return PersonResponse.builder()
-                .id(person.getId())
-                .firstName(person.getFirstName())
-                .lastName(person.getLastName())
-                .dateOfBirth(person.getDateOfBirth())
-                .accountNumber(person.getAccountNumber())
-                .contact(person.getContact()).build();
-    }
-
-    private PersonRequest mapToPersonRequest(Person person) {
-        return PersonRequest.builder()
                 .id(person.getId())
                 .firstName(person.getFirstName())
                 .lastName(person.getLastName())
@@ -104,11 +93,11 @@ public class PersonService {
         personRepository.deleteById(id);
     }
 
-    public PersonRequest getPerson(String id) {
+    public PersonResponse getPerson(String id) {
         Optional<Person> personOptional = personRepository.findById(id);
         if (personOptional.isPresent()) {
             Person person = personOptional.get();
-            return mapToPersonRequest(person);
+            return mapToPersonResponse(person);
         }
         return null;
     }

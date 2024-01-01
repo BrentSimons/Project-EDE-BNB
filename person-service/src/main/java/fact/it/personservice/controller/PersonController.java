@@ -37,7 +37,7 @@ public class PersonController {
 
     @GetMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
-    public PersonRequest getPerson(@PathVariable String id) {
+    public PersonResponse getPerson(@PathVariable String id) {
         return personService.getPerson(id);
     }
 
