@@ -69,7 +69,7 @@ spring:
                 redis-rate-limiter.requestedToken: 1
 
 
-        # Private endpoints
+        # Authenticated endpoints
 
         - id: reservation-service-crud-id
           uri: http://${RESERVATION_SERVICE_BASEURL:localhost:8090}

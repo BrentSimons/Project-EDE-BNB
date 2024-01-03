@@ -24,8 +24,8 @@ services:
       MYSQL_ROOT_PASSWORD: abc123
     ports:
       - "3306:3306"
-    volumes:
-      - mysql_bnb_data:/var/lib/mysql
+    # volumes:
+    #   - mysql_bnb_data:/var/lib/mysql
     healthcheck:
       test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
       interval: 10s
@@ -40,8 +40,8 @@ services:
     environment:
       MYSQL_DATABASE: reservationdb
       MYSQL_ROOT_PASSWORD: abc123
-    volumes:
-      - mysql_reservation_data:/var/lib/mysql
+    # volumes:
+    #   - mysql_reservation_data:/var/lib/mysql
     healthcheck:
       test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
       interval: 10s
@@ -55,8 +55,8 @@ services:
       - "27018:27017"
     environment:
       MONGO_INITDB_DATABASE: mongo-person
-    volumes:
-      - mongodb_person_data:/data/db
+    # volumes:
+    #   - mongodb_person_data:/data/db
 
   mongo-room:
     image: mongo:latest
@@ -65,8 +65,8 @@ services:
       - "27017:27017"
     environment:
       MONGO_INITDB_DATABASE: mongo-room
-    volumes:
-      - mongodb_room_data:/data/db
+    # volumes:
+    #   - mongodb_room_data:/data/db
 
 
 
@@ -154,7 +154,7 @@ services:
     image: brentbrentbrent/api-gateway:latest
     ports:
       - "7000:7000"
-    restart: on-failure
+    # restart: on-failure
     environment:
       # Due to the microservices_network the gateway can connect to each api separately, and since each api is viewed as its own machine we can re-use the default 8080 port
       BNB_SERVICE_BASEURL: bnb-service:8080

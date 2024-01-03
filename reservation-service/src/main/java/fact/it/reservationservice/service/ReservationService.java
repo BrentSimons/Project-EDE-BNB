@@ -31,43 +31,41 @@ public class ReservationService {
     @PostConstruct
     public void loadData() {
         if (reservationRepository.count() <= 0) {
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-
             Reservation reservation1 = new Reservation();
             reservation1.setPersonId("1");
             reservation1.setRoomCode("Room1_Bnb1");
-            reservation1.setStartDate(LocalDate.parse("2024-05-12", formatter));
-            reservation1.setEndDate(LocalDate.parse("2024-05-13", formatter));
+            reservation1.setStartDate(LocalDate.of(2024, 5, 12));
+            reservation1.setEndDate(LocalDate.of(2024, 5, 13));
 
             Reservation reservation2 = new Reservation();
             reservation2.setPersonId("2");
             reservation2.setRoomCode("Room1_Bnb1");
-            reservation2.setStartDate(LocalDate.parse("2024-03-10", formatter));
-            reservation2.setEndDate(LocalDate.parse("2024-03-15", formatter));
+            reservation2.setStartDate(LocalDate.of(2024, 3, 10));
+            reservation2.setEndDate(LocalDate.of(2024, 3, 15));
 
             Reservation reservation3 = new Reservation();
             reservation3.setPersonId("1");
             reservation3.setRoomCode("Room2_Bnb1");
-            reservation3.setStartDate(LocalDate.parse("2024-03-13", formatter));
-            reservation3.setEndDate(LocalDate.parse("2024-03-17", formatter));
+            reservation3.setStartDate(LocalDate.of(2024, 3, 13));
+            reservation3.setEndDate(LocalDate.of(2024, 3, 17));
 
             Reservation reservation4 = new Reservation();
             reservation4.setPersonId("1");
             reservation4.setRoomCode("Room1_Bnb1");
-            reservation4.setStartDate(LocalDate.parse("2024-03-19", formatter));
-            reservation4.setEndDate(LocalDate.parse("2024-03-21", formatter));
+            reservation4.setStartDate(LocalDate.of(2024, 3, 19));
+            reservation4.setEndDate(LocalDate.of(2024, 3, 21));
 
             Reservation reservation5 = new Reservation();
             reservation5.setPersonId("1");
             reservation5.setRoomCode("Room2_Bnb1");
-            reservation5.setStartDate(LocalDate.parse("2024-03-20", formatter));
-            reservation5.setEndDate(LocalDate.parse("2024-03-22", formatter));
+            reservation5.setStartDate(LocalDate.of(2024, 3, 20));
+            reservation5.setEndDate(LocalDate.of(2024, 3, 22));
 
             Reservation reservation6 = new Reservation();
             reservation6.setPersonId("1");
             reservation6.setRoomCode("Room2_Bnb1");
-            reservation6.setStartDate(LocalDate.parse("2024-01-20", formatter));
-            reservation6.setEndDate(LocalDate.parse("2024-01-22", formatter));
+            reservation6.setStartDate(LocalDate.of(2024, 1, 20));
+            reservation6.setEndDate(LocalDate.of(2024, 1, 22));
 
             reservationRepository.save(reservation1);
             reservationRepository.save(reservation2);
