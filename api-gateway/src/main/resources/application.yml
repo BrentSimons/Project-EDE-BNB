@@ -24,6 +24,21 @@ spring:
   cloud:
     gateway:
       routes:
+        - id: bnb-service-test
+          uri: http://${BNB_SERVICE_BASEURL:localhost:8080}
+          predicates:
+            - Path=/test/bnb
+            - Method=GET
+          filters:
+            - SetPath=/api/bnb/test
+            - name: RequestRateLimiter
+              args:
+                redis-rate-limiter.replenishRate: 2
+                redis-rate-limiter.burstCapacity: 4
+                redis-rate-limiter.requestedToken: 1
+
+
+
         # Public endpoints:
 
         # Get all bnbs and search for bnb(s)

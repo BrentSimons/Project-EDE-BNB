@@ -18,11 +18,17 @@ import java.util.List;
 public class BnbController {
 
     private final BnbService bnbService;
-    
+
+    @GetMapping("/test")
+    @ResponseStatus(HttpStatus.OK)
+    public String dsf(@RequestBody AvailableRoomRequest roomRequest, @RequestParam Long id) {
+        return "Bnb test OK";
+    }
 
     @GetMapping("/available")
     @ResponseStatus(HttpStatus.OK)
-    public List<AvailableRoomResponse> getAvailableRooms(@RequestBody AvailableRoomRequest roomRequest, @RequestParam Long id) {
+    public List<AvailableRoomResponse> getAvailableRooms(@RequestBody AvailableRoomRequest roomRequest,
+            @RequestParam Long id) {
         return bnbService.getAvailableRooms(roomRequest, id);
     }
 
@@ -39,7 +45,6 @@ public class BnbController {
         return removed;
     }
 
-    
     // CRUD
     @GetMapping("/all")
     @ResponseStatus(HttpStatus.OK)
