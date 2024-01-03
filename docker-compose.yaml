@@ -22,11 +22,10 @@ services:
     environment:
       MYSQL_DATABASE: bnbdb
       MYSQL_ROOT_PASSWORD: abc123
-
     ports:
       - "3306:3306"
-    # volumes:
-    #   - mysql_bnb_data:/var/lib/mysql
+    volumes:
+      - mysql_bnb_data:/var/lib/mysql
     healthcheck:
       test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
       interval: 10s
@@ -36,12 +35,13 @@ services:
   mysql-reservation:
     image: mysql:latest
     restart: on-failure
+    ports:
+      - "3307:3306"
     environment:
       MYSQL_DATABASE: reservationdb
       MYSQL_ROOT_PASSWORD: abc123
-
-    # volumes:
-    #   - mysql_reservation_data:/var/lib/mysql
+    volumes:
+      - mysql_reservation_data:/var/lib/mysql
     healthcheck:
       test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
       interval: 10s
@@ -55,9 +55,8 @@ services:
       - "27018:27017"
     environment:
       MONGO_INITDB_DATABASE: mongo-person
-
-    # volumes:
-    #   - mongodb_person_data:/data/db
+    volumes:
+      - mongodb_person_data:/data/db
 
   mongo-room:
     image: mongo:latest
@@ -66,12 +65,10 @@ services:
       - "27017:27017"
     environment:
       MONGO_INITDB_DATABASE: mongo-room
+    volumes:
+      - mongodb_room_data:/data/db
 
-    # volumes:
-    #   - mongodb_room_data:/data/db
 
-    # Database's volumes are in comment until we deploy
-    # Database ports are in comment because the services use the internal microservices_network network to connect to each other
 
     # ----------------------------------------------------------------
     # Rest APIs

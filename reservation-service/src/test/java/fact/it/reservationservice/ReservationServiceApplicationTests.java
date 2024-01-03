@@ -27,7 +27,6 @@ class ReservationServiceApplicationTests {
     @Mock
     private ReservationRepository reservationRepository;
 
-
     @Test
     public void testCheckRoomsAvailability() {
         // You can open ./roomAvailability_RESULTS_visualized.xlsx to get a visualisation of the situation that is simulated in this test

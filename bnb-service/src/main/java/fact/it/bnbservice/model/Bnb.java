@@ -23,7 +23,7 @@ public class Bnb {
     private String address;
 
     @ElementCollection
-    private List<String> roomCodes;
+    private List<String> roomCodes = new ArrayList<>();
 
     // Add a room code to the list
     public void addRoomCode(String roomCode) {
