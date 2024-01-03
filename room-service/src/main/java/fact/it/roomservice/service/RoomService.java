@@ -130,8 +130,6 @@ public class RoomService {
                 .size(roomRequest.getSize())
                 .build();
 
-        roomRepository.save(room);
-
         Long bnbId = roomWithBnbRequest.getBnbId();
         boolean result = Boolean.TRUE.equals(webClient.put()
                 .uri("http://" + bnbServiceBaseUrl + "/api/bnb/addRoom",
@@ -144,6 +142,7 @@ public class RoomService {
             return null;
         }
 
+        roomRepository.save(room);
         return room;
     }
 
@@ -156,6 +155,7 @@ public class RoomService {
             room.setRoomCode(updatedRoom.getRoomCode() != null ? updatedRoom.getRoomCode() : room.getRoomCode());
             room.setName(updatedRoom.getName() != null ? updatedRoom.getName() : room.getName());
             room.setSize(updatedRoom.getSize() != 0 ? updatedRoom.getSize() : room.getSize());
+
             return roomRepository.save(room);
         }
         return null; // Handle not found case

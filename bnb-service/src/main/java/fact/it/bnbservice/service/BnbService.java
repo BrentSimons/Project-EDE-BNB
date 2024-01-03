@@ -117,6 +117,25 @@ public class BnbService {
         return false;
     }
 
+    public boolean removeRoomFromBnb(Long bnbId, String roomCode) {
+        Optional<Bnb> bnbOptional = bnbRepository.findById(bnbId);
+
+        if (bnbOptional.isPresent()) {
+            Bnb bnb = bnbOptional.get();
+            // Remove the room code from the roomCodes list
+            List<String> modifiableList = new ArrayList<>(bnb.getRoomCodes());
+            modifiableList.remove(roomCode);
+            bnb.setRoomCodes(modifiableList);
+
+            // Save the updated Bnb
+            bnbRepository.save(bnb);
+
+            return true; // Room removed successfully
+        } else {
+            return false; // Bnb not found
+        }
+    }
+
     // CRUD
     @Transactional(readOnly = true)
     public List<BnbResponse> getBnbsByName(String name) {
@@ -150,7 +169,6 @@ public class BnbService {
 
     public Bnb createBnb(BnbRequest bnbRequest) {
         Bnb bnb = new Bnb();
-        bnb.setId(bnbRequest.getId());
         bnb.setName(bnbRequest.getName());
         bnb.setRoomCodes(bnbRequest.getRoomCodes());
         bnb.setCity(bnbRequest.getCity());
@@ -167,9 +185,8 @@ public class BnbService {
         if (bnbOptional.isPresent()) {
             Bnb bnb = bnbOptional.get();
 
-            bnb.setId(updatedBnb.getId());
             bnb.setName(updatedBnb.getName() != null ? updatedBnb.getName() : bnb.getName());
-            bnb.setRoomCodes(updatedBnb.getRoomCodes().size() != 0 ? updatedBnb.getRoomCodes() : bnb.getRoomCodes());
+            bnb.setRoomCodes(updatedBnb.getRoomCodes() != null ? updatedBnb.getRoomCodes() : bnb.getRoomCodes());
             bnb.setCity(updatedBnb.getCity() != null ? updatedBnb.getCity() : bnb.getCity());
             bnb.setPostcode(updatedBnb.getPostcode() != null ? updatedBnb.getPostcode() : bnb.getPostcode());
             bnb.setAddress(updatedBnb.getAddress() != null ? updatedBnb.getAddress() : bnb.getAddress());
@@ -183,21 +200,4 @@ public class BnbService {
         bnbRepository.deleteById(id);
     }
 
-    public boolean removeRoomFromBnb(Long bnbId, String roomCode) {
-        Optional<Bnb> bnbOptional = bnbRepository.findById(bnbId);
-
-        if (bnbOptional.isPresent()) {
-            Bnb bnb = bnbOptional.get();
-
-            // Remove the room code from the roomCodes list
-            bnb.getRoomCodes().remove(roomCode);
-
-            // Save the updated Bnb
-            bnbRepository.save(bnb);
-
-            return true; // Room removed successfully
-        } else {
-            return false; // Bnb not found
-        }
-    }
 }

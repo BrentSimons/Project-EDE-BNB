@@ -45,6 +45,7 @@ class PersonServiceApplicationTests {
                                 .build())
                 .build();
 
+        // Testing NoArgsConstructor
         PersonRequest defaultPerson = new PersonRequest();
 
         // Act
@@ -55,7 +56,6 @@ class PersonServiceApplicationTests {
         assertNull(defaultPerson.getFirstName());
 
         verify(personRepository, times(1)).save(any(Person.class));
-
     }
 
     @Test
@@ -108,7 +108,6 @@ class PersonServiceApplicationTests {
         person.setAccountNumber("1003");
         person.setContact(contact);
 
-        personRepository.save(person);
         when(personRepository.findById(person.getId())).thenReturn(Optional.of(person));
 
         // Act
@@ -144,7 +143,7 @@ class PersonServiceApplicationTests {
                                 .phoneNumber("0420 69 69 69")
                                 .build())
                 .build();
-        personRepository.save(person);
+
         when(personRepository.findById(person.getId())).thenReturn(Optional.of(person));
 
         PersonRequest personRequest = PersonRequest.builder()
@@ -173,7 +172,6 @@ class PersonServiceApplicationTests {
                                 .phoneNumber("0420 69 69 69")
                                 .build())
                 .build();
-        personRepository.save(person);
 
         // Act
         personService.deletePerson(person.getId());

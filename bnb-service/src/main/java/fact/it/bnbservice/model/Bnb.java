@@ -8,6 +8,7 @@ import java.util.List;
 
 @Entity
 @Table(name = "bnb")
+@Builder
 @Getter
 @Setter
 @NoArgsConstructor
@@ -22,14 +23,13 @@ public class Bnb {
     private String address;
 
     @ElementCollection
-    private List<String> roomCodes = new ArrayList<>();
+    private List<String> roomCodes;
 
     // Add a room code to the list
     public void addRoomCode(String roomCode) {
-        if (roomCodes == null) {
-            roomCodes = new ArrayList<>();
-        }
-        roomCodes.add(roomCode);
+        List<String> modifiableList = new ArrayList<>(roomCodes); // Create a modifiable copy
+        modifiableList.add(roomCode);
+        roomCodes = modifiableList; // Update the original list
     }
 }
 

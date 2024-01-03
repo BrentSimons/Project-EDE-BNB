@@ -118,6 +118,9 @@ public class ReservationService {
         LocalDate currentDate = LocalDate.now();
         LocalDate nextMonthDate = currentDate.plusMonths(months);
 
+        // Find all reservations for the roomCode
+        // Find all reservations for the next x months
+        // Order reservations by StartDate so that the output will also be in chronological order
         List<Reservation> reservations = reservationRepository.findByRoomCodeAndStartDateInNextMonthOrderByStartDateAsc(roomCode, nextMonthDate);
         List<ReservationPeriod> reservationPeriods = new ArrayList<>();
 
