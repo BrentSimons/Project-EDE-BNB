@@ -24,7 +24,7 @@ spring:
   cloud:
     gateway:
       routes:
-      
+
         # Public endpoints:
 
         # Get all bnbs and search for bnb(s)
@@ -37,8 +37,8 @@ spring:
             - SetPath=/api/bnb/all
             - name: RequestRateLimiter
               args:
-                redis-rate-limiter.replenishRate: 2
-                redis-rate-limiter.burstCapacity: 4
+                redis-rate-limiter.replenishRate: 5
+                redis-rate-limiter.burstCapacity: 10
                 redis-rate-limiter.requestedToken: 1
 
         # Get available rooms in a bnb
@@ -51,8 +51,8 @@ spring:
             - SetPath=/api/bnb/available
             - name: RequestRateLimiter
               args:
-                redis-rate-limiter.replenishRate: 2
-                redis-rate-limiter.burstCapacity: 4
+                redis-rate-limiter.replenishRate: 5
+                redis-rate-limiter.burstCapacity: 10
                 redis-rate-limiter.requestedToken: 1
 
         # Get room availability for following months
@@ -65,8 +65,8 @@ spring:
             - SetPath=/api/room/available
             - name: RequestRateLimiter
               args:
-                redis-rate-limiter.replenishRate: 2
-                redis-rate-limiter.burstCapacity: 4
+                redis-rate-limiter.replenishRate: 5
+                redis-rate-limiter.burstCapacity: 10
                 redis-rate-limiter.requestedToken: 1
 
 
@@ -80,8 +80,8 @@ spring:
             - SetPath=/api/reservation/{id}
             - name: RequestRateLimiter
               args:
-                redis-rate-limiter.replenishRate: 2
-                redis-rate-limiter.burstCapacity: 4
+                redis-rate-limiter.replenishRate: 5
+                redis-rate-limiter.burstCapacity: 10
                 redis-rate-limiter.requestedToken: 1
         - id: reservation-service-crud
           uri: http://${RESERVATION_SERVICE_BASEURL:localhost:8090}
@@ -91,8 +91,8 @@ spring:
             - SetPath=/api/reservation
             - name: RequestRateLimiter
               args:
-                redis-rate-limiter.replenishRate: 2
-                redis-rate-limiter.burstCapacity: 4
+                redis-rate-limiter.replenishRate: 5
+                redis-rate-limiter.burstCapacity: 10
                 redis-rate-limiter.requestedToken: 1
 
         - id: bnb-service-crud-id
@@ -103,8 +103,8 @@ spring:
             - SetPath=/api/bnb/{id}
             - name: RequestRateLimiter
               args:
-                redis-rate-limiter.replenishRate: 2
-                redis-rate-limiter.burstCapacity: 4
+                redis-rate-limiter.replenishRate: 5
+                redis-rate-limiter.burstCapacity: 10
                 redis-rate-limiter.requestedToken: 1
         - id: bnb-service-crud
           uri: http://${BNB_SERVICE_BASEURL:localhost:8080}
@@ -114,8 +114,8 @@ spring:
             - SetPath=/api/bnb
             - name: RequestRateLimiter
               args:
-                redis-rate-limiter.replenishRate: 2
-                redis-rate-limiter.burstCapacity: 4
+                redis-rate-limiter.replenishRate: 5
+                redis-rate-limiter.burstCapacity: 10
                 redis-rate-limiter.requestedToken: 1
 
         - id: room-service-crud-id
@@ -126,8 +126,8 @@ spring:
             - SetPath=/api/room/{id}
             - name: RequestRateLimiter
               args:
-                redis-rate-limiter.replenishRate: 2
-                redis-rate-limiter.burstCapacity: 4
+                redis-rate-limiter.replenishRate: 5
+                redis-rate-limiter.burstCapacity: 10
                 redis-rate-limiter.requestedToken: 1
         - id: room-service-crud
           uri: http://${ROOM_SERVICE_BASEURL:localhost:8085}
@@ -137,21 +137,21 @@ spring:
             - SetPath=/api/room
             - name: RequestRateLimiter
               args:
-                redis-rate-limiter.replenishRate: 2
-                redis-rate-limiter.burstCapacity: 4
+                redis-rate-limiter.replenishRate: 5
+                redis-rate-limiter.burstCapacity: 10
                 redis-rate-limiter.requestedToken: 1
 
         - id: person-service-crud-id
           uri: http://${PERSON_SERVICE_BASEURL:localhost:8095}
           predicates:
             - Path=/person/{id}
-          filters:
-            - SetPath=/api/person/{id}
             - name: RequestRateLimiter
               args:
-                redis-rate-limiter.replenishRate: 2
-                redis-rate-limiter.burstCapacity: 4
+                redis-rate-limiter.replenishRate: 5
+                redis-rate-limiter.burstCapacity: 10
                 redis-rate-limiter.requestedToken: 1
+          filters:
+            - SetPath=/api/person/{id}
         - id: person-service-crud
           uri: http://${PERSON_SERVICE_BASEURL:localhost:8095}
           predicates:
@@ -160,6 +160,6 @@ spring:
             - SetPath=/api/person
             - name: RequestRateLimiter
               args:
-                redis-rate-limiter.replenishRate: 2
-                redis-rate-limiter.burstCapacity: 4
+                redis-rate-limiter.replenishRate: 5
+                redis-rate-limiter.burstCapacity: 10
                 redis-rate-limiter.requestedToken: 1
