@@ -19,12 +19,7 @@ public class BnbController {
 
     private final BnbService bnbService;
 
-    @GetMapping("/test")
-    @ResponseStatus(HttpStatus.OK)
-    public String test() {
-        return "Bnb test OK";
-    }
-
+    
     @GetMapping("/available")
     @ResponseStatus(HttpStatus.OK)
     public List<AvailableRoomResponse> getAvailableRooms(@RequestBody AvailableRoomRequest roomRequest,
