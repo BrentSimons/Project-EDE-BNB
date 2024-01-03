@@ -18,12 +18,6 @@ public class ReservationController {
 
     private final ReservationService reservationService;
 
-    @GetMapping("/test")
-    @ResponseStatus(HttpStatus.OK)
-    public String test() {
-        return "Reservation test OK";
-    }
-
 
     @PostMapping("/availableRooms")
     @ResponseStatus(HttpStatus.OK)
@@ -38,6 +32,7 @@ public class ReservationController {
             @RequestParam(required = false, defaultValue = "1") int months) {
         return reservationService.getAvailablePeriods(roomCode, months);
     }
+    
 
     // CRUD
     @GetMapping("/all")

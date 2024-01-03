@@ -24,70 +24,6 @@ spring:
   cloud:
     gateway:
       routes:
-        # Tests / Examples
-        - id: person-service-test
-          uri: http://${PERSON_SERVICE_BASEURL:localhost:8095}
-          predicates:
-            - Path=/test/person
-            - Method=GET
-          filters:
-            - SetPath=/api/person/test
-            - name: RequestRateLimiter
-              args:
-                # Defines how many requests per second to allow (without any dropped requests).
-                # This is the rate at which the token bucket is filled.
-                redis-rate-limiter.replenishRate: 2
-                # This property is the maximum number of requests a user is allowed in a single second (without any dropped requests).
-                # This is the number of tokens the token bucket can hold. Setting this value to zero blocks all requests.
-                redis-rate-limiter.burstCapacity: 4
-                # How many tokens a request costs. This is the number of tokens taken from the bucket for each request and defaults to 1.
-                redis-rate-limiter.requestedToken: 1
-        - id: bnb-service-test
-          uri: http://${BNB_SERVICE_BASEURL:localhost:8080}
-          predicates:
-            - Path=/test/bnb
-            - Method=GET
-          filters:
-            - SetPath=/api/bnb/test
-            - name: RequestRateLimiter
-              args:
-                redis-rate-limiter.replenishRate: 2
-                redis-rate-limiter.burstCapacity: 4
-                redis-rate-limiter.requestedToken: 1
-        - id: reservation-service-test
-          uri: http://${RESERVATION_SERVICE_BASEURL:localhost:8090}
-          predicates:
-            - Path=/test/reservation
-            - Method=GET
-          filters:
-            - SetPath=/api/reservation/test
-            - name: RequestRateLimiter
-              args:
-                redis-rate-limiter.replenishRate: 2
-                redis-rate-limiter.burstCapacity: 4
-                redis-rate-limiter.requestedToken: 1
-        - id: room-service-test
-          uri: http://${ROOM_SERVICE_BASEURL:localhost:8085}
-          predicates:
-            - Path=/test/room
-            - Method=GET
-          filters:
-            - SetPath=/api/room/test
-            - name: RequestRateLimiter
-              args:
-                redis-rate-limiter.replenishRate: 2
-                redis-rate-limiter.burstCapacity: 4
-                redis-rate-limiter.requestedToken: 1
-
-        # Authentication Test / Examples
-        - id: bnb-service-secure-test
-          uri: http://${BNB_SERVICE_BASEURL:localhost:8080}
-          predicates:
-            - Path=/auth/test
-            - Method=GET
-          filters:
-            - SetPath=/api/bnb/secureTest
-
         # Public endpoints:
 
         # Get all bnbs and search for bnb(s)
@@ -103,6 +39,7 @@ spring:
                 redis-rate-limiter.replenishRate: 2
                 redis-rate-limiter.burstCapacity: 4
                 redis-rate-limiter.requestedToken: 1
+
         # Get available rooms in a bnb
         - id: bnb-service-rooms-available
           uri: http://${BNB_SERVICE_BASEURL:localhost:8080}
@@ -116,6 +53,7 @@ spring:
                 redis-rate-limiter.replenishRate: 2
                 redis-rate-limiter.burstCapacity: 4
                 redis-rate-limiter.requestedToken: 1
+
         # Get room availability for following months
         - id: room-service-room-availability
           uri: http://${ROOM_SERVICE_BASEURL:localhost:8085}
@@ -129,6 +67,7 @@ spring:
                 redis-rate-limiter.replenishRate: 2
                 redis-rate-limiter.burstCapacity: 4
                 redis-rate-limiter.requestedToken: 1
+
 
         # Private endpoints
 

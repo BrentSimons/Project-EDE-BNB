@@ -16,12 +16,8 @@ import java.util.List;
 public class PersonController {
     private final PersonService personService;
 
-    @PostMapping()
-    @ResponseStatus(HttpStatus.CREATED)
-    public void createPerson(@RequestBody PersonRequest personRequest) {
-        personService.createPerson(personRequest);
-    }
-
+    
+    // CRUD
     @GetMapping("/all")
     @ResponseStatus(HttpStatus.OK)
     public List<PersonResponse> getAllProducts() {
@@ -29,16 +25,17 @@ public class PersonController {
         return personService.getAllPerson();
     }
 
-    @GetMapping("/test")
-    @ResponseStatus(HttpStatus.OK)
-    public String test() {
-        return "test";
-    }
 
     @GetMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
     public PersonResponse getPerson(@PathVariable String id) {
         return personService.getPerson(id);
+    }
+    
+    @PostMapping()
+    @ResponseStatus(HttpStatus.CREATED)
+    public void createPerson(@RequestBody PersonRequest personRequest) {
+        personService.createPerson(personRequest);
     }
 
     @PutMapping("/{id}")

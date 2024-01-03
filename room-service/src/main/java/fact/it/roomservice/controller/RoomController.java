@@ -16,12 +16,6 @@ import java.util.List;
 public class RoomController {
     private final RoomService roomService;
 
-    @GetMapping("/test")
-    @ResponseStatus(HttpStatus.OK)
-    public String test() {
-        return "Room test OK";
-    }
-
 
     @PostMapping("/availableRooms")
     @ResponseStatus(HttpStatus.OK)
@@ -34,6 +28,7 @@ public class RoomController {
     public List<ReservationPeriod> getAvailablePeriods(@RequestParam String roomCode, @RequestParam(required = false, defaultValue = "1") int months) {
         return roomService.getAvailablePeriods(roomCode, months);
     }
+
 
     // CRUD
     @GetMapping("/all")

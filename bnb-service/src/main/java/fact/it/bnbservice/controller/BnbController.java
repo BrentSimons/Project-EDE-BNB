@@ -32,18 +32,14 @@ public class BnbController {
         return bnbService.addRoom(bnbId, roomCode);
     }
 
-    @GetMapping("/secureTest")
+    @PutMapping("/removeRoom")
     @ResponseStatus(HttpStatus.OK)
-    public String secureTest() {
-        return "Secured Bnb test OK";
+    public boolean removeRoom(@RequestParam Long bnbId, @RequestParam String roomCode) {
+        boolean removed = bnbService.removeRoomFromBnb(bnbId, roomCode);
+        return removed;
     }
 
-    @GetMapping("/test")
-    @ResponseStatus(HttpStatus.OK)
-    public String test() {
-        return "Bnb test OK";
-    }
-
+    
     // CRUD
     @GetMapping("/all")
     @ResponseStatus(HttpStatus.OK)
@@ -69,13 +65,6 @@ public class BnbController {
     @ResponseStatus(HttpStatus.OK)
     public Bnb updateBnb(@PathVariable Long id, @RequestBody BnbRequest updatedBnb) {
         return bnbService.updateBnb(id, updatedBnb);
-    }
-
-    @PutMapping("/removeRoom")
-    @ResponseStatus(HttpStatus.OK)
-    public boolean removeRoom(@RequestParam Long bnbId, @RequestParam String roomCode) {
-        boolean removed = bnbService.removeRoomFromBnb(bnbId, roomCode);
-        return removed;
     }
 
     @DeleteMapping("/{id}")

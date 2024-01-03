@@ -19,7 +19,7 @@ import java.util.Objects;
 @EnableWebFluxSecurity
 public class SecurityConfig {
     String[] PublicEndpoints = {
-            "/public/bnb", "/public/rooms/available", "/public/room/available", "/test/**"
+            "/public/bnb", "/public/rooms/available", "/public/room/available"
     };
 
     @Bean
