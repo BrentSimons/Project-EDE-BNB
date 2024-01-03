@@ -36,6 +36,7 @@ spring:
             - SetPath=/api/bnb/all
             - name: RequestRateLimiter
               args:
+                key-resolver: "#{@keyResolver}"
                 redis-rate-limiter.replenishRate: 2
                 redis-rate-limiter.burstCapacity: 4
                 redis-rate-limiter.requestedToken: 1
