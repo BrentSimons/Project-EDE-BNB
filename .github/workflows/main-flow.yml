@@ -31,7 +31,7 @@ jobs:
 
       - name: Build, test and package project
         working-directory: ./api-gateway
-        run: mvn package -DskipTests
+        run: mvn package -B
 
       - name: Docker login
         run: docker login -u ${{ secrets.DOCKER_USER }} -p ${{ secrets.DOCKER_PASSWORD }}
@@ -58,7 +58,7 @@ jobs:
 
       - name: Build, test and package project
         working-directory: ./room-service
-        run: mvn package -DskipTests
+        run: mvn package -B
 
       - name: Docker login
         run: docker login -u ${{ secrets.DOCKER_USER }} -p ${{ secrets.DOCKER_PASSWORD }}
@@ -85,7 +85,7 @@ jobs:
 
       - name: Build, test and package project
         working-directory: ./reservation-service
-        run: mvn package -DskipTests
+        run: mvn package -B
 
       - name: Docker login
         run: docker login -u ${{ secrets.DOCKER_USER }} -p ${{ secrets.DOCKER_PASSWORD }}
@@ -139,7 +139,7 @@ jobs:
 
       - name: Build, test and package project
         working-directory: ./bnb-service
-        run: mvn package -DskipTests
+        run: mvn package -B
 
       - name: Docker login
         run: docker login -u ${{ secrets.DOCKER_USER }} -p ${{ secrets.DOCKER_PASSWORD }}
