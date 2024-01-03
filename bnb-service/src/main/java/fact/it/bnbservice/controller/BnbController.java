@@ -21,7 +21,7 @@ public class BnbController {
 
     @GetMapping("/test")
     @ResponseStatus(HttpStatus.OK)
-    public String dsf(@RequestBody AvailableRoomRequest roomRequest, @RequestParam Long id) {
+    public String test() {
         return "Bnb test OK";
     }
 
