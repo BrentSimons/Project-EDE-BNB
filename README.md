@@ -43,8 +43,4 @@ In this diagram you can see an overview of our microservices architecture
 
 For more info about our endpoints please view the file [endpoint_examples.md](endpoint_examples.md)
 
-### End result screenshots of each endpoint:
-
-(To be added later)
-
 
