@@ -260,7 +260,7 @@ class RoomServiceApplicationTests {
         when(responseSpec.bodyToMono(Boolean.class)).thenReturn(Mono.just(true));
 
         // Act
-        roomService.deleteRoom(room.getId(), 2);
+        roomService.deleteRoom(room.getId(), 2L);
 
         // Assert
         verify(roomRepository, times(1)).deleteById(room.getId());
