@@ -10,20 +10,15 @@ The optional `name` parameter can be used to filter through the bnbs in our syst
 
 If multiple bnbs contain the text of the parameter within their name, they will all be returned.
 
-Example result:
+Example results:
 
-```json
-[
-    {
-        "name": "Hugo's Bnb Ter Dolen",
-        "roomsIdList": [ 1, 2 ]
-    },
-    {
-        "name": "Hugo's Bnb Geel",
-        "roomsIdList": [ 3, 4 ]
-    }
-]
-```
+When no `name` is given, all bnb's are returned:
+
+![Request with empty name](./Ω-postman_screenshots/public_bnb/name_null.png)
+
+When a `name` value is given, only the bnb's whose names contain the given value are returned:
+
+![Request with name as Hugo](./Ω-postman_screenshots/public_bnb/name=Hugo.png)
 
 ### 2. GET /public/rooms/available?id=\<bnbId\>
 
@@ -47,24 +42,47 @@ The `startDate` and `endDate` are used to check if the rooms are available durin
 The `size` parameter can be used to filter rooms which are too small for your group, note that when a room is too small it will not be returned. This way the client can indicate how many people will need to stay in the bnb, only rooms that are big enough (also bigger) will be returned.
 
 Example result:
-```json
-[
-    {
-        "roomCode": "Room1_Bnb1",
-        "available": false
-    },
-    {
-        "roomCode": "Room2_Bnb1",
-        "available": true
-    },
-    {
-        "roomCode": "Room3_Bnb1",
-        "available": true
-    }
-]
-```
 
-### 3. GET /public/room/available?roomCode=<Room2_Bnb1>&months=<3>
+This is a visualisation of the reservations for the bnb with `id=1`:
+
+![Reservations visualisation](./Ω-postman_screenshots/public_room_available/reservations%20bnb1.png)
+
+Since all rooms from bnb with `id=1` have a `size` greater than or equal to 2, all rooms will be returned. 
+The room with `roomCode=Room1_Bnb1` already has a reservation from March 10th until March 15th and therefore it will be returned with `"available": false`:
+
+![](./Ω-postman_screenshots/public_room_available/1.png)
+
+If the `size` value in the request body is changed to 3, `Room3_Bnb1` will not be returned (since it has a size of 2 so it is too small):
+
+![](./Ω-postman_screenshots/public_room_available/2.png)
+
+If we test another period inside the request body, we see that `Room1_Bnb1` is available from March 16th until March 18th while `Room2_Bnb1` is unavailable:
+
+![](./Ω-postman_screenshots/public_room_available/3.png)
+
+<details>
+  <summary style="color: #2581e8; text-decoration: underline; font-size: 20px">See which endpoints are used behind the scenes</summary>
+  
+  ### 1. GET /public/rooms/available?id=\<bnbId\>
+  This method retrieves all `roomCodes` form the bnb with given `bnbId`, then it passes an `AvailableRoomRequest` object as the request body to the next endpoint.
+
+  ### 2. POST localhost:8085/api/room/availableRooms
+  This method filters all `roomCodes` from the request body based on `size`, only rooms that are big enough will be passed on to the next endpoint.
+  
+  As we saw in one of the previous examples, the bnb with `id=1` has 3 rooms: `Room1_Bnb1`, `Room2_Bnb1`, `Room3_Bnb1` with `sizes` 5, 3 and 2  respectively. This means `Room3_Bnb1` is too small and therefore will not be passed on to the next endpoint:
+  
+  ![Endpoint in room-service](./Ω-postman_screenshots/public_room_available/step2_room.png)
+
+  ### 3. POST localhost:8090/api/reservation/availableRooms
+  This method checks all `roomCodes` in the request body and returns whether or not they are available during the given time period. This info will be converted to a list of `AvailableRoomResponse` objects.
+
+  As you can see `Room3_Bnb1` is not present in the request body, this means that it was not big enough.
+
+  ![Endpoint in reservation-service](./Ω-postman_screenshots/public_room_available/step3_reservation.png)
+
+</details>
+
+### <br>3. GET /public/room/available?roomCode=<Room2_Bnb1>&months=<3>
 
 This is a public endpoint that can be used to check whether a specific room is available within the next month(s).
 
@@ -72,24 +90,15 @@ The `roomCode` parameter is required and specifies which room you want to check 
 
 The `months` parameter is optional, it has default value of 1 but can be changed to any integer. 
 
-Example result:
+Example results:
 
-```json
-[
-    {
-        "startDate": "2023-12-28",
-        "endDate": "2024-03-09"
-    },
-    {
-        "startDate": "2024-03-14",
-        "endDate": "2024-03-18"
-    },
-    {
-        "startDate": "2024-03-20",
-        "endDate": "2024-03-28"
-    }
-]
-```
+When no value is given for `months`, the value 1 will be used. This means that it will check on what days the given room is available.
+
+Here you can see that `Room2_Bnb1` has one reservation from January 21st until January
+
+![Response for the next month](./Ω-postman_screenshots/public_room_availableperiods/months1.png)
+
+![Response for the next 3 months](./Ω-postman_screenshots/public_room_availableperiods/months3.png)
 
 As you can see in this result the room is available for 3 periods. This means that there are 2 reservations planned for this room (the gaps between the available periods that are returned).
 

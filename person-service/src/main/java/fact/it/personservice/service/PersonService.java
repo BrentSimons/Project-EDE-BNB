@@ -79,6 +79,7 @@ public class PersonService {
 
     public Person updatePerson(String id, PersonRequest updatedPerson) {
         Optional<Person> personOptional = personRepository.findById(id);
+
         if (personOptional.isPresent()) {
             Person person = personOptional.get();
             person.setFirstName(updatedPerson.getFirstName() != null ? updatedPerson.getFirstName() : person.getFirstName());

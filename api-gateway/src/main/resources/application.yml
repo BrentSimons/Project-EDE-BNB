@@ -63,11 +63,12 @@ spring:
             - Method=GET
           filters:
             - SetPath=/api/room/available
-            - name: RequestRateLimiter
-              args:
-                redis-rate-limiter.replenishRate: 5
-                redis-rate-limiter.burstCapacity: 10
-                redis-rate-limiter.requestedToken: 1
+# TODO remove comment
+#            - name: RequestRateLimiter
+#              args:
+#                redis-rate-limiter.replenishRate: 5
+#                redis-rate-limiter.burstCapacity: 10
+#                redis-rate-limiter.requestedToken: 1
 
 
         # Authenticated endpoints

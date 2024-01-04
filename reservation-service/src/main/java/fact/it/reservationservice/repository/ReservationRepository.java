@@ -32,6 +32,7 @@ public interface ReservationRepository extends JpaRepository<Reservation, Long> 
             SELECT r FROM Reservation r
             WHERE r.roomCode = :roomCode
             AND r.startDate BETWEEN CURRENT_DATE AND :nextMonthStartDate
+            ORDER BY r.startDate
             """)
     List<Reservation> findByRoomCodeAndStartDateInNextMonthOrderByStartDateAsc(
             @Param("roomCode") String roomCode,

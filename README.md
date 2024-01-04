@@ -36,7 +36,7 @@ In this diagram you can see an overview of our microservices architecture
 
 ### Endpoints:
 
-
+<<<<<<< HEAD
 | HTTP <br> method | Endpoint                                  |   Service   | Description                                                                                      |            Authorized            | Parameters/Body                      |
 |------------------|-------------------------------------------|:-----------:|--------------------------------------------------------------------------------------------------|:--------------------------------:|--------------------------------------|
 | GET              | /public/bnb?name=                         |     Bnb     | Retrieve all bnb's that have the given parameter in their name                                   | <font color="#ff1a1a">No</font>  | `name`                               |
