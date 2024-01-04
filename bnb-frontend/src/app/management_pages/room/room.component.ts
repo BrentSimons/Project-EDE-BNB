@@ -2,6 +2,8 @@ import {Component, OnInit} from '@angular/core';
 import {Room} from "../../models/room.model";
 import {RoomService} from "../../api_services/room.service";
 import {Observable} from "rxjs";
+import {Bnb} from "../../models/bnb.model";
+import {BnbService} from "../../api_services/bnb.service";
 
 @Component({
   selector: 'app-room',
@@ -9,14 +11,16 @@ import {Observable} from "rxjs";
   styleUrls: ['./room.component.css']
 })
 export class RoomComponent implements OnInit {
+  bnbs: Bnb[] = [];
   rooms: any[] = [];
   newRoom: any = { roomCode: '', name: '', size: 0 };
   isUpdating: boolean = false;
 
-  constructor(private roomService: RoomService) { }
+  constructor(private roomService: RoomService, private bnbService: BnbService) { }
 
   ngOnInit(): void {
     this.loadRooms();
+    this.loadBnbs();
   }
 
   loadRooms(): void {
@@ -26,6 +30,17 @@ export class RoomComponent implements OnInit {
       },
       (error) => {
         console.error('Error fetching rooms: ', error);
+      }
+    );
+  }
+
+  loadBnbs(): void {
+    this.bnbService.getAllBnbs().subscribe(
+      (data) => {
+        this.bnbs = data;
+      },
+      (error) => {
+        console.error('Error fetching bnbs: ', error);
       }
     );
   }
@@ -74,15 +89,22 @@ export class RoomComponent implements OnInit {
   }
 
   deleteRoom(id: number): void {
-    this.roomService.deleteRoom(id).subscribe(
-      () => {
-        console.log('Room deleted successfully');
-        this.loadRooms();
-      },
-      (error) => {
-        console.error('Error deleting room: ', error);
-      }
-    );
+    // Fetch bnbId associated with the room
+    const roomToDelete = this.rooms.find(room => room.id === id);
+    const bnbId = this.bnbs.find(bnb => bnb.roomCodes.includes(roomToDelete.roomCode))?.id;
+
+    // Call deleteRoom with roomId and bnbId
+    if (bnbId) {
+      this.roomService.deleteRoom(id, bnbId).subscribe(
+        () => {
+          console.log('Room deleted successfully');
+          this.loadRooms();
+        },
+        (error) => {
+          console.error('Error deleting room: ', error);
+        }
+      );
+    }
   }
 
   resetModal() {
