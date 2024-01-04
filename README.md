@@ -36,6 +36,7 @@ In this diagram you can see an overview of our microservices architecture
 
 ### Endpoints:
 
+
 | HTTP <br> method | Endpoint                                  |   Service   | Description                                                                                      |            Authorized            | Parameters/Body                      |
 |------------------|-------------------------------------------|:-----------:|--------------------------------------------------------------------------------------------------|:--------------------------------:|--------------------------------------|
 | GET              | /public/bnb?name=                         |     Bnb     | Retrieve all bnb's that have the given parameter in their name                                   | <font color="#ff1a1a">No</font>  | `name`                               |
@@ -65,11 +66,6 @@ In this diagram you can see an overview of our microservices architecture
 | DELETE           | /person/{id}                              |   Person    | Delete the person with given `id`                                                                | <font color="#47d147">Yes</font> |                                      |
 
 
-
 For more info about our endpoints please view the file [endpoint_examples.md](endpoint_examples.md)
-
-### End result screenshots of each endpoint:
-
-(To be added later)
 
 
