@@ -1,6 +1,7 @@
-In this file you will be able to see some examples for all our endpoints
+In this file you will be able to see some examples for all our endpoints, at the bottom of each endpoint there will also be a screenshot of a complete request made in Postman.
 
 # Public Endpoints
+
 
 ### 1. GET /public/bnb?name=Hugo
 
@@ -29,7 +30,7 @@ Required body:
 ```json
 {
     "roomCodes": [],
-    "startDate": "2022-05-11",
+    "startDate": "2024-05-7",
     "endDate": "2024-05-11",
     "size": 3
 }
