@@ -83,7 +83,15 @@ public class PersonService {
             person.setLastName(updatedPerson.getLastName() != null ? updatedPerson.getLastName() : person.getLastName());
             person.setDateOfBirth(updatedPerson.getDateOfBirth() != null ? updatedPerson.getDateOfBirth() : person.getDateOfBirth());
             person.setAccountNumber(updatedPerson.getAccountNumber() != null ? updatedPerson.getAccountNumber() : person.getAccountNumber());
-            person.setContact(updatedPerson.getContact() != null ? updatedPerson.getContact() : person.getContact());
+
+            if (updatedPerson.getContact() != null) {
+                Contact updatedContact = Contact.builder()
+                    .phoneNumber(updatedPerson.getContact().getPhoneNumber() != null ? updatedPerson.getContact().getPhoneNumber() : person.getContact().getPhoneNumber())
+                    .emailAddress(updatedPerson.getContact().getEmailAddress() != null ? updatedPerson.getContact().getEmailAddress() : person.getContact().getEmailAddress())
+                    .address(updatedPerson.getContact().getAddress() != null ? updatedPerson.getContact().getAddress() : person.getContact().getAddress())
+                    .build();
+                person.setContact(updatedContact);
+            }
             personRepository.save(person);
         }
         return null; // Handle not found case
