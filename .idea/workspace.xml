@@ -5,22 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d98aef2e-74d9-4d62-97e6-10fe2535eb59" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bnb-frontend/src/app/app.component.css" beforeDir="false" afterPath="$PROJECT_DIR$/bnb-frontend/src/app/app.component.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bnb-frontend/src/app/home/home.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/bnb-frontend/src/app/home/home.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bnb-frontend/src/app/management_pages/bnb/bnb.component.css" beforeDir="false" afterPath="$PROJECT_DIR$/bnb-frontend/src/app/management_pages/bnb/bnb.component.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bnb-frontend/src/app/management_pages/bnb/bnb.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/bnb-frontend/src/app/management_pages/bnb/bnb.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bnb-frontend/src/app/management_pages/bnb/bnb.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/bnb-frontend/src/app/management_pages/bnb/bnb.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bnb-frontend/src/app/management_pages/person/person.component.css" beforeDir="false" afterPath="$PROJECT_DIR$/bnb-frontend/src/app/management_pages/person/person.component.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bnb-frontend/src/app/management_pages/person/person.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/bnb-frontend/src/app/management_pages/person/person.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bnb-frontend/src/app/management_pages/reservation-planner/reservation-planner.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/bnb-frontend/src/app/management_pages/reservation-planner/reservation-planner.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bnb-frontend/src/app/management_pages/reservation-planner/reservation-planner.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/bnb-frontend/src/app/management_pages/reservation-planner/reservation-planner.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bnb-frontend/src/app/management_pages/reservation/reservation.component.css" beforeDir="false" afterPath="$PROJECT_DIR$/bnb-frontend/src/app/management_pages/reservation/reservation.component.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bnb-frontend/src/app/management_pages/reservation/reservation.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/bnb-frontend/src/app/management_pages/reservation/reservation.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bnb-frontend/src/app/management_pages/reservation/reservation.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/bnb-frontend/src/app/management_pages/reservation/reservation.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bnb-frontend/src/app/management_pages/room/room.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/bnb-frontend/src/app/management_pages/room/room.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bnb-frontend/src/app/management_pages/room/room.notes" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/bnb-frontend/src/app/models/room.model.ts" beforeDir="false" afterPath="$PROJECT_DIR$/bnb-frontend/src/app/models/room.model.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -51,36 +38,36 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
-    &quot;Notification.DisplayName-DoNotAsk-Database detector&quot;: &quot;Database detector&quot;,
-    &quot;Notification.DoNotAsk-Database detector&quot;: &quot;true&quot;,
-    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
-    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
-    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
-    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;Spring Boot.ApiGatewayApplication.executor&quot;: &quot;Run&quot;,
-    &quot;Spring Boot.BnbServiceApplication.executor&quot;: &quot;Run&quot;,
-    &quot;Spring Boot.RoomServiceApplication.executor&quot;: &quot;Run&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;Z:/ImportantyDocuments/Enterprise Development Experience/Project&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;run.configurations.included.in.services&quot;: &quot;true&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;settings.javascript.prettier&quot;,
-    &quot;spring.configuration.checksum&quot;: &quot;8914456628395870837dcd42246107e3&quot;,
-    &quot;ts.external.directory.path&quot;: &quot;Z:\\ImportantyDocuments\\Enterprise Development Experience\\Project\\bnb-frontend\\node_modules\\typescript\\lib&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
+    "Notification.DisplayName-DoNotAsk-Database detector": "Database detector",
+    "Notification.DoNotAsk-Database detector": "true",
+    "RequestMappingsPanelOrder0": "0",
+    "RequestMappingsPanelOrder1": "1",
+    "RequestMappingsPanelWidth0": "75",
+    "RequestMappingsPanelWidth1": "75",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "Spring Boot.ApiGatewayApplication.executor": "Run",
+    "Spring Boot.BnbServiceApplication.executor": "Run",
+    "Spring Boot.RoomServiceApplication.executor": "Run",
+    "WebServerToolWindowFactoryState": "false",
+    "ignore.virus.scanning.warn.message": "true",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/siebe/Documents/__CODING/java_EDE_BNB Project/Project-EDE-BNB",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "run.configurations.included.in.services": "true",
+    "settings.editor.selected.configurable": "settings.javascript.prettier",
+    "spring.configuration.checksum": "8914456628395870837dcd42246107e3",
+    "ts.external.directory.path": "Z:\\ImportantyDocuments\\Enterprise Development Experience\\Project\\bnb-frontend\\node_modules\\typescript\\lib",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="Z:\ImportantyDocuments\Enterprise Development Experience\Project\bnb-frontend\src\app\management_pages" />
@@ -160,6 +147,7 @@
       <workItem from="1703931479284" duration="3136000" />
       <workItem from="1703957939487" duration="5731000" />
       <workItem from="1704012948738" duration="2395000" />
+      <workItem from="1704371498196" duration="3402000" />
     </task>
     <servers />
   </component>
