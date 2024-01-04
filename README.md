@@ -36,10 +36,11 @@ In this diagram you can see an overview of our microservices architecture
 
 ### Endpoints:
 
-| Endpoint          | API         | Description                | Authorized | Parameters/Body |
-|-------------------|-------------|----------------------------|------------|-----------------|
-| /test/reservation | reservation | Tests the reservation API  | No         | /               |
-| /auth/test        | bnb         | Securely tests the bnb API | Yes        | /               |
+| Endpoint          | HTTP | Service | Description                      | Authorized | Parameters/Body |
+|-------------------|------|---------|----------------------------------|------------|-----------------|
+| /public/bnb?name= | GET  | Bnb     | Retrieve all BnB's that have the | No         | `name`          |
+|                   |      |         | given parameter in their name    |            |                 |
+|-------------------|------|---------|----------------------------------|------------|-----------------|
 
 For more info about our endpoints please view the file [endpoint_examples.md](endpoint_examples.md)
 
