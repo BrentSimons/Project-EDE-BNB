@@ -62,7 +62,7 @@ If we test another period inside the request body, we see that `Room1_Bnb1` is a
 ![](./Ω-postman_screenshots/public_room_available/3.png)
 
 <details>
-  <summary style="color: #2581e8; text-decoration: underline; font-size: 24px">See which endpoints are used behind the scenes</summary>
+  <summary style="color: #2581e8; text-decoration: underline; font-size: 20px">See which endpoints are used behind the scenes</summary>
   
   ### 1. GET /public/rooms/available?id=\<bnbId\>
   This method retrieves all `roomCodes` form the bnb with given `bnbId`, then it passes an `AvailableRoomRequest` object as the request body to the next endpoint.
