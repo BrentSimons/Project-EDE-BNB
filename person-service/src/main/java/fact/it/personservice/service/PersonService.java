@@ -48,15 +48,17 @@ public class PersonService {
         }
     }
 
-    public void createPerson(PersonRequest personRequest) {
+    public Person createPerson(PersonRequest personRequest) {
         Person person = Person.builder()
                 .firstName(personRequest.getFirstName())
                 .lastName(personRequest.getLastName())
                 .accountNumber(personRequest.getAccountNumber())
                 .contact(personRequest.getContact())
-                .dateOfBirth(personRequest.getDateOfBirth()).build();
+                .dateOfBirth(personRequest.getDateOfBirth())
+                .build();
 
         personRepository.save(person);
+        return person;
     }
 
     public List<PersonResponse> getAllPerson() {
@@ -93,6 +95,7 @@ public class PersonService {
                 person.setContact(updatedContact);
             }
             personRepository.save(person);
+            return person;
         }
         return null; // Handle not found case
     }

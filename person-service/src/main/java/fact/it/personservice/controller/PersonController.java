@@ -34,8 +34,8 @@ public class PersonController {
     
     @PostMapping()
     @ResponseStatus(HttpStatus.CREATED)
-    public void createPerson(@RequestBody PersonRequest personRequest) {
-        personService.createPerson(personRequest);
+    public Person createPerson(@RequestBody PersonRequest personRequest) {
+        return personService.createPerson(personRequest);
     }
 
     @PutMapping("/{id}")
