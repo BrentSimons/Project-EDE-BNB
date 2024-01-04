@@ -57,7 +57,7 @@ public class RoomController {
 
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void deleteRoom(@PathVariable String id, @RequestParam int bnbId) {
+    public void deleteRoom(@PathVariable String id, @RequestParam Long bnbId) {
         roomService.deleteRoom(id, bnbId);
     }
 }

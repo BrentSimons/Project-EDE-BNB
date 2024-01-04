@@ -161,7 +161,7 @@ public class RoomService {
         return null; // Handle not found case
     }
 
-    public void deleteRoom(String id, int bnbId) {
+    public void deleteRoom(String id, Long bnbId) {
         Optional<Room> roomOptional = roomRepository.findById(id);
 
         if (roomOptional.isPresent()) {
