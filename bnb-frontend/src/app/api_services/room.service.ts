@@ -1,5 +1,5 @@
 import {inject, Injectable} from '@angular/core';
-import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {Room} from "../models/room.model";
 import {AuthService} from "../auth.service";
@@ -33,7 +33,8 @@ export class RoomService {
     return this.http.put(this.apiUrl + id, room, { headers: this.headers });
   }
 
-  deleteRoom(id: number): Observable<any> {
-    return this.http.delete(this.apiUrl + id, { headers: this.headers });
+  deleteRoom(id: number, bnbId: number): Observable<any> {
+    const params = new HttpParams().set('bnbId', bnbId.toString());
+    return this.http.delete(this.apiUrl + id, { headers: this.headers, params: params });
   }
 }
