@@ -20,7 +20,7 @@ This repository contains our school project for the Enterprise Development Exper
 | Bnb         | Bed and breakfast establishments                         | MySQL    |
 | Room        | Rooms available in a BnB establisment                    | MongoDB  |
 | Reservation | Reservations made under a room                           | MySQL    |
-| Person      | Owners, customers, staff that are recorded in the system | MongoDB  |
+| Person      | Customers that are recorded in the system | MongoDB  |
 
 ### ERD Model
 
