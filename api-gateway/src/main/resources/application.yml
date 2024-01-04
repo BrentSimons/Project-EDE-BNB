@@ -145,13 +145,13 @@ spring:
           uri: http://${PERSON_SERVICE_BASEURL:localhost:8095}
           predicates:
             - Path=/person/{id}
+          filters:
+            - SetPath=/api/person/{id}
             - name: RequestRateLimiter
               args:
                 redis-rate-limiter.replenishRate: 5
                 redis-rate-limiter.burstCapacity: 10
                 redis-rate-limiter.requestedToken: 1
-          filters:
-            - SetPath=/api/person/{id}
         - id: person-service-crud
           uri: http://${PERSON_SERVICE_BASEURL:localhost:8095}
           predicates:
