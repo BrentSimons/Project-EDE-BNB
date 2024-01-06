@@ -13,6 +13,7 @@ services:
   redis:
     image: redis:latest
 
+
   # Databases
   mysql-bnb:
     image: mysql:latest

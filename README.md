@@ -22,6 +22,36 @@ This repository contains our school project for the Enterprise Development Exper
 | Reservation | Reservations made under a room            | MySQL    |
 | Person      | Customers that are recorded in the system | MongoDB  |
 
+## Local Hosting
+
+To run the project locally, follow these steps:
+
+```bash
+git clone https://github.com/your-username/your-project.git
+cd your-project
+```
+
+Build and Run Docker Containers:
+
+```bash
+docker-compose up -d
+```
+
+Access the Angular app at http://localhost:4200.
+
+Angular Development Server:
+Navigate to the bnb-frontend folder:
+
+```bash
+cd bnb-frontend
+```
+
+Start the Angular development server:
+
+```bash
+ng serve
+```
+
 ### ERD Model
 
 ![Our Entity Relationship Diagram](./erd.png)
