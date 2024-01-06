@@ -12,8 +12,6 @@ volumes:
 services:
   redis:
     image: redis:latest
-    ports:
-      - 6379:6379
 
   # Databases
   mysql-bnb:
@@ -22,10 +20,8 @@ services:
     environment:
       MYSQL_DATABASE: bnbdb
       MYSQL_ROOT_PASSWORD: abc123
-    ports:
-      - "3306:3306"
-    # volumes:
-    #   - mysql_bnb_data:/var/lib/mysql
+    volumes:
+       - mysql_bnb_data:/var/lib/mysql
     healthcheck:
       test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
       interval: 10s
@@ -35,13 +31,11 @@ services:
   mysql-reservation:
     image: mysql:latest
     restart: on-failure
-    ports:
-      - "3307:3306"
     environment:
       MYSQL_DATABASE: reservationdb
       MYSQL_ROOT_PASSWORD: abc123
-    # volumes:
-    #   - mysql_reservation_data:/var/lib/mysql
+    volumes:
+       - mysql_reservation_data:/var/lib/mysql
     healthcheck:
       test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
       interval: 10s
@@ -51,22 +45,18 @@ services:
   mongo-person:
     image: mongo:latest
     restart: on-failure
-    ports:
-      - "27018:27017"
     environment:
       MONGO_INITDB_DATABASE: mongo-person
-    # volumes:
-    #   - mongodb_person_data:/data/db
+    volumes:
+       - mongodb_person_data:/data/db
 
   mongo-room:
     image: mongo:latest
     restart: on-failure
-    ports:
-      - "27017:27017"
     environment:
       MONGO_INITDB_DATABASE: mongo-room
-    # volumes:
-    #   - mongodb_room_data:/data/db
+    volumes:
+       - mongodb_room_data:/data/db
 
 
 
@@ -83,8 +73,6 @@ services:
       mysql-bnb:
         condition: service_healthy
     image: brentbrentbrent/bnb-service:latest
-    ports:
-      - "8080:8080"
     # Restart on failure is necessary in case the api crashes on start due to the database not being initialized, and of course in case the api crashes
     restart: on-failure
     environment:
@@ -102,8 +90,6 @@ services:
     depends_on:
       - mongo-person
     image: brentbrentbrent/person-service:latest
-    ports:
-      - "8095:8080"
     restart: on-failure
     environment:
       # Person service uses mongodb, this doesn't require any credentials.
@@ -117,8 +103,6 @@ services:
       mysql-reservation:
         condition: service_healthy
     image: brentbrentbrent/reservation-service:latest
-    ports:
-      - "8090:8080"
     restart: on-failure
     environment:
       MYSQL_DB_HOST: mysql-reservation
@@ -131,8 +115,6 @@ services:
     depends_on:
       - mongo-room
     image: brentbrentbrent/room-service:latest
-    ports:
-      - "8085:8080"
     restart: on-failure
     environment:
       # Person service uses mongodb, this doesn't require any credentials.
@@ -154,7 +136,7 @@ services:
     image: brentbrentbrent/api-gateway:latest
     ports:
       - "7000:7000"
-    # restart: on-failure
+    restart: on-failure
     environment:
       # Due to the microservices_network the gateway can connect to each api separately, and since each api is viewed as its own machine we can re-use the default 8080 port
       BNB_SERVICE_BASEURL: bnb-service:8080
