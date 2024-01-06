@@ -27,8 +27,8 @@ This repository contains our school project for the Enterprise Development Exper
 To run the project locally, follow these steps:
 
 ```bash
-git clone https://github.com/your-username/your-project.git
-cd your-project
+git clone https://github.com/BrentSimons/Project-EDE-BNB
+cd Project-EDE-BNB
 ```
 
 Build and Run Docker Containers:
